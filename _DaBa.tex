@@ -1,0 +1,91 @@
+%% File encoding: UTF-8
+%% äöüÄÖÜß  <-- keine deutschen Umlaute hier? UTF-faehigen Editor verwenden!
+
+\documentclass[bachelor,german]{hgbthesis}
+% Zulässige Class Options: 
+%   Typ der Arbeit: diplom, master (default), bachelor, praktikum 
+%   Hauptsprache: german (default), english
+%%------------------------------------------------------------
+
+\RequirePackage[utf8]{inputenc}		% remove when using lualatex oder xelatex!
+
+\graphicspath{{images/}}    % name of directory containing the images
+\logofile{logo}							% name of logo-PDF in images/ (or use \logofile{} for no logo)
+\bibliography{literatur}  	% name of the BibTeX (.bib) file
+
+
+%%%----------------------------------------------------------
+\begin{document}
+%%%----------------------------------------------------------
+
+% Einträge für ALLE Arbeiten: --------------------------------
+\title{Machine Learning und tiefe neuronale Netze mit TensorFlow}
+\author{David Baumgartner}
+\studiengang{Software Engineering}
+\studienort{Hagenberg}
+\abgabedatum{2017}{01}{14}	% {YYYY}{MM}{DD}
+
+%%% zusätzlich für eine Bachelorarbeit: ---------------------
+\nummer{XXXXXXXXXX-A}   % XX...X = Stud-ID, z.B. 0310238045-A  
+                        % (A = 1. Bachelorarbeit)
+\semester{Wintersemester 2016/17} 
+\gegenstand{Einführung in die Tiefere Problematik 1} 
+\betreuer{Stephan Dreiseitl, FH-Prof. PD DI Dr.} % oder \betreuerin{..}
+
+%%% zusätzlich für einen Praktikumsbericht: -----------------
+\nummer{XXXXXXXXXX-B}   % XX...X = Stud-ID, z.B. 0310238045-B  
+                        % (B = 2. Bachelorarbeit)
+\betreuer{Mag.~Pjotr I.~Czar\\Creative Director}  % \betreuerin{..}
+\firma{%
+   Oligarchic Media International GmbH\\
+   Online Division\\
+   1020 Wien, Hubertusgasse 3a
+}
+\firmenTel{1-234-5678-100}
+\firmenUrl{www.mogul.at}
+
+%\strictlicense  % erzeugt restriktive Lizenzformel
+
+%%%----------------------------------------------------------
+\frontmatter
+\maketitle
+\tableofcontents
+%%%----------------------------------------------------------
+
+%\include{vorwort}		% ggfs. weglassen
+\include{kurzfassung}
+\include{abstract}
+
+%%%----------------------------------------------------------
+\mainmatter         % Hauptteil (ab hier arab. Seitenzahlen)
+%%%----------------------------------------------------------
+
+\include{einleitung}
+\include{begriffe}
+\include{tensorflow}
+\include{keyPointDetection}
+%\include{diplomschrift}
+%\include{latex}
+%\include{abbildungen}
+%\include{mathematik}
+%\include{literatur}
+%\include{drucken}
+%\include{schluss}
+
+%%%----------------------------------------------------------
+%%%Anhang
+\appendix
+%\include{anhang_a}	% Technische Ergänzungen
+%\include{anhang_b}	% Inhalt der CD-ROM/DVD
+%\include{anhang_c}	% Chronologische Liste der Änderungen
+%\include{anhang_d}	% Quelltext dieses Dokuments
+
+
+%%%----------------------------------------------------------
+\MakeBibliography
+%%%----------------------------------------------------------
+
+%%%Messbox zur Druckkontrolle
+\include{messbox}
+
+\end{document}

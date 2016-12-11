@@ -1,0 +1,32 @@
+How to setup TeXnicCennter with SumatraPDF Viewer:
+
+Tutorial: http://download2.polytechnic.edu.na/pub4/sourceforge/t/te/texniccenter/Tutorials/How_to_Sumatra_EN.pdf
+Se also: http://tex.stackexchange.com/questions/116981/how-to-configure-texniccenter-2-0-with-sumatra-2013-2014-version
+
+--------------------------------------------------------------------------------------
+
+1. In the (La)TeX tab / (La)TeX compiler section / Command line arguments to pass to the 
+	compiler bar, you should write: 
+
+	-synctex=-1 -interaction=nonstopmode "%Wm"
+
+2. In the Viewer tab / Executable path section, what should be written is:
+ 
+	"C:\Program Files\SumatraPDF\SumatraPDF.exe" -inverse-search "\"C:\Program Files\TeXnicCenter\TeXnicCenter.exe\" /ddecmd \"[goto('%f','%l')]\""
+
+	The path could be different in your computer (e.g., your path for the executable file could 
+	be in "C:\Program Files (x86)\SumatraPDF\SumatraPDF.exe") or depending on your system's language 
+	could be something like C:\Programme\...
+
+
+3. In the Viewer tab / View project's output section, you should select DDE command and 
+	the command should be "%bm.pdf" (as described in the tutorial) and the server should be SUMATRA. 
+	The topic should be control.
+
+4. In the Viewer tab / Forward search section, you should select DDE command and the command 
+	should be [ForwardSearch("%bm.pdf","%Wc",%l,0,0,1)] (as described in the tutorial) and the 
+	server should be SUMATRA. The topic should be control.
+
+5.In the Viewer tab/Close document before running (La)TeX section you should select "Do not close".
+
+--------------------------------------------------------------------------------------
