@@ -8,22 +8,23 @@ Und zum anderen werden viele dieser Begriffe erläutert, welche noch häufig zum
 \section{Data Science}
 
 Data Science wird generell als die Extraktion von Wissen aus Daten bezeichnet. 
-Dabei werden die Fachbereiche Statistik und Mathematik, Computer Science und Machine Learning sowie einige weitere, mit diesem Begriff zusammengefasst. 
-Das Gebiet für sich wird auch als Berufstätigkeit bezeichnet, wobei meist spezialisierte Formen für die Berufsbezeichnung verwendet werden.\\
+Dabei werden die Fachbereiche Statistik und Mathematik, Informatik und Machine Learning sowie einige weitere, mit diesem Begriff zusammengefasst. 
+Das Gebiet für sich wird auch als Berufstätigkeit bezeichnet, wobei meist spezialisierte Formen für die Berufsbezeichnung verwendet werden. \newline
 
+\noindent 
 Damit Wissen aus Daten überhaupt extrahiert werden kann, muss ein ganzer Prozess durchlaufen werden. 
 Dieser beginnt mit dem zusammentragen von Rohdaten aus der Realität, welche zu diesem Zeitpunkt noch keinen Zusammenhang offenbaren. 
 Im zweiten Prozessschritt werden diese Daten meist umgebaut und neu sortiert, wobei dieser Schritt nicht immer erforderlich ist. 
 Auf die zurecht gelegten Daten besteht nun die Möglichkeit Modelle, Algorithmen sowie weitere Extraktionen durchzuführen. 
 Die erneut extrahierten Daten werden weiterer Folge als Ausgangsdaten verwendet. 
 Auf diese Daten ausgeführte Modelle und Algorithmen liefern Ergebnisse die visuell dargestellt für eine größer Gruppe an Personen geeignet sind. 
------Aus diesem gelernten Wissen besteht zusätzlich die Möglichkeit dieses zum Generieren von neuen Daten zu verwenden und neue Modelle zu entwickeln, die zum Beispiel Vorgänge in der Natur noch akkurater wiederspiegeln.
+Aus diesem gelernten Wissen besteht zusätzlich die Möglichkeit dieses zum Generieren von neuen Daten zu verwenden und neue Modelle zu entwickeln, die zum Beispiel Vorgänge in der Natur noch akkurater widerspiegeln.
 
 \section{Machine Intelligence}
 
-Maschine Intelligence ist ein Begriff der in dieser Form noch nicht definiert worden ist. 
+Machine Intelligence ist ein Begriff der in dieser Form noch nicht definiert worden ist. 
 Einige namhafte Unternehmen wie Google Inc. und Microsoft Corporation bieten jeweils unterschiedliche Definitionen oder Beschreibungen. 
-Beschreibungen, weicht aber unwesentlich von einander ab.
+\textit{Beschreibungen, weicht aber unwesentlich von einander ab. \textbf{TODO}}
 %Dieser wird aber von allen ähnlich beschrieben und definiert.
 Er wird als Überbegriff über das gesamte Gebiet mit Machine Learning, Künstlicher Intelligenz, Konversationsintelligenz und alle Themen die in näherer Beziehung dazu stehen genannt. 
 
@@ -33,20 +34,23 @@ Er wird als Überbegriff über das gesamte Gebiet mit Machine Learning, Künstli
 Machine Learning definiert eine große Anzahl an Theorien und Umsetzungen von nicht explizit programmierten Abläufen. 
 Diese wurden aus Studien in den Bereichen der Mustererkennung und der rechnerischen Lerntheorie mit Künstlicher Intelligenz teilweise entwickelt. 
 Dieses Gebiet umfasst im Jahr 2016 aber sehr viel mehr. 
-So existieren zusätzliche Ansätze aus dem Bereich der Biologie wie zum Beispiel Neuronale Netzwerke, die dem Gehirn nachempfunden sind und genetische Algorithmen die der Weiterentwicklung eines Lebewesen ähneln. 
+So existieren zusätzliche Ansätze aus dem Bereich der Biologie wie zum Beispiel Neuronale Netzwerke, die dem Gehirn nachempfunden sind und genetische Algorithmen, die der Weiterentwicklung eines Lebewesens ähneln. 
 Ein ganz anderer Zugang wurde in der Sowjetunion verfolgt, mit sogenannten 'Support Vektor Machines', bei welchen man einen rein mathematischen Ansatz anstrebt.
 
 \section{Neuronale Netzwerke}
 
-Neuronale Netzwerke sind im Jahr 2016 auch bekannt unter dem Begriff 'Deep Learning'. \\
+Neuronale Netzwerke sind im Jahr 2016 auch bekannt unter dem Begriff 'Deep Learning'. \newline
 
+\noindent 
 Die Theorie und die ersten Grundlagen wurden im Jahre 1943 von Warrn McCulloch und Walter Pitts geschaffen, die ein Modell entwickelten, jedoch nicht die technischen Möglichkeiten hatten dieses umzusetzen.
 Dieses %basierte auf Mathematik und Algorithmen und 
 führte zur 'Threshold Logik'. 
 Durch den 'Backpropagation'-Algorithmus im Jahre 1975 war es möglich, Netzwerke mit mehr als drei Ebenen zu trainieren. \\
 
-Neuronale Netzwerke bestehen aus Neuronen die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben, welches dem Gehirn gleicht. %nachempfunden ist. 
-Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel eine Schleife bilden.
+\noindent 
+\textit{
+Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben, welches dem Gehirn gleicht. %nachempfunden ist. 
+Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel eine Schleife bilden. \textbf{TODO}}
 
 %TODO: you can do anything with it, if it can be designed as a function
 
@@ -55,8 +59,9 @@ Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel e
 
 Abbildung ( Aufbau eines Neurons ) - TikZ Grafik \\
 
+\noindent 
 Ein Neuron wurde einer Nervenzelle in einem Gehirn nachempfunden mit den folgenden Bestandteilen:
-\paragraph{Informationseingangsstrom} ist der Dateneingang, wobei ein Neuron ein bis theoretisch unendlich viele solcher Eingänge haben könnte. 
+\paragraph{Informationseingangsstrom} ist der Dateneingang, wobei ein Neuron ein bis theoretisch beliebig viele solcher Eingänge haben könnte. 
 Dies hängt von der jeweiligen Architektur des Netzwerks ab.
 
 \paragraph{Informationsgewichtung} bezeichnet die Gewichtung mit der der Eingangsstrom gewertet wird. 
@@ -66,44 +71,49 @@ Diese Gewichtung wird durch den Backpropagation-Algorithmus angepasst und nachju
 
 \paragraph{Kernfunktion} bewirkt das Verarbeiten der gewichteten Informationseingänge. 
 Im einfachsten Fall werden alle Werte aufsummiert. 
-Es wäre aber möglich, jegliche Berechnung hier einfließen zu lassen, welche mehrere Werte verwenden und daraus einen neuen Wert berechnet.
+Es wäre aber möglich, jegliche Berechnung hier einfließen zu lassen, welche mehrere Werte verwendet und daraus einen neuen Wert berechnet.
 
-\paragraph{Aktivierungsfunktion} stellt den Ausgang eines Neurons dar. 
+\paragraph{Aktivierungsfunktion} berechnet den Ausgang eines Neurons. 
 Dabei wird eine weitere Funktion auf das im Kern berechnete Ergebnis ausgeführt und führt dazu, dass ein Ergebnis noch stärker ausgeprägt weitergegeben wird oder minimiert wird. 
-Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine Lineare-Funktion. 
+Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funktion. 
 %Wobei in den vergangen Jahren die Linearen-Funktionen häufiger zum Einsatz kommen.
 \\
 
-Die einfachste Repräsentation eines Neurons lässt sich mathematisch so darstellen.
+\noindent 
+Die einfachste Repräsentation eines Neurons lässt sich mathematisch folgendermaßen darstellen.
 Im Kern wird eine Summenberechnung durchgeführt. 
 Dabei werden die Eingangswerte und deren Gewichtung miteinander multipliziert, sowie diese Ergebnisse aufsummiert.
 Der griechische Buchstabe $\phi$ (phi) steht für die Aktivierungsfunktion des Neurons und stellt damit die Ausgabe des Neurons dar.
 \begin{equation}
-	f(x_i, w_i) := \phi ( \sum\limits_{i}{(w_i * x_i)})
+	f(x, w) := \phi ( \sum\limits_{i}{w_i * x_i})
 \end{equation}
 
 
-\section{Bias Neuron}
-\label{sec:Bias Neuron}
+%\section{Bias Neuron}
+%\label{sec:Bias Neuron}
 
-Ein Bias definiert einen Spezialfall eines Neurons, welches keine Dateneingänge somit auch keine Gewichtung hat und keine Berechnung im Kern durchführt. 
+\paragraph{Bias Neuron} 
+\label{sec:Bias Neuron}
+definiert einen Spezialfall eines Neurons, welches keine Dateneingänge somit auch keine Gewichtung hat und keine Berechnung im Kern durchführt. 
 Dieses liefert nur einen konstanten Wert, wie zum Beispiel eine Eins. 
 Durch die konstante Auslieferung wird auch die Aktivierungsfunktion überflüssig. 
-Das Bias Neuron stellt somit einen stetig Wert für das Netzwerk dar, beziehungsweise für die darauffolgende Ebene.
+Das Bias Neuron stellt somit einen stetigen Wert für das Netzwerk dar, beziehungsweise für die darauffolgende Ebene.
 
 \section{Ebenen/Layer}
 \label{sec:Layer}
 
 Ebenen sind Zusammenschlüsse von Neuronen, welche sich auf der selben Stufe befinden. 
-Diese Neurone sind aber nicht miteinander verbunden, sondern bekommen Daten aus der Ebene davor und geben diese an die darauffolgende Ebene weiter. 
+Diese Neuronen sind aber nicht miteinander verbunden, sondern bekommen Daten aus der Ebene davor und geben diese an die darauffolgende Ebene weiter. 
 Dieser Typ wird \textbf{Hiddenlayer} bezeichnet. 
 Jedes Netzwerk benötigt zusätzlich zwei weitere Ausprägungen an Ebenen. 
 Diese sind:
 
+\textit{\textbf{TODO}}
 \paragraph{Inputlayer} sind Ebenen die keine vorgeschaltete Ebene haben. 
-Diese Ebene nimmt die Daten ohne Gewichtung auf und gibt sie verarbeitet an die darauffolgende Ebene weiter. 
+Diese Ebene nimmt die Daten ohne Gewichtung auf und gibt sie an die darauffolgende Ebene weiter. 
 In gewisser Weise stellt sie einen Übergang zwischen der Außenwelt und des Neuronalen Netzwerkes dar.
 
+\textit{\textbf{TODO}}
 \paragraph{Outputlayer} befindet sich am Ende eines Netzwerkes. 
 Dieser Layer hat die Aufgabe, die Daten nach außer weiter zu geben anstatt an das darauffolgende Netzwerk. 
 Hierbei werden die Informationen meist nur mehr für die Ausgabe aufbereitet. 
@@ -115,19 +125,21 @@ Abbildung ( Aufbau eines Einfachen FeedForward NN) - TikZ Grafik
 \section{Informationen Merken und wieder Erkennung}
 
 Durch das Anpassen der Gewichtungen bei jedem Dateneingangsstrom mit Hilfe des Backpropagation-Algorithmus ist es möglich, Zustände zu speichern und diese auch zu merken. 
-Dies führt dazu, sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon ein ähnlicher in einem Trainingszyklus vorhanden war, dieser ähnliche erkannt wird. 
+Dies führt dazu, sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon ein ähnlicher in einem Trainingszyklus vorhanden war, \textit{dieser ähnliche erkannt wird. \textbf{TODO}} 
 Dieser kann möglicherweise zu derselben Kategorie gehören, wie der zuvor schon bekannte gemachte und gelernte Dateneingang.
 
 \section{Backpropagation}
 
 TODO: relative genauer Algorithmus mit Aufgabe
 
+\textit{\textbf{TODO}}
 \section{Allgemeine Probleme}
 
 Neuronale Netzwerke sind nicht Fehler- und Problemlos und können nicht jegliche Fragen in dem Themengebiet lösen. 
 Es existieren bekannte Probleme für die es Lösungen oder Lösungsansätze gibt. 
 Es gibt aber auch noch genügend andere Probleme, welche noch nicht festgestellt wurden oder als solche noch nicht erkannt worden sind. \\
 
+\noindent
 Diese Arbeit wird auf die bekanntesten Probleme eingehen und auch Lösungen oder mögliche Lösungsansätze beinhalten. 
 
 \subsection{Overfitting}
@@ -135,12 +147,12 @@ Diese Arbeit wird auf die bekanntesten Probleme eingehen und auch Lösungen oder
 Overfitting bezeichnet ein Problem welches nicht nur Machine Learning betrifft, sondern auch Menschen und andere Lebewesen. 
 Zum Beispiel ein Student lernt auf eine Prüfung und ist im Besitz einer Klausur aus einem Vorjahr. 
 Nach öfterem Durchspielen der Fragen und sich selbst testen, befindet er sich in der Lage diese Klausur mit einer sehr hohen Wahrscheinlichkeit zu bestehen. 
-Dabei hat sich die Klausur in seinem Gehirn eingeprägt aber nicht das Stoffgebiet zu welchem er eine Klausur schreiben muss. 
-Das Problem wird als Overfitting bezeichnet und beschreibt das etwas gemerkt wurde aber nicht gelernt worden ist und somit eine Abwandlung von Informationen nicht wiedererkannt werden.
+Dabei hat sich die Klausur in seinem Gehirn eingeprägt, aber nicht das Stoffgebiet zu welchem er eine Klausur schreiben muss. 
+Das Problem wird als Overfitting bezeichnet und beschreibt, dass etwas gemerkt wurde aber nicht gelernt worden ist und somit eine Abwandlung von Informationen nicht wiedererkannt werden.
 
 \subsection{Datensätze}
 
-TODO: jeder datensat ist unterschiedlich -> neue Daten = neues Netzwerk
+TODO: jeder Datensatz ist unterschiedlich -> neue Daten = neues Netzwerk
 
 \section{Trainieren}
 
@@ -160,17 +172,18 @@ TODO
 Neuronale Netzwerk können sehr vielseitig eingesetzt werden. 
 Grundsätzlich lässt sich jedes Problem, welches als Funktion repräsentiert werden kann, durch ein Neuronales Netzwerk approximieren. \\
 
-In dieser Arbeit werde sieben Hauptdomänen erklärt und beschrieben.%, in welchen Neuronale Netzwerke öfters zum Einsatz kommen und eingesetzt werden.
+\noindent
+In dieser Arbeit werde sieben Hauptdomänen erklärt und beschrieben. %, in welchen Neuronale Netzwerke öfters zum Einsatz kommen und eingesetzt werden.
 Im speziellen wird auf die Neuronalen Netzwerke eingegangen, welche öfter zum Einsatz kommen und eingesetzt werden.
 
 \subsection{Clustering}
 \label{subsec:Clustering}
 
-Clustering Problem bezeichnet das Einordnen von Daten in Klassen oder Gruppierungen. 
+Das Clustering Problem bezeichnet das Einordnen von Daten in Klassen oder Gruppierungen. 
 Diese Gruppierungen können von einem Netzwerk selbst definiert werden oder manuell festgelegt werden. 
 % in wie viele Gruppen die Daten eingeordnet werden sollen.  
 Es kann die Anzahl der Gruppen in welche die Daten eingeordnet werden festgelegt werden. 
-Diese Netzwerke agieren unsupervised und besitzen meist die Möglichkeit sich nach dem Trainieren, noch selbst weiter anzupassen. 
+Diese Netzwerke agieren unüberwacht und besitzen meist die Möglichkeit sich nach dem Trainieren, \textit{noch selbst weiter anzupassen. \textbf{TODO}}
 Dies erlaubt dem Netzwerk auf sich ändernde Daten anzupassen und das Clustern und Gruppieren weiterzuführen ohne ein neues Netzwerk erstellen zu müssen.
 
 \subsection{Regression}
@@ -181,7 +194,7 @@ TODO
 \subsection{Classification}
 \label{subsec:Classification}
 
-Classification Problem ist in gewisser Weise das Gegenstück zum Regression Problem. 
+Das Classification Problem ist in gewisser Weise das \textit{Gegenstück \textbf{TODO}} zum Regression Problem. 
 Hier werden Daten dem Netzwerk übergeben, und dieses muss vorhersagen zu welcher Klasse sie gehören. Dies wird in einer supervised Umgebung durchgeführt. 
 Die Klassen für die Vorhersage sind vorab schon bekannt und können im den Daten aus dem Outputlayer des Netzwerks  verglichen werden und infolge Justierungen durchgeführt werden.
 
@@ -230,6 +243,7 @@ Diese Lösung liegt aber im Rahmen von einer bestimmten definierten Toleranz und
 In den letzten Jahren heraus haben sich diverse gut funktionierende Neuronale Netzwerktypen gebildet,  beziehungsweise sind entwickelt und erforscht worden. 
 Diese Netzwerktypen definieren Richtlinien oder Ansätze zu möglichen Netzwerken, welche aber nicht komplett übernommen werden müssen, sonder einen kreativen Spielraum ermöglichen. \\
 
+\noindent
 In dieser Arbeit werde die wichtigsten Typen und ihre Eigenschaften erklärt. 
 Für die folgenden Punkte ist es erforderlich ein Grundverständnis für Neuronale Netzwerk sowie über ihre Funktionsweise zu besitzen, sollte dies nicht der Fall sein - Punkt \ref{sec:Machine Learning} bis \ref{sec:Domänenklassen}.
 
@@ -238,7 +252,7 @@ Für die folgenden Punkte ist es erforderlich ein Grundverständnis für Neurona
 
 FeedForward Netzwerke (FFN) waren bis for einigen Jahren noch der Stand der Forschung.
 Auf ihnen basieren einige andere Typen von Netzwerken, die bekanntesten werden in dieser Arbeit noch behandelt.
-Ein FFN passiert auf den Grundlagen eines Neurons \ref{sec:Neuron}, sowie dem ausbauen dieses zu Ebenen mit mehreren Neuronen \ref{sec:Layer}.
+Ein FFN basiert auf den Grundlagen eines Neurons (Neuron \ref{sec:Neuron}), sowie dem ausbauen dieses zu Ebenen mit mehreren Neuronen \ref{sec:Layer}.
 So ein Netzwerk besitzt einen Inputlayer, einen Hiddenlayer sowie einen Outputlayer.
 Sobald das Netzwerk mehrere Hiddenlayer aufweist wird es als Deep FeedForward Netzwerk \ref{subsec:Deep Feedforward} bezeichnet.
 Das FFN weist dabei eine Charakteristik auf, indem dass der Datenfluss eindeutig definiert ist. 
@@ -248,7 +262,7 @@ Die einzelnen Ebenen müssen dabei aber nicht voll verbunden sein, sondern die V
 
 \subsection{Self-Organizing Map}
 
-Self-Organizing Map (SOM) findet vor allem im Bereich der Classification  \ref{subsec:Classification} Verwendung und wurden von Kohonen (1988) erfunden. 
+Self-Organizing Map (SOM) findet vor allem im Bereich der Classification \ref{subsec:Classification} Verwendung und wurden von Kohonen (1988) erfunden. 
 Es ist nicht erforderlich einer SOM die Information zu geben, in wie viele Gruppen oder Klassen die Daten unterteilt werden sollen. 
 Dadurch gehören es zu den Systemen, welche unsupervised trainiert werden. 
 Außerdem besitzen sie die Möglichkeit, sich auch nach der Trainingsphase auf sich ändernde Eingangsdaten anzupassen. 
@@ -259,10 +273,20 @@ Dies geschieht durch das Berechnen der euklidischen Distanz.
 Diese Art von Netzwerk kommt ohne Bias Werte \ref{sec:Bias Neuron} aus und es kommen ausschließlich Lineare Aktivierungsfunktionen zur Verwendung.
 
 
+\subsection{Hopfield Neuronal Network}
 
-\subsection{Hopfield}
+Ein Hopfield Neuronal Network (HNN) ist ein einfaches Netzwerk welches aus einem Layer besteht. 
+In diesem Layer sind alle Neuronen mit jedem anderen Neuron verbunden. 
+Dieses Muster wurde von Hopfield (1982) erfunden.
+Im Gegensatz zu anderen Netzwerken können Hopfield Netzwerke in einer Matrix abgebildet werden, in welcher die Gewichtung zu den einzelnen Neuronen abgebildet werden. 
+Die Neuronen selbst nehmen dabei den Zustand 1 für Wahr und -1 für Falsch an.
+Das Problem bei diesem Type ist, dass jedes Neuron auf dem Status der anderen aufbaut.
+Dies stellt ein Problem für die Reihenfolge der Berechnung dar, was zu einem nicht stabilen Zustand führt.
+Durch das Hinzugeben einer Energiefunktion kann festgestellt werden, in welchem Zustand sich das Netzwerk befindet.
 
 \subsection{Boltzmann Machine}
+
+
 
 \subsection{Deep Belief Network}
 
