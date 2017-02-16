@@ -24,9 +24,9 @@ Aus diesem gelernten Wissen besteht zusätzlich die Möglichkeit dieses zum Gene
 
 Machine Intelligence ist ein Begriff der in dieser Form noch nicht definiert worden ist. 
 Einige namhafte Unternehmen wie Google Inc. und Microsoft Corporation bieten jeweils unterschiedliche Definitionen oder Beschreibungen. 
-\textit{Beschreibungen, weicht aber unwesentlich von einander ab. \textbf{TODO}}
+Die Definitionen dieser Firmen weicht nur unwesentlich von einander ab.
 %Dieser wird aber von allen ähnlich beschrieben und definiert.
-Er wird als Überbegriff über das gesamte Gebiet mit Machine Learning, Künstlicher Intelligenz, Konversationsintelligenz und alle Themen die in näherer Beziehung dazu stehen genannt. 
+Dieser wird als Überbegriff über das gesamte Gebiet mit Machine Learning, Künstlicher Intelligenz, Konversationsintelligenz und alle Themen die in näherer Beziehung dazu stehen verwendet. 
 
 \section{Machine Learning}
 \label{sec:Machine Learning}
@@ -49,8 +49,8 @@ Durch den 'Backpropagation'-Algorithmus im Jahre 1975 war es möglich, Netzwerke
 
 \noindent 
 \textit{
-Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben, welches dem Gehirn gleicht. %nachempfunden ist. 
-Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel eine Schleife bilden. \textbf{TODO}}
+Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben.%, welches dem Gehirn gleicht. %nachempfunden ist. 
+Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel eine Schleife bilden.}
 
 %TODO: you can do anything with it, if it can be designed as a function
 
@@ -135,9 +135,12 @@ TODO: relative genauer Algorithmus mit Aufgabe
 \textit{\textbf{TODO}}
 \section{Allgemeine Probleme}
 
-Neuronale Netzwerke sind nicht Fehler- und Problemlos und können nicht jegliche Fragen in dem Themengebiet lösen. 
-Es existieren bekannte Probleme für die es Lösungen oder Lösungsansätze gibt. 
-Es gibt aber auch noch genügend andere Probleme, welche noch nicht festgestellt wurden oder als solche noch nicht erkannt worden sind. \\
+Nach dem aktuellen Stand der Dinge können Neuronale Netzwerke nicht jede Frage dieser Welt beantworten.
+Das Entwickeln eines neuen Netzwerks ist ein sehr schwierige und eine lang andauernde Aufgabe. Dabei können Fehler aufdrehten, welche natürlicher Natur sein können aber auch durch den Entwickler verursacht sein können. \\
+
+%Neuronale Netzwerke sind nicht Fehler- und Problemlos und können nicht jegliche Fragen in dem Themengebiet lösen. 
+%Es existieren bekannte Probleme für die es Lösungen oder Lösungsansätze gibt. 
+%Es gibt aber auch noch genügend andere Probleme, welche noch nicht festgestellt wurden oder als solche noch nicht erkannt worden sind. 
 
 \noindent
 Diese Arbeit wird auf die bekanntesten Probleme eingehen und auch Lösungen oder mögliche Lösungsansätze beinhalten. 
@@ -156,15 +159,15 @@ TODO: jeder Datensatz ist unterschiedlich -> neue Daten = neues Netzwerk
 
 \section{Trainieren}
 
-TODO
-
-\subsection{Supervised Trainieren}
+\paragraph{Überwachtes Trainieren}
 
 TODO
 
-\subsection{Unsupervised Trainieren}
+\paragraph{Unüberwachtes Trainieren}
 
-TODO
+nur die Eingangsdaten werden zur Verfügung gestellt - der erwartete Ausgang wird nicht zur Verfügung gestellt
+
+self-organizing map
 
 \section{Domänenklassen}
 \label{sec:Domänenklassen}
@@ -182,77 +185,89 @@ Im speziellen wird auf die Neuronalen Netzwerke eingegangen, welche öfter zum E
 Das Clustering Problem bezeichnet das Einordnen von Daten in Klassen oder Gruppierungen. 
 Diese Gruppierungen können von einem Netzwerk selbst definiert werden oder manuell festgelegt werden. 
 % in wie viele Gruppen die Daten eingeordnet werden sollen.  
-Es kann die Anzahl der Gruppen in welche die Daten eingeordnet werden festgelegt werden. 
-Diese Netzwerke agieren unüberwacht und besitzen meist die Möglichkeit sich nach dem Trainieren, \textit{noch selbst weiter anzupassen. \textbf{TODO}}
-Dies erlaubt dem Netzwerk auf sich ändernde Daten anzupassen und das Clustern und Gruppieren weiterzuführen ohne ein neues Netzwerk erstellen zu müssen.
+Die Anzahl der Gruppen in welche die Daten eingeordnet werden sollen können festgelegt werden aber auch im Falle einer Self-Oranizing-Map auch selbst definieren werden.
+%Diese Netzwerke agieren unüberwacht und besitzen teilweise die Möglichkeit sich nach dem Trainieren, sich weiter auf sich ändernde Daten anzupassen noch selbst weiter anzupassen. \textbf{TODO}
+%Dies erlaubt dem Netzwerk auf sich ändernde Daten anzupassen und das Clustern und Gruppieren weiterzuführen ohne ein neues Netzwerk erstellen zu müssen.
 
 \subsection{Regression}
 \label{subsec:Regression}
 
-TODO
+Regression beschreibt den Fall in welchem Daten generiert werden und das Kontinuierlich.
+Ein Anwendungsfall ist das Finder einer Zugrundeliegenden Funktion wo nur Resultate dieser Funktion vorliegen. 
+So mit werden aus Daten weitere Daten erzeugt.
+So gibt es Abläufe in der Natur welche Approximiert werden um sie für weitere Systeme möglicherweise zu verwenden. \cite{bishop2006pattern}
 
 \subsection{Classification}
 \label{subsec:Classification}
 
-Das Classification Problem ist in gewisser Weise das \textit{Gegenstück \textbf{TODO}} zum Regression Problem. 
-Hier werden Daten dem Netzwerk übergeben, und dieses muss vorhersagen zu welcher Klasse sie gehören. Dies wird in einer supervised Umgebung durchgeführt. 
-Die Klassen für die Vorhersage sind vorab schon bekannt und können im den Daten aus dem Outputlayer des Netzwerks  verglichen werden und infolge Justierungen durchgeführt werden.
+Das Classification Problem ist in gewisser Weise ähnlich zu Regression Problemen. 
+Der Unterschied liegt im Ergebnis welche produziert werden.  
+Hier werden Daten dem Netzwerk übergeben, und dieses muss vorhersagen zu welcher Klasse sie gehören. Dies wird in einer überwachten Umgebung durchgeführt. 
+Die Klassen für die Vorhersage sind vorab schon bekannt und können mit den Daten aus dem Outputlayer des Netzwerks verglichen werden und infolge Justierungen durchgeführt werden. \cite{AI3} \\
+
+\noindent
+Ergebnisse einer Classification sagt aus, zu wieviel Prozent etwas auf den gegebenen Input zutrifft. 
+Das gesamt Ergebnis ergibt immer 100 Prozent. 
+Das Ergebnis bei einer Regression wird dabei nicht in Prozent angegeben sondern stellt einen konkreten Wert dar.
 
 \subsection{Predict}
 \label{subsec:Predict}
 
-Predict Problemstellungen kommen im Kontext von Business beziehungsweise von E-Business zur Anwendung. 
+Predict Problemstellungen kommen im Kontext von Business beziehungsweise von E-Business zur Anwendung vor. 
 Hier muss anhand von meist zeitgesteuerten Ereignisse eine Vorhersage getroffen werden. 
 Zum Beispiel an der Börse ändern sich täglich die Kurse relativ rasch, sodass es für Menschen praktisch nicht mehr möglich ist, diesen zu Folgen. 
-Im Falle der Börse sind nun aber zeitlich gestützte Kurse aus der Vergangenheit verfügbar. 
+Im Falle der Börse sind zeitlich Kurse aus der Vergangenheit verfügbar. 
 Diese werden als Trainingsset für ein Netzwerk verwendet, um den nächsten Tag möglicherweise vorherzusagen. 
+Es kann somit als eine Spezialisierung von Regression und Classification angesehen werden, da Daten generiert werde diese aber mit einer Wahrscheinlichkeit.
 
 \subsection{Robotics}
 \label{subsec:Robotics}
 
-Im Bereich von Robotics entstehen häufig zu große Datenmengen. 
-Diese Datenmengen müssten von einem Menschen analysiert werden. 
-Daraus würde ein Algorithmus entstehen, wobei die Analyse sowie Entwicklungsphase zu viel Zeit in Anspruch nimmt. 
-Netzwerke verwenden im Grunde die Sensorinformationen und steuern damit Motoren. 
-Diese kann von Anfang an durchgeführt werden, sowie automatisiert.
+Auch bekannt unter dem Namen Robot-Learning. 
+Dabei lernen Roboter eigenständig neue Techniken oder passen sich automatisch ihrer Umgebung an. 
+Dabei gibt es Kernprobleme wie, dass in Realtime etwas zum Beispiel Dreidimensionales in einer höhere Dimension berechnet werden muss.
+Aus diesen Daten muss zur selben Zeit gelernt werden aber auch Aktionen eingeleitet werden, wie das steuern von Motoren, um zum Beispiel nicht Umzufallen.
+%Im Bereich von Robotics entstehen häufig zu große Datenmengen. 
+%Diese Datenmengen müssten von einem Menschen analysiert werden. 
+%Daraus würde ein Algorithmus entstehen, wobei die Analyse sowie Entwicklungsphase zu viel Zeit in Anspruch nimmt. 
+%Netzwerke verwenden im Grunde die Sensorinformationen und steuern damit Motoren. 
+%Diese kann von Anfang an durchgeführt werden, sowie automatisiert.
 
 \subsection{Computer Vision}
 \label{subsec:Cumputer Vision}
 
 Computer Vision zielt darauf ab, einem Computer das Sehen und Verstehen von Bildern zu ermöglichen. 
 Diese Technik findet im Jahr 2016 schon häufig Einsatz. 
-So werden automatisiert Bilder analysiert, beschrieben sowie auch klassifiziert. 
+So werden automatisiert Bilder analysiert, beschrieben sowie auch in Gruppen ein geordnet nach diversen Kategorien wie zum Beispiel Gesichtsgefühlszustände.
 Das Dienste werden auch kommerziell eingesetzt und auch angeboten. 
-In autonom gesteuerten Fahrzeugen findet dies Anwendung auch Verwendung um Objekte zu erkennen und zu verstehen. 
+In autonom gesteuerten Fahrzeugen findet diese Technologie auch bereits Verwendung um Objekte zu erkennen und zu verstehen. 
 So muss zum Beispiel ein Verkehrszeichen von einem Passanten unterschieden werden können.
 
-\subsection{Optimization}
+\subsection{Optimierung}
 \label{subsec:Optimization}
 
 Optimization bezieht sich auf eines der Grundprobleme der Informationstechnologie. 
-So werden immer bessere schnellere Algorithmen entwickelt, welcher konkrete Probleme noch effizienter Lösen können. 
-Durch das Thema BigData entstand ein Problem, sodass selbst sehr effiziente Algorithmen einige Problemstellungen nicht mehr in konstanter oder adäquater Zeit lösen können. 
+So werden immer bessere schnellere Algorithmen entwickelt, welcher konkrete Probleme noch effizienter lösen können. 
+Durch das Thema BigData entstand das Problem, sodass selbst sehr effiziente Algorithmen einige Problemstellungen nicht mehr in konstanter oder adäquater Zeit lösen können. 
 Das 'Salesman' Problem gehört zu diesen Problemen. 
 Durch Optimization wird in konstanter Zeit eine Lösung ermittelt, welche nicht die beste Lösung repräsentiert. 
-Diese Lösung liegt aber im Rahmen von einer bestimmten definierten Toleranz und kann als Lösung verwendet werden.
-
-%\cite{AI3}
+Diese Lösung liegt aber im Rahmen von einer bestimmten definierten Toleranz und kann als Lösung verwendet werden. \cite{AI3}
 
 \section{Neuronale Netzwerktypen}
 
 In den letzten Jahren heraus haben sich diverse gut funktionierende Neuronale Netzwerktypen gebildet,  beziehungsweise sind entwickelt und erforscht worden. 
 Diese Netzwerktypen definieren Richtlinien oder Ansätze zu möglichen Netzwerken, welche aber nicht komplett übernommen werden müssen, sonder einen kreativen Spielraum ermöglichen. \\
 
-\noindent
-In dieser Arbeit werde die wichtigsten Typen und ihre Eigenschaften erklärt. 
-Für die folgenden Punkte ist es erforderlich ein Grundverständnis für Neuronale Netzwerk sowie über ihre Funktionsweise zu besitzen, sollte dies nicht der Fall sein - Punkt \ref{sec:Machine Learning} bis \ref{sec:Domänenklassen}.
+%\noindent
+%In dieser Arbeit werde die wichtigsten Typen und ihre Eigenschaften erklärt. 
+%Für die folgenden Punkte ist es erforderlich ein Grundverständnis für Neuronale Netzwerk sowie über ihre Funktionsweise zu besitzen, sollte dies nicht der Fall sein - Punkt \ref{sec:Machine Learning} bis \ref{sec:Domänenklassen}.
 
 \subsection{FeedForward}
 \label{subsec:FeedForward}
 
 FeedForward Netzwerke (FFN) waren bis for einigen Jahren noch der Stand der Forschung.
 Auf ihnen basieren einige andere Typen von Netzwerken, die bekanntesten werden in dieser Arbeit noch behandelt.
-Ein FFN basiert auf den Grundlagen eines Neurons (Neuron \ref{sec:Neuron}), sowie dem ausbauen dieses zu Ebenen mit mehreren Neuronen \ref{sec:Layer}.
+Ein FFN basiert auf den Grundlagen eines Neurons (Neuron \ref{sec:Neuron}), sowie dem ausbauen dieses zu Ebenen mit mehreren Neuronen (Layer \ref{sec:Layer}).
 So ein Netzwerk besitzt einen Inputlayer, einen Hiddenlayer sowie einen Outputlayer.
 Sobald das Netzwerk mehrere Hiddenlayer aufweist wird es als Deep FeedForward Netzwerk \ref{subsec:Deep Feedforward} bezeichnet.
 Das FFN weist dabei eine Charakteristik auf, indem dass der Datenfluss eindeutig definiert ist. 
