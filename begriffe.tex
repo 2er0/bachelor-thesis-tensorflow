@@ -108,16 +108,16 @@ Dieser Typ wird \textbf{Hiddenlayer} bezeichnet.
 Jedes Netzwerk benötigt zusätzlich zwei weitere Ausprägungen an Ebenen. 
 Diese sind:
 
-\textit{\textbf{TODO}}
-\paragraph{Inputlayer} sind Ebenen die keine vorgeschaltete Ebene haben. 
+%\textit{\textbf{TODO}}
+\paragraph{Inputlayer} stellen den Übergang zwischen der Welt außerhalb des Neuronalen Netzwerks und dem Netzwerk dar.
 Diese Ebene nimmt die Daten ohne Gewichtung auf und gibt sie an die darauffolgende Ebene weiter. 
-In gewisser Weise stellt sie einen Übergang zwischen der Außenwelt und des Neuronalen Netzwerkes dar.
+%In gewisser Weise stellt sie einen Übergang zwischen der Außenwelt und des Neuronalen Netzwerkes dar.
 
-\textit{\textbf{TODO}}
+%\textit{\textbf{TODO}}
 \paragraph{Outputlayer} befindet sich am Ende eines Netzwerkes. 
 Dieser Layer hat die Aufgabe, die Daten nach außer weiter zu geben anstatt an das darauffolgende Netzwerk. 
 Hierbei werden die Informationen meist nur mehr für die Ausgabe aufbereitet. 
-So wird zum Beispiel die Wahrscheinlichkeit für jeden Ausgang berechnet.
+%So wird zum Beispiel die Wahrscheinlichkeit für jeden Ausgang berechnet.
 \\
 
 Abbildung ( Aufbau eines Einfachen FeedForward NN) - TikZ Grafik
@@ -130,13 +130,19 @@ Dieser kann möglicherweise zu derselben Kategorie gehören, wie der zuvor schon
 
 \section{Backpropagation}
 
-TODO: relative genauer Algorithmus mit Aufgabe
+%TODO: relative genauer Algorithmus mit Aufgabe
+Bis zum Jahre 1986 gab es kein automatisierte Möglichkeit, die Gewichtungen in einem Netzwerk anzupassen.
+In diesem Jahre brachten Rumelhart, Hinton \& Williams eine mögliche Lösung zu Tage, welche sehr ähnlich zu anderen Ansätzen von früher war (Werbos, 1974; Parker, 1985; Cun, 1985).
+Die zentrale Idee in ihrer Lösung liegt darin, die Abweichung des produzierten Ergebnisses zum wirklichen erwarteten Ergebnis zu bestimmen. 
+Aufgrund dieses Fehlers lässt sich im Anschluss das Netzwerk von Ende zum Anfang nachjustieren. 
+Diese Technik ermöglichte damit auch die Möglichkeit tiefer Netzwerke zu konstruieren und auch zu Trainieren.
 
-\textit{\textbf{TODO}}
+%\textit{\textbf{TODO}}
 \section{Allgemeine Probleme}
 
 Nach dem aktuellen Stand der Dinge können Neuronale Netzwerke nicht jede Frage dieser Welt beantworten.
-Das Entwickeln eines neuen Netzwerks ist ein sehr schwierige und eine lang andauernde Aufgabe. Dabei können Fehler aufdrehten, welche natürlicher Natur sein können aber auch durch den Entwickler verursacht sein können. \\
+Das Entwickeln eines neuen Netzwerks ist ein sehr schwierige und eine lang andauernde Aufgabe. 
+Dabei können Fehler aufdrehten, welche natürlicher Natur sein können aber auch durch den Entwickler verursacht sein können. \\
 
 %Neuronale Netzwerke sind nicht Fehler- und Problemlos und können nicht jegliche Fragen in dem Themengebiet lösen. 
 %Es existieren bekannte Probleme für die es Lösungen oder Lösungsansätze gibt. 
@@ -145,23 +151,31 @@ Das Entwickeln eines neuen Netzwerks ist ein sehr schwierige und eine lang andau
 \noindent
 Diese Arbeit wird auf die bekanntesten Probleme eingehen und auch Lösungen oder mögliche Lösungsansätze beinhalten. 
 
-\subsection{Overfitting}
+%\subsection{Overfitting}
 
-Overfitting bezeichnet ein Problem welches nicht nur Machine Learning betrifft, sondern auch Menschen und andere Lebewesen. 
+\paragraph{Overfitting} bezeichnet ein Problem welches nicht nur Machine Learning betrifft, sondern auch Menschen und andere Lebewesen. 
 Zum Beispiel ein Student lernt auf eine Prüfung und ist im Besitz einer Klausur aus einem Vorjahr. 
 Nach öfterem Durchspielen der Fragen und sich selbst testen, befindet er sich in der Lage diese Klausur mit einer sehr hohen Wahrscheinlichkeit zu bestehen. 
 Dabei hat sich die Klausur in seinem Gehirn eingeprägt, aber nicht das Stoffgebiet zu welchem er eine Klausur schreiben muss. 
 Das Problem wird als Overfitting bezeichnet und beschreibt, dass etwas gemerkt wurde aber nicht gelernt worden ist und somit eine Abwandlung von Informationen nicht wiedererkannt werden.
 
-\subsection{Datensätze}
+%\subsection{Daten & Datensätze}
 
-TODO: jeder Datensatz ist unterschiedlich -> neue Daten = neues Netzwerk
+%TODO: jeder Datensatz ist unterschiedlich -> neue Daten = neues Netzwerk
+\paragraph{Daten} die zum Trainieren von Netzwerken verwendet werde stellen selbst Probleme dar.% Ein weiteres Problem stellen die Daten und Datensätze dar, welche zum Trainieren des Netzwerkes verwendet werden.
+Eine zu geringe Menge an Daten stellt den Entwickler vor das Problem, dass er für diese Daten ein akkurates Netzwerk entwickeln kann.
+Dieses Netzwerk würde aber möglicherweise nicht die gewünschten Resultate liefern, da der zur Verfügung gestellten Daten nur einen kleinen Teil des gesamten Repräsentieren.
+Zusätzlich kann es sein, dass die zur Verfügung gestellten Daten selbst nicht vollständig sind und somit wieder nur ein Subset verwendet werden kann.
+
+\paragraph{Datensätze} können ähnlich sein zu anderen, sind aber trotzdem wieder eigen\/juniek.
+Dies bedeutet, dass ein Netzwerk welches für eine Problemstellung entwickelt und trainiert wurde, nicht eins zu eins übernommen werden kann.
+Für diese Daten muss wieder ein Netzwerk entwickelt werden.
 
 \section{Trainieren}
 
 \paragraph{Überwachtes Trainieren}
 
-TODO
+
 
 \paragraph{Unüberwachtes Trainieren}
 
