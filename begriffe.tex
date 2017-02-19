@@ -129,6 +129,7 @@ Dies führt dazu, sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon
 Dieser kann möglicherweise zu derselben Kategorie gehören, wie der zuvor schon bekannte gemachte und gelernte Dateneingang.
 
 \section{Backpropagation}
+\label{sec:Backpropagation}
 
 %TODO: relative genauer Algorithmus mit Aufgabe
 Bis zum Jahre 1986 gab es kein automatisierte Möglichkeit, die Gewichtungen in einem Netzwerk anzupassen.
@@ -162,7 +163,8 @@ Das Problem wird als Overfitting bezeichnet und beschreibt, dass etwas gemerkt w
 %\subsection{Daten & Datensätze}
 
 %TODO: jeder Datensatz ist unterschiedlich -> neue Daten = neues Netzwerk
-\paragraph{Daten} die zum Trainieren von Netzwerken verwendet werde stellen selbst Probleme dar.% Ein weiteres Problem stellen die Daten und Datensätze dar, welche zum Trainieren des Netzwerkes verwendet werden.
+\paragraph{Daten} die zum Trainieren von Netzwerken verwendet werde stellen selbst Probleme dar.
+% Ein weiteres Problem stellen die Daten und Datensätze dar, welche zum Trainieren des Netzwerkes verwendet werden.
 Eine zu geringe Menge an Daten stellt den Entwickler vor das Problem, dass er für diese Daten ein akkurates Netzwerk entwickeln kann.
 Dieses Netzwerk würde aber möglicherweise nicht die gewünschten Resultate liefern, da der zur Verfügung gestellten Daten nur einen kleinen Teil des gesamten Repräsentieren.
 Zusätzlich kann es sein, dass die zur Verfügung gestellten Daten selbst nicht vollständig sind und somit wieder nur ein Subset verwendet werden kann.
@@ -173,15 +175,20 @@ Für diese Daten muss wieder ein Netzwerk entwickelt werden.
 
 \section{Trainieren}
 
-\paragraph{Überwachtes Trainieren}
+\paragraph{Überwachtes Trainieren} definiert, dass die Daten welche zur Verfügung stehen aus zwei Teilen bestehen.
+Erstens aus den Daten selbst aus welchen gelernt und verstanden werden soll.
+Zweitens aus den Ergebnissen zu welchem das Netzwerk kommen sollte.
+Der bekannte Wert wird meistens als Lable bezeichnet. 
+In diese Situation liefert das Netzwerk ein Ergebnis welches mit dem erwarteten Wert verglichen werden kann.
+Dieser Unterschied wird zum feststellen des Fehlers verwendet, welche besagt wie inkorrekt das Ergebnis ist.
+Des weiteren wird diese Fehlerwert für die Backpropagation (\ref{sec:Backpropagation}) benötigt.
 
-
-
-\paragraph{Unüberwachtes Trainieren}
-
-nur die Eingangsdaten werden zur Verfügung gestellt - der erwartete Ausgang wird nicht zur Verfügung gestellt
-
-self-organizing map
+\paragraph{Unüberwachtes Trainieren} kommt dann zu tragen wenn nur Daten zum Trainieren zur Verfügung stehen.
+Der erwartete Ausgang ist unbekannt.
+Diese Strategie wird in Fällen von Clustering (\ref{subsec:Clustering}) verwendet.
+Dabei sollen nicht bekannte Gruppen von zusammengehörende Beispiele identifiziert werden. 
+Self-Organizing Maps (\ref{subsec:SelfOrganizingMap}) entdecken zusammen gehörende Muster und geben dies in einer Grafik zum Beispiel weiter zur weiteren Interpretation.
+%nur die Eingangsdaten werden zur Verfügung gestellt - der erwartete Ausgang wird nicht zur Verfügung gestellt
 
 \section{Domänenklassen}
 \label{sec:Domänenklassen}
@@ -283,15 +290,16 @@ FeedForward Netzwerke (FFN) waren bis for einigen Jahren noch der Stand der Fors
 Auf ihnen basieren einige andere Typen von Netzwerken, die bekanntesten werden in dieser Arbeit noch behandelt.
 Ein FFN basiert auf den Grundlagen eines Neurons (Neuron \ref{sec:Neuron}), sowie dem ausbauen dieses zu Ebenen mit mehreren Neuronen (Layer \ref{sec:Layer}).
 So ein Netzwerk besitzt einen Inputlayer, einen Hiddenlayer sowie einen Outputlayer.
-Sobald das Netzwerk mehrere Hiddenlayer aufweist wird es als Deep FeedForward Netzwerk \ref{subsec:Deep Feedforward} bezeichnet.
+Sobald das Netzwerk mehrere Hiddenlayer aufweist wird es als Deep FeedForward Netzwerk (\ref{subsec:Deep Feedforward}) bezeichnet.
 Das FFN weist dabei eine Charakteristik auf, indem dass der Datenfluss eindeutig definiert ist. 
 Der Datenfluss beginnt bei dem Inputlayer und endet bei dem Outputlayer ohne dass ein Datenrückfluss zum Beispiel von dem Hiddenlayer in den Hiddelayer vorhanden ist.
 Dies würde eine Rekursion oder einem Kurzzeitgedächtnis entsprechen.
 Die einzelnen Ebenen müssen dabei aber nicht voll verbunden sein, sondern die Vernetzung kann selbst bestimmt werden.
 
 \subsection{Self-Organizing Map}
+\label{subsec:SelfOrganizingMap}
 
-Self-Organizing Map (SOM) findet vor allem im Bereich der Classification \ref{subsec:Classification} Verwendung und wurden von Kohonen (1988) erfunden. 
+Self-Organizing Map (SOM) findet vor allem im Bereich der Classification (\ref{subsec:Classification}) Verwendung und wurden von Kohonen (1988) erfunden. 
 Es ist nicht erforderlich einer SOM die Information zu geben, in wie viele Gruppen oder Klassen die Daten unterteilt werden sollen. 
 Dadurch gehören es zu den Systemen, welche unsupervised trainiert werden. 
 Außerdem besitzen sie die Möglichkeit, sich auch nach der Trainingsphase auf sich ändernde Eingangsdaten anzupassen. 
