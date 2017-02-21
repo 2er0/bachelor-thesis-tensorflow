@@ -94,6 +94,7 @@ Der griechische Buchstabe $\phi$ (phi) steht für die Aktivierungsfunktion des N
 
 \paragraph{Bias Neuron} 
 \label{sec:Bias Neuron}
+
 definiert einen Spezialfall eines Neurons, welches keine Dateneingänge somit auch keine Gewichtung hat und keine Berechnung im Kern durchführt. 
 Dieses liefert nur einen konstanten Wert, wie zum Beispiel eine Eins. 
 Durch die konstante Auslieferung wird auch die Aktivierungsfunktion überflüssig. 
@@ -125,7 +126,7 @@ Abbildung ( Aufbau eines Einfachen FeedForward NN) - TikZ Grafik
 \section{Informationen Merken und wieder Erkennung}
 
 Durch das Anpassen der Gewichtungen bei jedem Dateneingangsstrom mit Hilfe des Backpropagation-Algorithmus ist es möglich, Zustände zu speichern und diese auch zu merken. 
-Dies führt dazu, sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon ein ähnlicher in einem Trainingszyklus vorhanden war, \textit{dieser ähnliche erkannt wird. \textbf{TODO}} 
+Dies führt dazu, sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon ein ähnlicher in einem Trainingszyklus vorhanden war, dies erkannt wird. %\textit{dieser ähnliche erkannt wird. \textbf{TODO}} 
 Dieser kann möglicherweise zu derselben Kategorie gehören, wie der zuvor schon bekannte gemachte und gelernte Dateneingang.
 
 \section{Backpropagation}
@@ -133,10 +134,19 @@ Dieser kann möglicherweise zu derselben Kategorie gehören, wie der zuvor schon
 
 %TODO: relative genauer Algorithmus mit Aufgabe
 Bis zum Jahre 1986 gab es kein automatisierte Möglichkeit, die Gewichtungen in einem Netzwerk anzupassen.
-In diesem Jahre brachten Rumelhart, Hinton \& Williams eine mögliche Lösung zu Tage, welche sehr ähnlich zu anderen Ansätzen von früher war (Werbos, 1974; Parker, 1985; Cun, 1985).
+In diesem Jahre entwickelten Rumelhart, Hinton \& Williams eine mögliche Lösung, welche sehr ähnlich zu anderen Ansätzen von früher war (Werbos, 1974; Parker, 1985; Cun, 1985).
 Die zentrale Idee in ihrer Lösung liegt darin, die Abweichung des produzierten Ergebnisses zum wirklichen erwarteten Ergebnis zu bestimmen. 
-Aufgrund dieses Fehlers lässt sich im Anschluss das Netzwerk von Ende zum Anfang nachjustieren. 
-Diese Technik ermöglichte damit auch die Möglichkeit tiefer Netzwerke zu konstruieren und auch zu Trainieren.
+Aufgrund dieses Fehlers lassen sich im Anschluss die Gewichtungen im Netzwerk von Ende zum Anfang nachjustieren. 
+Diese Technik ermöglichte damit auch die Möglichkeit tiefe Netzwerke zu konstruieren und auch zu Trainieren.
+
+\paragraph{Lernrate} skaliert die Steigung des Lernprozesses, mit der Auswirkung ob schneller oder langsamer Gelernt wird.
+Eine Lernrate unter null würde die Lerngeschwindigkeit stark verlangsamen. 
+Ein Wert über eins würde eine hohen Lerngeschwindigkeit zur Folge haben. 
+Eine zu hohe Rate würde nicht zum Konvergieren führen, sondern zum springen.
+
+\paragraph{Momentum} stellt wie die Lernrate eine Skalierung des Lernprozesses dar.
+Dabei wird mit dem Faktor die früheren Gewichtsupdates berücksichtigt. 
+Dies führt dazu, dass locale Tiefpunkte überwunden werden können und das System doch zum globalen Tiefpunkt konvergiert.
 
 %\textit{\textbf{TODO}}
 \section{Allgemeine Probleme}
@@ -159,6 +169,8 @@ Zum Beispiel ein Student lernt auf eine Prüfung und ist im Besitz einer Klausur
 Nach öfterem Durchspielen der Fragen und sich selbst testen, befindet er sich in der Lage diese Klausur mit einer sehr hohen Wahrscheinlichkeit zu bestehen. 
 Dabei hat sich die Klausur in seinem Gehirn eingeprägt, aber nicht das Stoffgebiet zu welchem er eine Klausur schreiben muss. 
 Das Problem wird als Overfitting bezeichnet und beschreibt, dass etwas gemerkt wurde aber nicht gelernt worden ist und somit eine Abwandlung von Informationen nicht wiedererkannt werden.
+
+Gegenmaßnahme -> dropout, Regulatoren 1/2, learnrate, momentum
 
 %\subsection{Daten & Datensätze}
 
@@ -290,7 +302,7 @@ FeedForward Netzwerke (FFN) waren bis for einigen Jahren noch der Stand der Fors
 Auf ihnen basieren einige andere Typen von Netzwerken, die bekanntesten werden in dieser Arbeit noch behandelt.
 Ein FFN basiert auf den Grundlagen eines Neurons (Neuron \ref{sec:Neuron}), sowie dem ausbauen dieses zu Ebenen mit mehreren Neuronen (Layer \ref{sec:Layer}).
 So ein Netzwerk besitzt einen Inputlayer, einen Hiddenlayer sowie einen Outputlayer.
-Sobald das Netzwerk mehrere Hiddenlayer aufweist wird es als Deep FeedForward Netzwerk (\ref{subsec:Deep Feedforward}) bezeichnet.
+Sobald das Netzwerk mehrere Hiddenlayer aufweist wird es als Deep FeedForward Netzwerk (\ref{subsec:DeepFeedForward}) bezeichnet.
 Das FFN weist dabei eine Charakteristik auf, indem dass der Datenfluss eindeutig definiert ist. 
 Der Datenfluss beginnt bei dem Inputlayer und endet bei dem Outputlayer ohne dass ein Datenrückfluss zum Beispiel von dem Hiddenlayer in den Hiddelayer vorhanden ist.
 Dies würde eine Rekursion oder einem Kurzzeitgedächtnis entsprechen.
@@ -307,7 +319,7 @@ Kohonen entwarf die SOM mit zwei Ebenen, ein Inputlayer und ein Outputlayer ohne
 Der Inputlayer propagiert Muster an den Outputlayer, wo der Dateneingang gewichtet wird. 
 In dem Outputlayer gewinnt das Neuron, welches den geringsten Abstand zu den Eingangsdaten hat.
 Dies geschieht durch das Berechnen der euklidischen Distanz. 
-Diese Art von Netzwerk kommt ohne Bias Werte \ref{sec:Bias Neuron} aus und es kommen ausschließlich Lineare Aktivierungsfunktionen zur Verwendung.
+Diese Art von Netzwerk kommt ohne Bias Werte (\ref{sec:Bias Neuron}) aus und es kommen ausschließlich Lineare Aktivierungsfunktionen zur Verwendung.
 
 
 \subsection{Hopfield Neuronal Network}
@@ -316,33 +328,80 @@ Ein Hopfield Neuronal Network (HNN) ist ein einfaches Netzwerk welches aus einem
 In diesem Layer sind alle Neuronen mit jedem anderen Neuron verbunden. 
 Dieses Muster wurde von Hopfield (1982) erfunden.
 Im Gegensatz zu anderen Netzwerken können Hopfield Netzwerke in einer Matrix abgebildet werden, in welcher die Gewichtung zu den einzelnen Neuronen abgebildet werden. 
-Die Neuronen selbst nehmen dabei den Zustand 1 für Wahr und -1 für Falsch an.
+Die Neuronen selbst nehmen dabei den Zustand $1$ für Wahr und $-1$ für Falsch an.
 Das Problem bei diesem Type ist, dass jedes Neuron auf dem Status der anderen aufbaut.
 Dies stellt ein Problem für die Reihenfolge der Berechnung dar, was zu einem nicht stabilen Zustand führt.
 Durch das Hinzugeben einer Energiefunktion kann festgestellt werden, in welchem Zustand sich das Netzwerk befindet.
 
 \subsection{Boltzmann Machine}
 
+Im Jahre 1985 stellten Hinton \& Sejnowski das erste mal eine Boltzmann Maschine vor.
+Es stellt ein zwei Ebenensystem dar, mit einem Inputlayer und einem Outputlayer, wo jeder Knoten mit jedem verbunden ist außer mit sich selbst.
+Des voll vernetzte System unterscheidet eine Boltzmann Maschine von einer eingeschränkten Boltzmann Maschine (RBM), welche eine Grundlage für tiefes Lernen und tiefe Neuronale Netzwerke darstellt.
+In einer RBM sind alle sichtbaren Neuronen mit allen Neuronen in dem Outputlayer verbunden. 
+Die Verbindungen zwischen den Neuronen in dem selben Layer entfallen ebenfalls.
+Der alte uneingeschränkte Type der Boltzmann Maschinen kann für Optimierungsprobleme sowie für Mustererkennungen gut eingesetzt werden.
 
+%\subsection{Deep Belief Network}
 
-\subsection{Deep Belief Network}
+\subsection{Deep FeedForward}
+\label{subsec:DeepFeedForward}
 
-\subsection{Deep Feedforward}
-\label{subsec:Deep Feedforward}
+Deep FeedForward Netzwerke unterscheiden sich zu normalen FeedForward Netzwerken in dem, dass sie mehrere Hiddenlayers beinhalten anstatt nur einem.
 
 \subsection{NEAT}
 
-\subsection{CPPN}
+NeuroEvolution of Augmenting Topologies (NEAT) Netzwerke sind relative jung, wobei NEAT für einen Algorithmus steht der Neuronale Netzwerke entwickelt.
+Sie wurden von Stanley und Miikkulainen (2002) entwickelt. 
+Dieser Type verwendet genetische Algorithmen, um die Struktur und die Gewichtungen im Netzwerk zu optimieren.
+Die Input- und Outputlayer sind identisch zu einem FeedForward Netzwerke.
+Dafür fehlt diesem Type eine innere Struktur. 
+Die Verbindungen sind lose und nicht klar definiert und können während dem Entwickeln entfernt werden aber auch wieder hinzugefügt werden.
 
-\subsection{HyperNEAT}
+%\subsection{CPPN}
+
+\paragraph{Compositional pattern-producing network (CPPN)} ist ein Netzwerk das andere Strukturen entwickelt und basiert dabei auf der Theorie von NEAT. 
+Dies können Bilder aber auch andere Netzwerke sein, wobei meist Bilder generiert und weiter entwickelt werden.
+%Dieser Type entstand durch Stanley (2007). %und zählt zu den Künstlichen Neuronalen Netzwerken.
+CPPN können im Gegensatz zu NEAT Netzwerken mit verschieden Aktivierungsfunktionen verwendet werden.
+Ein erzeugtes Netzwerke resultiert aber immer in einem regulären NEAT Netzwerk.
+
+%\subsection{HyperNEAT}
+
+\textit{VL weglassen} 
+\paragraph{HyperNEAT} ist eines der bekanntesten CPPN Netzwerke welches keine Bilder produziert sondern neue Netzwerke erstellt.
+Mit der Fähigkeit andere Netzwerke zu kreieren, welche wiederum für ihre Aufgabe gute Ergebnisse liefern, ermöglicht es schneller Netzwerke zu kreieren und sich auf ändernde Probleme schneller anzupassen.
 
 \subsection{Convolutional neural network}
 
-\subsection{Elman Network}
+Werden selbst nicht als komplettes eigenes Netzwerk verwendet, sondern in FeedForward Netzwerken verwendet.
+Im Speziellen wen es sich um Bilderkennung geht.
+Dabei werden entweder zwei Ebenen nicht voll vernetzt sondern nur teilweise und somit Gewichtungen eingespart.
+Im zweiten Fall werden die Gewichtungen geteilt, sodass immer in die selbe Richtung verlaufende Verbindungen die selbe Gewichtung aufweisen.
+Dies ermöglicht es komplexe Strukturen zu speichern und trotzdem die Speicherauslastung niedrig zu halten und die Effektivität aufrecht zu halten.
 
-\subsection{Jordan Network}
+%\subsection{Deep Belief Neural Network}
 
 \subsection{Recurrent Network}
+
+Sind Netzwerke die nicht nur einen Kontrollfluss haben, sondern auch Rekursionen beinhalten. 
+Diese Rekursionen können jedes andere Neuron ansprechen, ausgenommen der Neuronen im Inputlayer.
+Ein Problem durch Rekursionen sind endlos Schleifen, welche behandelt werden müssen.
+So können Kontext Neuronen verwendet werden aber auch eine definierte Anzahl an Iterationen durchlaufen werden bis die Rekursion nicht mehr fortgeführt wird. 
+Eine weitere Option ist so lange zu warten bis sich die Ausgabe des Neurons stabilisiert hat und sich nicht mehr ändert.
+Das Kontext Neuron nimmt dabei die Stelle eines kurzen Speichers ein, wo ein Zustand für die nächste Iteration zwischen gespeichert wird.
+Die Informationen die in einem solchen Neuron gespeichert werden bei diesem Speichervorgang nicht Gewichtet sondern erst wenn diese Information an das Netzwerk zurück gegeben wird.
+Diese Rekursionen werden vor allem in Fällen verwendet, wenn es sich um zeitliche Abläufe und Änderungen geht. 
+Wie zum Beispiel mit der Temperatur für den nächsten Tag, wo man Jahre an Daten zur Verfügung hat.
+
+%\subsection{Elman Network}
+\paragraph{Elman Network} wurden im Jahre 1990 vorgestellt und verwenden Rekursionen mit Kontext Neuronen. 
+Dabei existieren zwei Hiddenlayers mit einem Layer für normale Neuronen und eines mit Kontext Neuronen. 
+Die Kontext Neuronen sind dabei voll verbunden mit dem Hiddenlayer und dieser gibt die Informationen ungewichtet an die Kontext Neuronen weiter.
+In diesem System existieren so viele Kontext Neuronen wie Neuronen im Hiddenlayer, sodass jedes Neuron dort ein Kontext Neuron mit dem neuen Status befüllt.
+
+%\subsection{Jordan Network}
+\paragraph{Jordan Network}
 
 \section{Domänen und Typen Matrix}
 
