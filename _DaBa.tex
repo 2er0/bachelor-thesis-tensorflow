@@ -13,6 +13,35 @@
 \logofile{logo}							% name of logo-PDF in images/ (or use \logofile{} for no logo)
 \bibliography{literatur}  	% name of the BibTeX (.bib) file
 
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{
+  arrows.meta, % for Straight Barb arrow tip
+  fit, % to fit the group box around the central neurons
+  positioning, % for relative positioning of the neurons
+}
+
+\tikzset{
+  neuron/.style={ % style for each neuron
+    circle,draw,thick, % drawn as a thick circle
+    inner sep=0pt, % no built-in padding between the text and the circle shape
+    minimum size=1.5em, % make each neuron the same size regardless of the text inside
+    node distance=1ex and 3em, % spacing between neurons (y and x)
+  },
+  group/.style={ % style for the groups of neurons
+    rectangle,%,draw,thick, % drawn as a thick rectangle
+    inner sep=0pt, % no padding between the node contents and the rectangle shape
+  },
+  io/.style={ % style for the inputs/outputs
+    neuron, % inherit the neuron style
+    fill=gray!15, % add a fill color
+  },
+  conn/.style={ % style for the connections
+    -{Straight Barb[angle=60:2pt 3]}, % simple barbed arrow tip
+    thick, % draw in a thick weight to match other drawing elements
+  },
+}
 
 %%%----------------------------------------------------------
 \begin{document}

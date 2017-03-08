@@ -35,7 +35,7 @@ Machine Learning definiert eine große Anzahl an Theorien und Umsetzungen von ni
 Diese wurden aus Studien in den Bereichen der Mustererkennung und der rechnerischen Lerntheorie mit Künstlicher Intelligenz teilweise entwickelt. 
 Dieses Gebiet umfasst im Jahr 2016 aber sehr viel mehr. 
 So existieren zusätzliche Ansätze aus dem Bereich der Biologie wie zum Beispiel Neuronale Netzwerke, die dem Gehirn nachempfunden sind und genetische Algorithmen, die der Weiterentwicklung eines Lebewesens ähneln. 
-Ein ganz anderer Zugang wurde in der Sowjetunion verfolgt, mit sogenannten 'Support Vektor Machines', bei welchen man einen rein mathematischen Ansatz anstrebt.
+Ein ganz anderer Zugang wurde in der Sowjetunion verfolgt, mit sogenannten 'Support Vektor Machines', bei welchen man einen rein mathematischen Ansatz anstrebt. \cite{lampropoulos2015machine}
 
 \section{Neuronale Netzwerke}
 
@@ -53,13 +53,38 @@ Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und ge
 Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel Schleifen bilden.}
 
 %TODO: you can do anything with it, if it can be designed as a function
+\cite{AI3}
 
 \section{Neuron}
 \label{sec:Neuron}
 
-Abbildung ( Aufbau eines Neurons ) - TikZ Grafik \\
+%Abbildung ( Aufbau eines Neurons ) - TikZ Grafik \\
+\begin{figure}
+\centering
 
-\noindent 
+\begin{tikzpicture}
+	
+	\node[neuron] (a) {};
+	\node[neuron,below=of a] (b) {};
+	\node[neuron,below=of b] (c) {};
+	
+	\node[neuron,right=of b] (root) {$\phi(\sum)$};
+	
+	\node[right=of root] (out) {};
+
+	\node[group,fit={(a) (b) (c)}] (gr1) {};
+	\draw[conn] (a) -- (root);
+	\draw[conn] (b) -- (root);
+	\draw[conn] (c) -- (root);
+	\draw[conn] (root) -- (out);
+
+\end{tikzpicture}
+
+	\caption{Neuron mit Eingang, Kernfunktion, Aktivierungsfunktion}
+	\label{fig:Neuron}
+\end{figure}
+
+%\noindent 
 Ein Neuron wurde einer Nervenzelle in einem Gehirn nachempfunden mit den folgenden Bestandteilen:
 \paragraph{Informationseingangsstrom} ist der Dateneingang, wobei ein Neuron ein bis theoretisch beliebig viele solcher Eingänge haben kann. 
 Dies hängt von der jeweiligen Architektur des Netzwerks ab.
@@ -77,9 +102,32 @@ Es wäre aber möglich, jegliche Berechnung hier einfließen zu lassen, welche m
 Dabei wird eine weitere Funktion auf das im Kern berechnete Ergebnis ausgeführt und führt dazu, dass ein Ergebnis noch stärker ausgeprägt weitergegeben wird oder minimiert wird. 
 Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funktion. 
 
-\textit{Grafiken zu Sigmoid und lineare}
+%\textit{Grafiken zu Sigmoid und lineare}
 %Wobei in den vergangen Jahren die Linearen-Funktionen häufiger zum Einsatz kommen.
-\\
+%\\
+TODO FORMAT Diagramm
+\begin{figure}
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+	\begin{axis}
+
+		\addplot expression { 1/(1+exp(-x) };
+
+	\end{axis}
+	\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+	\begin{tikzpicture}
+	\begin{axis} [xmin=-1, xmax=1]
+
+		\addplot expression { x };
+
+	\end{axis}
+	\end{tikzpicture}
+\end{minipage}
+	\caption{Basisaktivierungsfunktionen}
+	\label{fig:Aktivierungsfunktion}
+\end{figure}
 
 \noindent 
 Die einfachste Repräsentation eines Neurons lässt sich mathematisch folgendermaßen darstellen.
@@ -90,7 +138,6 @@ Der griechische Buchstabe $\phi$ (phi) steht für die Aktivierungsfunktion des N
 	f(x, w) := \phi ( \sum\limits_{i}{w_i * x_i})
 	\label{eq:Aktivierungsfunktion}
 \end{equation}
-
 
 %\section{Bias Neuron}
 %\label{sec:Bias Neuron}
@@ -126,7 +173,71 @@ Dies ist der Fall wenn nur zwei Layer sich im Netzwerk befinden und einer davon 
 %So wird zum Beispiel die Wahrscheinlichkeit für jeden Ausgang berechnet.
 \\
 
-Abbildung ( Aufbau eines Einfachen FeedForward NN) - TikZ Grafik
+%Abbildung ( Aufbau eines Einfachen FeedForward NN) - TikZ Grafik
+\begin{figure}
+\centering
+
+\begin{tikzpicture}
+
+	\node[neuron] (in) {I};
+
+	\node[neuron,right=of in] (1a) {N};
+	\node[neuron,below=of 1a] (1b) {N};
+	\node[io,below=of 1b] (b1) {B};
+	
+	\node[group,fit={(1a) (1b) (b1)},right=of in] (gr1) {};
+	
+	\node[neuron,right=of 1a] (2a) {N};
+	\node[neuron,below=of 2a] (2b) {N};
+	\node[io,below=of 2b] (b2) {B};
+	
+	\node[group,fit={(2a) (2b) (b2)},right=of 1a] (gr2) {};
+	
+	\node[neuron,right=of 2a] (3a) {N};
+	\node[neuron,below=of 3a] (3b) {N};
+	\node[io,below=of 3b] (b3) {B};
+	
+	\node[group,fit={(3a) (3b) (b3)},right=of 2a] (gr3) {};
+	
+	\node[neuron,right=of 3b] (out) {O};
+	
+	\draw[conn] (in) -- (1a);
+	\draw[conn] (in) -- (1b);
+
+	\draw[conn] (1a) -- (2a);
+	\draw[conn] (1a) -- (2b);
+	
+	\draw[conn] (1b) -- (2a);
+	\draw[conn] (1b) -- (2b);
+
+	\draw[conn] (b1) -- (2a);
+	\draw[conn] (b1) -- (2b);
+	
+	
+	\draw[conn] (2a) -- (3a);
+	\draw[conn] (2a) -- (3b);
+	
+	\draw[conn] (2b) -- (3a);
+	\draw[conn] (2b) -- (3b);
+
+	\draw[conn] (b2) -- (3a);
+	\draw[conn] (b2) -- (3b);
+	
+	
+	\draw[conn] (3a) -- (out);
+	\draw[conn] (3a) -- (out);
+	
+	\draw[conn] (3b) -- (out);
+	\draw[conn] (3b) -- (out);
+
+	\draw[conn] (b3) -- (out);
+	\draw[conn] (b3) -- (out);
+
+\end{tikzpicture}
+
+	\caption{Einfaches Neuronales FeedFordward Netzwerk}
+	\label{fig:SimpleFeedForwardNetwork}
+\end{figure}
 
 \section{Informationen Merken und wieder Erkennung}
 
@@ -311,7 +422,7 @@ Diese Netzwerktypen definieren Richtlinien oder Ansätze zu möglichen Netzwerke
 %In dieser Arbeit werde die wichtigsten Typen und ihre Eigenschaften erklärt. 
 %Für die folgenden Punkte ist es erforderlich ein Grundverständnis für Neuronale Netzwerk sowie über ihre Funktionsweise zu besitzen, sollte dies nicht der Fall sein - Punkt \ref{sec:Machine Learning} bis \ref{sec:Domänenklassen}.
 
-	\subsection{FeedForward}
+\subsection{FeedForward}
 \label{subsec:FeedForward}
 
 FeedForward Netzwerke (FFN) waren bis for einigen Jahren noch der Stand der Forschung.
