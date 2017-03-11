@@ -1,15 +1,106 @@
-\chapter{TensorFlow Bibliothek}
-\label{cha:TensorFlow Bibliothek}
+\chapter{TensorFlow}
+\label{cha:TensorFlow}
 
-\section{Python API}
+TensorFlow repräsentiert eine Bibliothek für Machine Intelligence. 
+Historisch gesehen entstand TensorFlow in der Google Brain Abteilung.
+Das Projekt wird als Open Source Projekt weiterentwickelt, wobei das Projekt von Google weiterhin gepflegt wird. 
+Das offenlegen des Projekt führt dazu, dass auch Personen außerhalb von Google die Möglichkeit bekommen, die Bibliothek zu verwenden sowie dazu etwas bei zu tragen. \newline
 
-\section{C++ API}
+\noindent
+Das Hauptkonzept in TensorFlow sind sogenannte Tensoren welche einen Graphen durchlaufen. 
+%Diese Tensoren werden während ihrem durch lauf verändert und wieder neu zusammengesetzt. 
+Der Graphen selbst stellt damit einen Datenflussgraphen dar, welcher Knoten beinhaltet. 
+Diese Knoten bilden nummerische Operationen ab.
+Der Informationsaustausch zwischen den Knoten geschieht mit multidimensionalen Arrays den so genannten Tensoren.
+TensorFlow bietet wie andere Bibliotheken die Möglichkeit die Berechnungen auf eine Grafikkarte auszulagern.
+Zusätzlich sind weite Routinen eingebaut damit das Trainieren verteilt werden kann über mehrere Grafikkarten sowie auf weitere Computer. \newline
 
-\section{Go API}
+\noindent
+TensorFlow steht für mehrere Programmiersprachen zur Verfügung welche Offiziell unterstützt werden, wobei es noch mehr durch die Open Source Gemeinschaft unterstützte Sprachen gibt.
+Den Hauptbereich stellt die Python API dar, welche auch die vollständigste Implementierung darstellt. 
+Der Kern von TensorFlow ist mit C++ und Python implementiert und wurde sehr stark optimiert, um eine sehr gute Performanz zu erzielen.
+Die Python API wird im Umfeld von TensorFlow dazu verwendet, um einen Graphen zu erstellen, zu trainieren und zu testen. 
+Durch die Verwendung von Python besteht die Möglichkeit sehr schnell Änderungen am Graphen durchzuführen und nicht erst ganze Applikationsstrukturen zu übersetzten damit ein Ergebnis der Änderung ersichtlich wird. 
+Dieser Graphen wird nach seiner Trainingsphase exportiert und beinhaltet alle Knoten sowie die dazugehörigen Gewichtungen. 
+Die C++ API sowie die Java API und GO API zielen auf eine sehr effiziente Ausführung ab.
+Durch die Verwendung des trainierten Graphen kann dieser auch auf mobiles Plattformen eingesetzt werden.
 
-\section{TensorFlow Python}
+\section{Bibliotheksinhalt}
 
 \subsection{Graphs / Dataflowgraph}
+
+\begin{figure}
+
+\lstset{language=Python}
+\begin{lstlisting}
+import tensorflow as tf
+
+b = tf.Variable(tf.zeros([100])) 
+	# 100-d Vektor, initialisiert mit 0
+W = tf.Variable(tf.random_uniform([784,100],-1,1)) 
+	# 784x100 Matrix w/rnd vals
+x = tf.placeholder(name="x") 
+	# Platzhalter für Eingangsdaten
+relu = tf.nn.relu(tf.matmul(W, x) + b) 
+	# Relu(Wx+b) Aktivierungsfunktion mit impliziter Addition
+C = [...] 
+	# Kostenfunktion und noch weitere Knoten
+s = tf.Session()
+for step in xrange(0, 10):
+	input = ...construct 100-D input array ... 
+		# Erstellen eines 100-d Vektor mit den Eingangsdaten
+	result = s.run(C, feed_dict={x: input}) 
+		# Graphen mit den Eingangsdaten ausführen
+	print step, result 
+		# Ausgabe des Berechneten Resultats
+\end{lstlisting}
+
+	\caption{TensorFlow Codefragment zur Definition eines Teils des Graphen}
+	\label{fig:SimpleFragmentGraphDefinition}
+\end{figure}
+
+\begin{figure}
+
+	\centering
+
+\begin{tikzpicture}
+
+	\node[neuron] (x) {x};
+	\node[neuron,below=of x] (w) {W};
+	
+	\node[group,fit={(x) (w)}] (gr1) {};
+	
+	\node[neuron,right=of x] (MatMul) {MatMul};
+	\node[io,below=of MatMul] (b) {b};
+	
+	\node[group,fit={(x) (MatMul)},right=of x] (gr2) {};
+	
+	\node[neuron,right=of MatMul] (Add) {Add};
+	
+	\node[neuron,right=of Add] (ReLU) {ReLU};
+	
+	\node[neuron,right=of ReLU] (more) {...};
+	
+	\node[neuron,right=of more] (C) {C};
+	
+	\draw[conn] (x) -- (MatMul);
+	\draw[conn] (w) -- (MatMul);
+
+	\draw[conn] (MatMul) -- (Add);
+	\draw[conn] (b) -- (Add);
+	
+	\draw[conn] (Add) -- (ReLU);
+	\draw[conn] (ReLU) -- (more);
+
+	\draw[conn] (more) -- (C);
+
+\end{tikzpicture}
+
+	\caption{Der resultierenden Teilgraph aus dem Codefragment aus Abbildung \ref{fig:SimpleFragmentGraphDefinition} nach dem Beispiel in \cite{wp2015tensorflow}}
+	\label{fig:SimpleFragmentGraphPic}
+\end{figure}
+
+
 
 \subsection{Operation}
 
