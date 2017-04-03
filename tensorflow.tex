@@ -100,15 +100,90 @@ for step in xrange(0, 10):
 	\label{fig:SimpleFragmentGraphPic}
 \end{figure}
 
-
+Ein TensorFlow Graph kann wie in Abbildung \ref{fig:SimpleFragmentGraphDefinition} beschrieben werden.
+Dieser wurde zum Beispiel mit der Python API erstellt.
+Im Gesamten mit den Knoten und den Verbindungen ergibt sich ein Datenfluss, diese beinhaltet alle erforderlichen Komponenten auch für das per sistieren und aktualisieren der Daten.
+Dies sind Erweiterungen für den Hauptgraphen und beinhalten auch Logik für Schleifenverwaltungen.
+Ein Knoten in einem Graphen besitzt $0$ bis $n$ Ein und Ausgänge und besitzt eine Kernfunktion. 
+Zu den Datenhauptfluss mit den Tensoren gibt es zusätzlich spezielle Verbindungen, welche "control dependencies" genannt werden. 
+Anhand dieser Verbindungen werden keine Daten im Sinne der Tensoren übertragen, sondern werden benützt um Abhängigkeiten zu definieren, um zum Beispiel eine Ausführung in einem anderen Knoten vor einem anderen zu definieren.
+So muss der Quellknoten mit der Ausführung abgeschlossen haben bevor der darauf wartende mit der Ausführung beginnt. \cite{wp2015tensorflow}
 
 \subsection{Operation}
 
+Die Operation stellt in jedem Knoten den Kern dar, wie zum Beispiel eine Matrix Multiplikation oder eine Addition.
+In TensorFlow selbst gibt es einen Unterschied zwischen Operation und Kernel.
+Operationen besitzen Attribute, welche spätestens zum Zeitpunkt der Grapherstellung bekannt sein müssen. 
+Ein solches Attribut wäre zum Beispiel, \textit{um eine Operation Polymorph für Datentypen zu ermöglichen}. 
+Der Kernel selbst ist die Implementierung der Operation selbst. 
+Dieser kann auf verschiedenen Geräten ausgeführt werden wie CPU oder GPU.
+Die Operationen und die dazugehörigen Kernel werden über einen Registrierungsmechanismus zur Verfügung gestellt. 
+Diese Sammlung an Operationen kann auch Erweitert werden. \cite{wp2015tensorflow} 
+
+\subsection{Sessions}
+
+Die Session repräsentiert die Laufzeit für einen Graphen. 
+Dieser Session wird ein Graphen übergeben, welcher erst initialisiert werden muss. 
+Ohne die Initialisierung ist der Knoten und Verbindungen würde die weitere Ausführung mit diesem nichts produzieren, da alle Werte $0$ sind. 
+Diese stellt eine weitere Funktion zur Verfügung \textit{Run}. 
+Der Run-Funktion wird eine Liste Endknoten übergeben welche berechnet werden sollen und die zu dem initialisierten Graphen gehören. 
+Die Platzhalter Tensoren werden mit Daten verknüpft und so in den Graphen gereicht. 
+In den Meisten fällen wird ein Graphen einmal erstellt und mehrfach ausgeführt. \cite{wp2015tensorflow} 
+
 \subsection{Tensor}
+
+In TensorFlow ist ein Tensor ein typisiertes multidimensionales Array. 
+Die verwendbaren Typen reichen von Datentypen mit Vorzeichen und ohne sowie bis hin zu Doubles und Zeichenketten. \cite{wp2015tensorflow} 
+
+\subsection{Datentypen}
+
+TensorFlow besitzt eine große Anzahl an Datentypen die verwendet werden können. 
+Dies reicht von Grunddatentypen wie 'Boolean' und 'String' bis hinzu verschiedene Integer Datentypen. 
+Diese stehen in verschiedene Wertebereichen zur Verfügung. 
+So gibt es Gleitkommazahlen mit unterschiedlicher Genauigkeit, wie 16-bit was für halbe Genauigkeit steht aber auch bis zu 64-bit Genauigkeit reicht, was einer doppelten Genauigkeit entspricht. 
+Der Grund für diese verschiedenen Anzahlen an Datentypen ist, dass diese zur Optimierung verwendet werden können. 
+Ein trainiertes Netzwerk welches nie in den Wertebereich von 64-bit signierte Integers gekommen ist, wird diese möglicherweise nie benötigen. 
+In diesem Fall können die Wertebereiche reduziert werden, auf zum Beispiel 32-bit signierte Integer und somit die Berechnungen hochperformanter ausgeführt werden.
 
 \subsection{Operationen}
 
-\subsubsection{Konstanten, Zufallswerte}
+\subsubsection{Konstanten und Zufallswerte}
+
+\paragraph{Konstanten} stehen in TensorFlow vordefiniert zur Verwendung.
+Diese stellen initialisierte Tensoren für den ersten Trainingsdurchlauf zur Verfügung.
+
+\begin{itemize}
+	\item \textit{tf.zeros} erstellt einen Tensor mit angegebenen Dimension bestehend aus $0$ und von einem Datentypen. 
+	\item \textit{tf.zeros\_like} gibt einen Tensor zurück, welcher die selbe Dimensionen wie der gegeben besitzt.
+	Alle Werte in diesem Tensor sind aber auf $0$ gesetzt.
+	In diesem Zuge kann der Datentyp mit angepasst werden, wenn nur die Dimensionen übernommen wenden sollen.
+	\item \textit{tf.ones} agiert genau wie der Tensor \textit{tf.zeros} mit dem unterschied dass alles mit $1$ gefüllt ist.
+	\item \textit{tf.ones\_like} repräsentiert das selbe wie \textit{tf.zeros\_like} nur mit $1$.
+	\item \textit{tf.fill} wird zu der Dimension noch ein Skalar mit gegeben, für die Werte die ausgefüllt werden sollen.
+	\item \textit{tf.constant} liefert einen Tensor mit selbst definierbaren Werten. 
+	Diese Werte können eine Liste sein sowohl als auch eine einzelner Wert welcher überall eingefügt werden soll. 
+\end{itemize}
+
+\paragraph{Sequenzen} können verwendet werden um einen Wertebereich in eine bestimmte Anzahl an Werte zu zerteilen und diese als Tensor in das System einfließen zu lassen.
+
+\begin{itemize}
+	\item \textit{tf.lin\_space} 
+	\item \textit{tf.range}
+\end{itemize}
+
+\paragraph{Zufallswerte}
+
+\begin{itemize}
+	\item \textit{tf.random\_normal}
+	\item \textit{tf.truncated\_normal}
+	\item \textit{tf.random\_uniform}
+	\item \textit{tf.random\_shuffle}
+	\item \textit{tf.random\_crop}
+	\item \textit{tf.multinomial}
+	\item \textit{tf.random\_gamma}
+	\item \textit{tf.set\_random\_seed}
+\end{itemize}
+
 
 \subsubsection{Variables}
 
@@ -131,3 +206,5 @@ for step in xrange(0, 10):
 \subsection{Probleme}
 
 \subsubsection{NaN Problem}
+
+\subsection{TensorBoard}
