@@ -25,8 +25,6 @@ Dieser Graphen wird nach seiner Trainingsphase exportiert und beinhaltet alle Kn
 Die C++ API sowie die Java API und GO API zielen auf eine sehr effiziente Ausführung ab.
 Durch die Verwendung des trainierten Graphen kann dieser auch auf mobiles Plattformen eingesetzt werden.
 
-\section{Bibliotheksinhalt}
-
 \subsection{Graphs / Dataflowgraph}
 
 \begin{figure}
@@ -135,6 +133,8 @@ In den Meisten fällen wird ein Graphen einmal erstellt und mehrfach ausgeführt
 In TensorFlow ist ein Tensor ein typisiertes multidimensionales Array. 
 Die verwendbaren Typen reichen von Datentypen mit Vorzeichen und ohne sowie bis hin zu Doubles und Zeichenketten. \cite{wp2015tensorflow} 
 
+\section{Bibliotheksinhalt}
+
 \subsection{Datentypen}
 
 TensorFlow besitzt eine große Anzahl an Datentypen die verwendet werden können. 
@@ -143,7 +143,7 @@ Diese stehen in verschiedene Wertebereichen zur Verfügung.
 So gibt es Gleitkommazahlen mit unterschiedlicher Genauigkeit, wie 16-bit was für halbe Genauigkeit steht aber auch bis zu 64-bit Genauigkeit reicht, was einer doppelten Genauigkeit entspricht. 
 Der Grund für diese verschiedenen Anzahlen an Datentypen ist, dass diese zur Optimierung verwendet werden können. 
 Ein trainiertes Netzwerk welches nie in den Wertebereich von 64-bit signierte Integers gekommen ist, wird diese möglicherweise nie benötigen. 
-In diesem Fall können die Wertebereiche reduziert werden, auf zum Beispiel 32-bit signierte Integer und somit die Berechnungen hochperformanter ausgeführt werden.
+In diesem Fall können die Wertebereiche reduziert werden, auf zum Beispiel 32-bit signierte Integer und somit die Berechnungen hochperformanter ausgeführt werden. \cite{TensorFlow}
 
 \subsection{Operationen}
 
@@ -167,23 +167,30 @@ Diese stellen initialisierte Tensoren für den ersten Trainingsdurchlauf zur Ver
 \paragraph{Sequenzen} können verwendet werden um einen Wertebereich in eine bestimmte Anzahl an Werte zu zerteilen und diese als Tensor in das System einfließen zu lassen.
 
 \begin{itemize}
-	\item \textit{tf.lin\_space} 
-	\item \textit{tf.range}
+	\item \textit{tf.lin\_space} generiert einen eindimensionalen Tensor vom Datentypen $32$ oder $64$-bit Gleitkommazahlen, mit einer bestimmten Folge.
+	Diese beginnt mit dem Startwert und endet mit dem Endwert. 
+	Die Werte dazwischen werden gleichmäßig verteilt erstellt. 
+	\item \textit{tf.range} erstellt wie \textit{tf.lin\_space} einen eindimensionalen Tensor mit Skalarwerten. 
+	Die Folge beginnt mit einem Startwert und erweitert sich um ein Delta bis zum Endwert, welcher nicht Teil der Folge ist. 
 \end{itemize}
 
-\paragraph{Zufallswerte}
+\paragraph{Zufallswerte} werden im Bereich von maschinellen Lernens sehr häufig benötigt. 
+So werden meist der Startzustand mithilfe von Zufallszahlen hergestellt. 
 
 \begin{itemize}
-	\item \textit{tf.random\_normal}
-	\item \textit{tf.truncated\_normal}
-	\item \textit{tf.random\_uniform}
-	\item \textit{tf.random\_shuffle}
-	\item \textit{tf.random\_crop}
-	\item \textit{tf.multinomial}
-	\item \textit{tf.random\_gamma}
-	\item \textit{tf.set\_random\_seed}
-\end{itemize}
+	\item \textit{tf.random\_normal} liefert einen Tensor mit Zufallswerten anhand einer Normalverteilung (Gaussian). 
+	Die Dimension des Ergebnistensors muss spezifiziert werden, der Meridian, Standardabweichung sowie der resultierende Datentyp können angegeben werden. 
+	\item \textit{tf.truncated\_normal} verhält sich gleich zu \textit{tf.random\_normal} mit dem unterschied, dass Werte die größer sind als $2$-mal die Standardabweichung, ignoriert werden und ein neuer Wert ausgewählt wird.
+	\item \textit{tf.random\_uniform} generiert einen Tensor in welchem Werte gleich Wahrscheinlich vorkommen.
+	Die Werte werden aus dem spezifizierten Wertebereich genommen, wobei diese exklusive der oberen Grenze ist, wie zum Beispiel '$[0, 1)$'.
+	\item \textit{tf.random\_shuffle} erstellt selber keine neuen Werte sondern, mischt einen Tensor anhand seiner ersten Dimension durch. 
+	\item \textit{tf.random\_crop} liefert einen zufälligen Teil eines Tensors mit der selben Anzahl an Dimensionen und aber mit der spezifizierten Größe.
+\end{itemize} \phantom \newline
 
+\noindent
+Einige dieser Funktionen benötigen sogenannte Seed-Werte, welche den Startwert der Zufallszahlen zerstreuen sollen sowie die Folge selbst. 
+Im Falle von TensorFlow beruht dies auf zwei Werten, einer wird für den Graphen spezifiziert, der zweite wird für die Operation selbst spezifiziert. 
+Der Wert für den Graphen kann mit \textit{tf.set\_random\_seed} gesetzt werden. 
 
 \subsubsection{Variables}
 
