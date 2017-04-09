@@ -266,7 +266,45 @@ Für weiter Informationen steht die online Dokumentation zur Verfügung. \footno
 
 \subsubsection{Flusskontrolle}
 
-\subsubsection{Images / FFmpeg}
+\paragraph{Flusskontrolle} sind Operationen die den Ablauf in dem Graphen beeinflussen. 
+Dies können Bedingungen sein, wie im Sinne von \textit{if (Bedingung){...} else {}} aber auch \textit{switch (Term) { case '0': ...; break;}} Bedingungen sein. 
+In beiden Fällen müssen die Auszuführenden Verzweigungen als Funktionen vorliegen. 
+Zusätzlich gibt es noch eine \textit{While} und eine \textit{For} Schleife. 
+Zu beachten ist, dass diese Operationen und weiter den Fluss durch den Graphen stark beeinträchtigen können.
+
+\paragraph{Logik Operatoren} können verwenden werden um Vergleiche zwischen Tensoren durchzuführen. 
+Diese werden aber als Logik Operationen ausgeführt und liefern immer Wahrheitswerte, wie eine Logische Und-Verknüpfung auf Binärebene.
+
+\paragraph{Vergleichsoperatoren} neben den Logischen Operatoren stehen weitere Vergleichsoperatoren zur Verfügung. 
+Hierzu zählen \textit{tf.equal} sowie die verneinte Variante, \textit{tf.less} und \textit{tf.greater} mit jeweils einer gleich Version. 
+Diese Operatoren geben wiederum einen Tensor mit Wahrheitswert aus.
+
+\paragraph{Debugging Operationen} ermöglichen es in den Graphen Kontrollstrukturen einzubauen, welchen auf diverse Bedingungen reagieren.
+So kann Überprüft werden ob ein Tensor Werte mit undefinierten Zustand beinhaltet. 
+Die Funktion \textit{tf.Print} ermöglicht es Tensoren auszugeben wenn diese Funktion im Graphen evaluiert wird. 
+Aktuell sind die Möglichkeiten eine Graphen zu debuggen relative eingeschränkt, da der Graphen ist grundsätzlich einsehbar aber schwer zu verstehen in seiner rohen Darstellung.
+\footnote{Online Dokumentation: Control Flow \url{https://www.tensorflow.org/api_guides/python/control_flow_ops}}
+
+\subsubsection{Images}
+
+\paragraph{Encodieren und Decodieren} von Bilddateien wird TensorFlow direkt unterstützt.
+Dabei können Bildern von den Datentypen Gif, Jpeg und PNG gelesen werden, sowie das erstellen von Bildern in diese Datentypen, ausgenommen Gif. 
+In allen Fällen wird das Bild als Zeichenkette mit Pfad angegeben. 
+
+\paragraph{Größenänderung} von Bilder sind erforderlich, da Bilder die eingelesen werde zu große sind und somit in die Struktur des Graphen nicht eingelesen werden können. 
+Für die Größenänderung stehen mehrere Implementierungen zur Verfügung mit unterschiedlichen Algorithmen und vorgehen im Hintergrund.
+
+\paragraph{Beschneiden} wird dann benötigt wenn aus einem Bild ein Teil herausgenommen werden soll. 
+Zum herausnehmen stehen wiederum mehrere Operationen zur Verfügung, welche mit umschließende Boxen arbeiten oder wie viel Prozent von der Mitte des Bildes aus genommen werden soll.
+
+\paragraph{Flippen, Rotieren und Transponieren} ermöglicht es Bilder zu Verändern, so dass es für einen Menschen mehr oder weniger immer noch die selbe Bedeutung hat aber nicht mehr für einen Computer. 
+Für diesen stellt ein Rotiertes oder Gespiegeltes Bild ein neues Bild dar. 
+Diese Technik wird beim Trainieren von Bilderkennungen eingesetzt um zum Beispiel aus geringen Datenmengen die zum Trainieren verfügbar sind, mehrere zu generieren.
+\phantom \newline
+
+\noindent
+Zusätzlich gibt es noch die Möglichkeit die Farbkanäle des Bildes zu ändern sowie das Bild nachzujustieren. 
+\footnote{Online Dokumentation: Images \url{https://www.tensorflow.org/api_guides/python/image}}
 
 \subsubsection{Input und Readers}
 
