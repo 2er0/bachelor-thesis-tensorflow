@@ -191,12 +191,78 @@ So werden meist der Startzustand mithilfe von Zufallszahlen hergestellt.
 Einige dieser Funktionen benötigen sogenannte Seed-Werte, welche den Startwert der Zufallszahlen zerstreuen sollen sowie die Folge selbst. 
 Im Falle von TensorFlow beruht dies auf zwei Werten, einer wird für den Graphen spezifiziert, der zweite wird für die Operation selbst spezifiziert. 
 Der Wert für den Graphen kann mit \textit{tf.set\_random\_seed} gesetzt werden. 
+Für weiter Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Constants, Sequences, and Random Values  \url{https://www.tensorflow.org/api_guides/python/constant_op}}
 
 \subsubsection{Variables}
 
+Variablen geben bei jedem Durchlauf einen Tensor ab.
+Dieser Wert ändert sich nicht, außer ihm wird eine neuer Wert zugewiesen. 
+
 \subsubsection{Transformationen}
 
-\subsubsection{Mathematik}
+\paragraph{Casting} bietet die Möglichkeit wie in anderen Programmiersprachen Typen zu konvertieren. 
+Diese Operation muss in den Graphen eingepflegt werden, da keine impliziten Konvertierungen durchgeführt werden. 
+Es kann jeder Tensor konvertiert werden, sowie eine Zeichenfolge in eine Zahl. 
+Bei diesem Vorgang kann ein Fehler entstehen, welcher in \textit{TypeError} resultiert.
+
+\paragraph{Shapes und Shaping} liefert die Gestalt eines Tensors, bietet aber auch die Möglichkeit diese zu ändern. 
+\begin{itemize}
+	\item \textit{tf.shape} liefert eine genaue Aufschlüsselung des Tensors mit der Dimension und der Tiefe.
+	\item \textit{tf.size} repräsentiert die Anzahl an Elementen in einem Tensor. 
+	Diese Anzahl ergibst sich aus den konkreten Werten.
+	\item \textit{tf.rank} verhält sich ähnlich zu \textit{tf.size} mit dem unterschied, dass die Anzahl der Felder Vertiefung gezählt wird.
+	\item \textit{reshape} wird verwendet um Tensoren in eine neue Struktur zu bringen. 
+	Dabei kann für das einebnen der Dimensionen eine Kurzschreibweise verwendet werden mit $-1$ als Zielausführung der Gestalt.
+	\item \textit{tf.squeeze} entfernt ganze Dimensionen aus dem gegebenen Tensor. 
+	Ohne Achsen Angabe werden alle Dimensionen mit der Größe $1$ entfernt oder es werden die spezifizierten Dimensionen herausgenommen.
+	\item \textit{tf.expand\_dims} gliedert wider um Dimensionen in einen Tensor ein. 
+	Im Standard an der Indexstelle $0$, außer es wurde spezifiziert.
+\end{itemize}
+
+\paragraph{Slicing und Joining} wie in diversen Programmiersprachen unterstützt auch TensorFlow das Teilen und Zusammenfügen von Daten und aber hier im Speziellen mit Tensoren. 
+Diese Operationen reichen von einfachen Slicing Operationen über Transponieren bis hin zu dem Verketten von Tensoren, dabei kann definiert werde Anhand welcher Achse der Dimensionen die Operation ausgeführt werden soll.
+
+%\paragraph{Fake quantization} => zu viel
+\phantom \newline
+
+\noindent
+Weiter Informationen befinden sich in der online Dokumentation. \footnote{Online Dokumentation: Tensor Transformations \url{https://www.tensorflow.org/api_guides/python/array_ops}}
+
+\subsubsection{Mathematik} 
+
+\paragraph{Arithmetische Operationen} stellen die mathematischen Grundoperationen dar. 
+Diese können teilweise in Kurzschreibweisen verwendet werden, wie zum Beispiel die Addition. 
+Diese kann entweder als explizite Operation \textit{tf.add(x, y)} verwendet werden aber auch Implizit bei der Addition $+$ von einem Tensor mit einem Bias-Tensor.
+
+\paragraph{Basis Funktionen} ergänzen die arithmetischen Operationen um Standardfunktionen. 
+Zu diesen Funktionen zählen die Berechnung der Absolutwerten in einem Tensor sowie eine Exponentialfunktion. 
+
+\paragraph{Matrizen Funktionen} werden am häufigsten benötigt, da Tensoren im Grunde Matrizen sind und somit diese geändert werden können. 
+\begin{itemize}
+	\item \textit{tf.matmul} führt eine Matrizenmultiplikation aus. 
+	Diese Operation findest meist in voll Vernetzten Neuronen Verwendung, wenn der übergebene Tensor mit der Gewichtung multipliziert wird. 
+	\item \textit{tf.eye} erzeugt eine Identitätsmatrix, in welcher alle Werte an der Diagonale $1$ sind und alle anderen $0$. 
+\end{itemize}
+
+Zu diesen Funktionen existieren noch weitere die zur Lösung von Gleichungen verwendet werden können. 
+Diese Gleichungen müssen in Matrizenschreibweise im Tensor abgebildet sein. 
+
+\paragraph{Komplexe Zahlen} können verwendet werden und Operationen mit ihnen in de Graphen eingepflegt werden. 
+
+\paragraph{Reduzierungsoperationen} kommen meist dann zum Einsatz, wenn der Unterschied zwischen dem Ergebnis und dem erwarteten Ergebnis festgestellt werden soll. 
+\begin{itemize}
+	\item \textit{tf.reduce\_sum} berechnet die Summe aller Werte in einem Tensor.
+	\item \textit{tf.reduce\_mean} berechnet die Summe aller Werte an der Diagonale eines Tensors. 
+	\item \textit{tf.reduce\_max} reduziert einen Tensor auf die maximal Werte in der letzten Dimension und reduziert dabei den Rang um eins.
+\end{itemize}
+
+\noindent
+Zu diesen gibt es noch weiter, welche in diversen Fällen benötigt werden wenn zum Beispiel Wahrheitswerten reduziert werden sollen. \newline
+
+\noindent
+Die Anzahl an mathematischen Funktionen ist um einiges sehr viel Größer als die hier erwähnten. 
+Diese hier repräsentieren lediglich die meist verwendeten Operationen. 
+Für weiter Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Math \url{https://www.tensorflow.org/api_guides/python/math_ops}}
 
 \subsubsection{Flusskontrolle}
 
