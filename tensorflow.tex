@@ -308,7 +308,102 @@ Zusätzlich gibt es noch die Möglichkeit die Farbkanäle des Bildes zu ändern 
 
 \subsubsection{Input und Readers}
 
-\subsubsection{Neural Network}
+\paragraph{Platzhalter} werden benötigt um einen Graphen zu erstellen. 
+Ohne Platzhalter wäre es nicht möglich Daten in den Graphen zu bekommen. 
+Diese müssen zur Ausführungszeit durch richtige Daten ersetzt werden, was mit Hilfe von einem Schlüssen-Wert-Paars erfolgt. 
+
+\paragraph{Readers} ermöglichen direkt aus dem Dateisystem Daten zu laden. 
+Dabei stehen spezifizierte Reader zur Verfügung welche die direkt Tensoren ausliefern sowie Zeile für Zeile  oder ganze Dateiinhalte liefern. 
+
+\paragraph{Konvertierungsoperationen} ermöglichen es Dateien die mit TensorFlow Readers gelesen wurden weiter zu verarbeiten, so kann eine CSV Datei decodiert verwendet werden.
+\phantom \newline
+
+\noindent
+Des Weiteren sind Protokoll Buffer sowie Queues implementiert die zum Vorverarbeiten von Daten sind.
+\footnote{Online Dokumentation: Input und Readers \url{https://www.tensorflow.org/api_guides/python/io_ops}}
+
+\subsubsection{Neuronale Netzwerke}
+
+Neuronale Netzwerke sind eine Spezialisierung des Gebietes des maschinellen Lernens. 
+So bietet TensorFlow eine breite Unterstützung beziehungsweise eine große Implementierungsvielfalt für diesen Typ an. 
+
+\paragraph{Aktivierungsfunktion} repräsentieren den Ausgang eines Neurons dar, dabei existieren aus der Vergangenheit heraus einige Ansätze für diesen Bereich eines Neuronalen Netzwerkes. 
+\begin{itemize}
+	\item \textit{tf.sigmoid} ist eine der bekanntesten und ältesten diesen Typs.
+	Diese Funktion hat im Punkt $0$ einen Aktivierungswert von $0.5$ und besitzt zwei Beschränkungen. 
+	Im negativen Zahlenbereich auf der X-Achse wird die Funktion mit $0$ der Grenzwert definiert und im positiven Zahlenbereich auf der X-Achse wird diese mit dem Grenzwert von maximal $1$ definiert. 
+	Ein negativer Wert führt somit zu einem geringen Aktivierungswert, welcher sich im Negativen an $0$ annähert sowie im Positiven an $1$.
+	Im Diagramm \ref{fig:Sigmoide Aktivierungsfunktion} befindet sich dies Funktion mit ihren Grenzwerten. 
+\begin{figure}
+	\centering
+	\resizebox {\linewidth} {5cm} {
+	\begin{tikzpicture}
+	\begin{axis}
+
+		\addplot expression { 1/(1+exp(-x) };
+
+	\end{axis}
+	\end{tikzpicture}
+	}
+	\caption{Sigmoide Aktivierungsfunktion}
+	\label{fig:Sigmoide Aktivierungsfunktion}
+\end{figure}
+
+	\item \textit{tf.relu} ersetzt mittlerweile immer mehr die Sigmoide Version. 
+	Ein Grund dafür ist, dass die Berechnung mit Sigmoidefunktionen Ressourcen intensive ist. 
+	Die rektifiziert lineare Funktion ist sehr viel einfacher, denn Werte unter $0$ werden als $0$ weiter gegeben und Werte darüber linear. 
+	Somit resultiert ein Eingangswert von $-0.1$ in einer $0$ und ein Wert von $0.5$ in $0.5$.
+	Wie im Diagramm \ref{fig:rektifiziert lineare Aktivierungsfunktion} ersichtlich ist, führt dies bei einem negativen Wert dazu, dass eine Multiplikation mit der Gewichtung in der nächsten Ebene ebenfalls in einer $0$ sich repräsentiert und somit in der Addition ignoriert wird.
+\begin{figure}
+	\centering
+	\resizebox {\linewidth} {5cm} {
+	\begin{tikzpicture}
+	\begin{axis}
+
+		\addplot expression { max(0, x)};
+
+	\end{axis}
+	\end{tikzpicture}
+	}
+	\caption{rektifiziert lineare Aktivierungsfunktion}
+	\label{fig:rektifiziert lineare Aktivierungsfunktion}
+\end{figure}
+
+	\item \textit{tf.tanh} genannt als Hyperbolic Tangent gehört ebenfalls zu den grundlegenden Aktivierungsfunktionen. 
+	Der Unterschied zwischen dieser Funktion und der Sigmoiden Aktivierungsfunktion ist, dass der untere Grenzwert nicht bei $0$ liegt sondern bei $-1$. 
+	Im Diagramm \ref{fig:Hyperbolic Tangents Aktivierungsfunktion} ist zu sehen, wo sich der Wendepunkt befindet, was im Falle des Hyperbolic Tangent in der Koordinate $x = 0, y = 0$ ist. 
+\begin{figure}
+	\centering
+	\resizebox {\linewidth} {5cm} {
+	\begin{tikzpicture}
+	\begin{axis}
+
+		\addplot expression { tanh(x)};
+
+	\end{axis}
+	\end{tikzpicture}
+	}
+	\caption{Hyperbolic Tangents Aktivierungsfunktion}
+	\label{fig:Hyperbolic Tangents Aktivierungsfunktion}
+\end{figure}
+\end{itemize}
+\phantom \newline
+
+\noindent
+Zu diesen Aktivierungsfunktion stehen noch einige weiter zur Verfügung, die ausführlich getestet gehören. 
+Im Grunde könnte jede Funktion verwendet werden, doch jede besitzt eine Eigenheit und beeinflusst so den gesamten Graphen. 
+
+\paragraph{Convolution Operation}
+
+\paragraph{Pooling}
+
+\paragraph{Normalisierung}
+
+\paragraph{Verluste}
+
+\paragraph{Klassifizierung}
+
+\paragraph{Wiederkehrend Neuronale Netzwerke}
 
 \subsubsection{Running Graphs}
 
