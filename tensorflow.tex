@@ -393,17 +393,52 @@ So bietet TensorFlow eine breite Unterstützung beziehungsweise eine große Impl
 Zu diesen Aktivierungsfunktion stehen noch einige weiter zur Verfügung, die ausführlich getestet gehören. 
 Im Grunde könnte jede Funktion verwendet werden, doch jede besitzt eine Eigenheit und beeinflusst so den gesamten Graphen. 
 
-\paragraph{Convolution Operation}
+\paragraph{Faltung Operationen} werden bei Bilderkennungen unter anderem deshalb verwendet, da sie eine Operation auf einen Stapel an Daten gleichzeitig anwenden. 
+So wird wird ein Fenster über ein Bild geschoben und auf jedes Bild wird in dem selben Fenster die Operation durchgeführt. 
+Diese Operation generalisiert die darunterliegenden Daten, so als ob sie auf Etwas reagiert hätten. 
+Dies entspricht dem als ob ein Auge auf etwas reagiert hätte. 
+\textbf{TODO: Diagramm}
+\begin{itemize}
+	\item \textit{tf.nn.conv2d} steht für zweidimensionale Bilder zur Verfügung. 
+	\item \textit{tf.nn.conv3d} ermöglicht es mit dreidimensionale Objekte zu arbeiten.
+\end{itemize}
 
-\paragraph{Pooling}
+Des Weiteren stehen noch weitere spezialisierte Versionen implementiert zur Verfügung.
 
-\paragraph{Normalisierung}
+\paragraph{Bündelung} wird verwendet um Daten zu vereinfachen. 
+Eine Faltungsoperation führt dazu, dass aus einem Bild viel erzeugt werden mit unterschiedlichen Filtern. 
+Eine Bündelung ermöglicht einen Vereinfachung der Bilder, sodass sie vereinfacht werden und dabei die Schlüsselinformationen aber dennoch erhalten bleiben. 
+Diese Technik wurde zu früheren Zeiten eingesetzt, um Computerressourcen zu sparen, da diese nicht so leistungsfähig waren wie sie aktuell sind. 
+TensorFlow bietet mehrere Umsetzungen, so kann der Maximalwert aus der Filtermatrix übernommen werden wie aber auch der Mittelwert. 
 
-\paragraph{Verluste}
+\paragraph{Verluste} beschreiben wie sehr ein Ergebnis von dem erwarten Ergebnis entfernt ist. 
+Diese Art der Verlust Feststellung wird bei Regression Probleme benötigt aber auch regulieren im generellen.
+\begin{itemize}
+	\item \textit{tf.nn.l2\_loss} berechnet einen Wert, welcher den Inhalt des Tensors repräsentiert. 
+	Im Falle dieser Implementierung wird keine Wurzel des Quadrats berechnet, sondern es werden die Werte nur addiert und durch $2$ dividiert.
+	\item \textit{tf.nn.log\_poisson\_loss} berechnet den Logarithmischen-Wahrscheinlichkeitsverlust zwischen einem Ergebnis und einem erwarteten Ergebnis. 
+	Diese Methode liefert im Normalfall nicht den exakten Verlust, was für Optimierungen nicht das Problem ist. 
+	Sollte trotzdem ein genaueren Wert berechnet werden zum Vergleichen von Verlusten, muss die aufwändige Stirling Approximation aktiviert werden. 
+\end{itemize}
 
-\paragraph{Klassifizierung}
+\paragraph{Klassifizierungen} repräsentieren eine großen Bereich des maschinellen Lernens. 
+TensorFlow besitzt deshalb mehrere Hilfsfunktionen, welche das arbeiten mit Klassifizierungen erleichtert. 
+\begin{itemize}
+	\item \textit{tf.nn.softmax} bildet alle Ergebnisse auf einen prozentualen Bereich ab. 
+	So ergeben alle möglichen Ausgänge in Summe 100\%, was soviel bedeutet das ein Ergebnis eine gewisse Wahrscheinlichkeit besitzt. 
+	\item \textit{tf.nn.softmax\_cross\_entropy\_with\_logits} bietet einem die Möglichkeit auf nicht skalierte Daten ein Ergebnis zu Berechnen, welches eine \textit{tf.nn.softmax} Berechnung liefern würde. 
+	Zusätzlich wird eine weitere so genannte 'cross entropy' Berechnung ausgeführt, wo das Ergebnis für Optimierungen benötigt wird. 
+	Die gesamte Methode berücksichtigt Spezialfälle im gesamten Prozess, welche schwer manuell ab zu berücksichtigen sind. 
+\end{itemize}
 
-\paragraph{Wiederkehrend Neuronale Netzwerke}
+\noindent
+Zu diesen existieren noch weitere Implementierungen mit weiteren Eigenheiten, welche in diversen Situation möglicherweise einen Vorteil bieten. 
+
+%\paragraph{Wiederkehrend Neuronale Netzwerke} 
+
+\noindent
+Des Weiteren gibt es Implementierungen für Wiederkehrende Neuronale und weiter in diesem Themengebiet. 
+\footnote{Online Dokumentation: Neural Network \url{https://www.tensorflow.org/api_guides/python/nn}}
 
 \subsubsection{Running Graphs}
 
