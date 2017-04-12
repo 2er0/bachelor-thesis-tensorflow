@@ -402,7 +402,9 @@ Dies entspricht dem als ob ein Auge auf etwas reagiert hätte.
 	\item \textit{tf.nn.conv2d} steht für zweidimensionale Bilder zur Verfügung. 
 	\item \textit{tf.nn.conv3d} ermöglicht es mit dreidimensionale Objekte zu arbeiten.
 \end{itemize}
+\phantom \newline
 
+\noindent
 Des Weiteren stehen noch weitere spezialisierte Versionen implementiert zur Verfügung.
 
 \paragraph{Bündelung} wird verwendet um Daten zu vereinfachen. 
@@ -430,6 +432,7 @@ TensorFlow besitzt deshalb mehrere Hilfsfunktionen, welche das arbeiten mit Klas
 	Zusätzlich wird eine weitere so genannte 'cross entropy' Operation ausgeführt, wo das Ergebnis für Optimierungen benötigt wird. 
 	Die gesamte Methode berücksichtigt Spezialfälle im gesamten Prozess, welche schwer manuell ab zu berücksichtigen sind. 
 \end{itemize}
+\phantom \newline
 
 \noindent
 Zu diesen existieren noch weitere Implementierungen mit weiteren Eigenheiten, welche in diversen Situation möglicherweise einen Vorteil bieten. 
@@ -442,13 +445,52 @@ Des Weiteren gibt es Implementierungen für Wiederkehrende Neuronale Netzwere un
 
 \subsubsection{Running Graphs}
 
-\paragraph{Session}
+\paragraph{Session} stellt eine Hauptklasse des TensorFlow-Systems dar, mit der TensorFlow Engine im Hintergrund.
+In ihr werden alle Operationen ausgeführt und alle Tensoren evaluiert. 
+Dieser Session wird der Graphen mitgegeben, in dem der Endpunkt des Graphen angeben wird. 
+Zur Ausführungszeit führt die Engine alle Operationen des Graphen durch und evaluiert die Tensoren in diesem. 
+Die Engine führt dabei alles bis zu dem gegebenen Punkt aus, welcher als Ausgangspunkt übergeben wurde. 
+Sollte der Graphen weiterführen, so wird dieser nicht mehr durchlaufen. 
+Dies bietet eingeschränkte Möglichkeit, um das aufgebaute System zu testen. 
+Eine Session wird mit \textit{tf.Session} erstellt und stellt die Funktionalität zum Ausführen, sowie die Möglichkeit diese zu schließe zur Verfügung. 
+Mit \textit{tf.InteractiveSession} wird ebenfalls eine Session erstellt, diese wird aber zugleich als Basissession installiert. 
+Dies bietet die Möglichkeit interaktive in einer Kommandozeile Operationen auszuführen, ohne die Session expliziert zu übertragen und anzusprechen. 
+Die Tensoren und Operatoren bietet in diesen Fall die Option sich und den Graphen auszuführen, indem die Methoden \textit{TensorVariable.eval} sowie \textit{OperationsVariable.run} in diesen Aufgerufen werden. 
+
+\noindent
+Zusätzlich kann eine bestehende Basissession geholt werde sowie auf Fehler reagiert werden. 
+\footnote{Online Dokumentation: Running Graphs \url{https://www.tensorflow.org/api_guides/python/client}}
 
 \subsubsection{Training}
 
-\paragraph{Optimizers}
+\paragraph{Optimizers} stellen einen weiteren Kernteil des System dar. 
+TensorFlow stellt einen Menge an implementierten Optimierungsalgorithmen zur Verfügung. 
+Diese Operationen trainieren den Graphen mit der gewählten Technik des gewählten Algorithmus. 
+Diese Implementierungen versuchen die gegebenen Kosten eines Graphen zu minimieren. 
+Bei der Verwendung von \textit{minimize} führt die Operation zwei Schritte in einem aus. 
+In diesem wird der Gradient berechnet und dieser wird direkt auf die Variablen adaptiert. 
+Diese Schritte können in einzelne zerlegt werden wenn, sollte mit den berechneten Gradient noch etwas zusätzlich durchgeführt werden. 
+Die Berechnung wird dabei mit \textit{opt.compute\_gradients} ausgelöst, was einen Liste mit Paaren liefert. 
+Diese Liste kann bearbeitet werden aber auch zu Testzwecken mit Protokolliert werden. 
+Die Gradienten werden in dritten Schritt mit \textit{opt.apply\_gradients} auf die Variablen angewendet. 
+Jeder Optimierungsalgorithmen verfügt über Eigenheiten und spezielle Verhalten, welche berücksichtigt werden sollten bei der Auswahl des Optimierers.
 
-\paragraph{Gradient Computation}
+\paragraph{Gradient Computation} umfasst Methoden die das Verhalten des Graphen und der Optimierung beeinflussen. 
+Diese Methoden ermöglichen es, Einfluss auf die Gradientenberechnung sowie auf dessen Evaluierung zunehmen. 
+In diesem Sinne sind diese mit Vorsicht zu verwenden.
+
+\paragraph{Verteilte Ausführung} stellt eine der Stärken von TensorFlow dar, da diese Technologie schon im System implementiert ist und somit keine manuelle Verteilung der Aufgaben entwickelt werden muss.
+Dadurch besteht die Option die Berechnungen auf mehrere Geräte zu verteilen und so die zur Verfügung stehenden Ressourcen besser auszunützen. \\
+%Im Grunde wird ein Cluster definiert welcher Computerknoten umfasst. 
+%Diesen werden dann Tasks auf Aufgaben zugewiesen, wobei zu den Knoten definiert werden muss was zu tun ist.
+
+\noindent
+Einige Komfortmethoden ermöglichen es einfacher eine Session zu erstellen und alle Variablen zu initialisieren, sowie im Anschluss zu trainieren, wobei eine Stopbedingung mit definiert werden kann.
+In diesem Zuge können Hooks einfach in das System integriert werden welche Aufgerufen werden.
+
+\noindent
+Im Weiteren kann Threading sowie der Verfall der Lernrate beeinflusst werden.
+\footnote{Online Dokumentation: Training \url{https://www.tensorflow.org/api_guides/python/train}}
 
 %\subsection{Probleme}
 
