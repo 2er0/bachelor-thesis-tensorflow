@@ -133,6 +133,8 @@ In den Meisten fällen wird ein Graphen einmal erstellt und mehrfach ausgeführt
 In TensorFlow ist ein Tensor ein typisiertes multidimensionales Array. 
 Die verwendbaren Typen reichen von Datentypen mit Vorzeichen und ohne sowie bis hin zu Doubles und Zeichenketten. \cite{wp2015tensorflow} 
 
+\subsection{Hyperparameter} \textbf{TODO}
+
 \section{Bibliotheksinhalt}
 
 \subsection{Datentypen}
@@ -496,8 +498,106 @@ Im Weiteren kann Threading sowie der Verfall der Lernrate beeinflusst werden.
 
 %\subsubsection{NaN Problem}
 
+TensorFlow beinhaltet noch sehr viele weiter Komponenten und Möglichkeiten. 
+Dies würde aber den Rahmen und den ersten Einblick in die Materie des maschinellen Lernens und im speziellen von TensorFlow sprengen. 
+Im Grunde kann mit diesem Grundlagen und ein Netzwerk erstellt werden und damit gearbeitet werden. 
+Seit der Offenlegung kommen immer mehr Erweiterungen aus der Community dazu, was auch dazu führt, dass Teile die sehr oft benötigt werden und aus mehreren Komponenten bestehen als Modul oder Funktion zur Verfügung stehen. 
+Im Zuge dessen besteht die Möglichkeit sich einen bestehen Graphen zu nehmen, welcher zum Teil schon vor trainiert worden ist. 
+Im Zuge dessen werden nur mehr die letzten Ebenen des Graphen trainiert und auf die konkrete Aufgabe hin ausgelegt. 
+Dies hat zur Folge, dass schneller ein verwendbarer Graphen vorhanden ist, dieser aber sehr wahrscheinlich nicht der Beste ist den es geben würde. 
+
 \subsection{TensorBoard}
 
-\paragraph{Graph}
-\paragraph{Event}
+TensorBoard stellt eine Erweiterung des TensorFlow-System dar, im Sinne einer Toolerweiterung. 
+Jeder Graph kann in ein File Serialisiert werden, welches als Event-File bezeichnet wird. 
+Dies hat zur Folge, dass dieser auch wieder geladen werden kann. 
+Bei dieser Serialisierung werden alle Informationen des Graphen inklusive der Gewichtungen in die definierte Datei gespeichert.
+TensorBoard bietet nun die Möglichkeit diesen Graphen zu laden und diesen Visualisiert darzustellen.
+Zu den Graph-Informationen kann jeder Tensor mit gespeichert werden und als Diagramm visualisiert werden, mit einer zeitlichen Komponente. 
+Dies ermöglicht es einem den Verlauf des Trainings zu analysieren. 
+Aus einem Graphen können mehrere dieser Event-Files erzeugt werden sowie fixe Punkte definiert werden. 
+Beim Laden eines Graphen in die TensorFlowt sowie TensorBoard-Umgebung kann spezifiziert werden zu welchen Zeitpunkt geladen werden soll. 
+Damit wird ermöglicht viele Trainingsdurchläufe zu durchlaufen und bei einer Verschlechterung der Präzision zu einem früheren Zustand zurück zu springen.
+Diese Tool ermöglichte es einem in das Verhalten eines Graphen ein wenig Einsicht zu nehmen und so die sogenannte Black Box zu durchleuchten. 
+
+\paragraph{Namesbereiche (\textit{tf.name\_scope})} stellen eine Hilfe für die Darstellung und die Lesbarkeit des visualisierten Graphen dar. 
+Durch die Verwendung des Python-Schlüsselwortes \textit{with} wird eine Ressource verwaltet und wieder freigegeben. 
+In Verwendung mit \textit{tf.name\_scope} werden alle Operationen und Tensoren in diesem Block in der Visualisierung in einen benannten Block zusammengefasst.
+
+\begin{figure}
+
+\lstset{language=Python}
+\begin{lstlisting}
+import tensorflow as tf
+
+with tf.name_scope("func"):
+	b = tf.Variable(tf.zeros([100])) 
+	W = tf.Variable(tf.random_uniform([784,100],-1,1)) 
+	x = tf.placeholder(name="x") 
+	relu = tf.nn.relu(tf.matmul(W, x) + b) 
+
+C = [...] 
+s = tf.Session()
+for step in xrange(0, 10):
+	input = ...construct 100-D input array ... 
+	result = s.run(C, feed_dict={x: input}) 
+
+	print step, result 
+\end{lstlisting}
+
+	\caption{TensorFlow Codefragment zur Namescope Verwendung in Graphen}
+	\label{fig:NameScopeFragmentGraphDefinition}
+\end{figure}
+\phantom \newline
+
+\noindent
+Wie in der Codefragment \ref{fig:NameScopeFragmentGraphDefinition} beschrieben werden die Tensoren und Operatoren \textit{b, W, x, relu} in einen Block zusammen gefasst. 
+In diesem Beispiel gibt es keinen Tensor, welcher in den Block übergeben wird, da die Daten in der Ausführung von außerhalb es System in dieses gelangen. 
+Die Operation \textit{relu} und der daraus resultierende Tensor bilden den Ausgang des Blockes. 
+Diese Technik der Namensbereiche ermöglicht es einem den Graphen zu strukturiere, da nicht wie in \textit{tf.zeros([100])} viele einzelne Knoten dargestellt werden, sonder abstrahiert werden und aber weiterhin einsehbar sind.
+
+\paragraph{Graph} bildet den Punkt zum Visualisieren des Graphen selbst. 
+Hierbei werden aus dem Event-File alle Informationen zum Aufbau des Graphen geladen und visualisiert. 
+Durch die Verwendung der Namensbereichen werden Gruppen gebildet was dazuführt, dass die Gruppierungen möglicherweise in Ebenen sich widerspiegeln. 
+Der dargestellte Graphen kann nach dem Einlesen und generieren interaktive Analysiert werden. 
+So können Bereiche vergrößert und geöffnet werden und die definierten Tensoren betrachtet werden. 
+Dieses Tool bietet zusätzliche Funktionalitäten, wie das das Darstellen wo am meisten Rechenzeit benötigt wurde sowie auch welche Berechnung auf welchem Gerät ausgeführt worden ist. 
+Alle diese zusätzlichen Funktionalitäten benötigen Daten, welchen beim Erstellen des Graphen mit definiert werden müssen und auch mit in des Event-File serialisiert werden müssen. 
+
+\paragraph{Event} repräsentiert den Bereich in welchem die Lernergebnisse dargestellt werden. 
+Dies umfasst die Präzision sowie die Verluste. 
+Das Ziel des Graphen ist im Grunde immer die Präzision zu erhöhen und die Verluste zu minimieren. 
+Aus diesem Grund sollte sich die Genauigkeit an $1$ annähern, außer die Definition dieser Berechnung liefert andere Werte oder besitzt einen anderen Grenzwert. 
+Der Verlust sollte sich im laufe des Trainings an $0$ annähern, denn dadurch spiegelt sich die Fehlerquote ab. 
+Dies hängt aber wieder von dem entwickelten Graphen ab und kann sich somit einem anderen Wert annähern.
+\phantom \newline 
+
+\noindent
+Event bietet die Möglichkeit mehrere Graphen und ihre Eventdaten zu visualisieren. 
+In diesem Fall werden alle gelesen Events in einer Liste aufgelistet, in welcher ausgewählt werden kann welche Ausführung in den Diagrammen dargestellt werden sollen. 
+In diesem Zuge können diese Diagramme zusammen geführt werden und so die Ergebnisse direkt verglichen werden. 
+Dies hat den Vorteil, dass ein Netzwerk mit Hyperparameter automatisch getestet werden kann und jede Kombination ein eigenes Event-File erzeugt. 
+Solche Testdurchläufe benötigen mehr Zeit, abhängig von den definierten Kombinationen an Parameter, muss $x * y * ...$ alles durch getestet werden.
+\phantom \newline
+
+\noindent
+Die Informationen für die Lernrate sowie des Verlustes werden in diesem Fall am besten Festgehalten. 
+Dies wird ermöglicht indem die Tensoren, welche die Lernrate sowie den Verlust beinhalten, in die Methode \textit{tf.summary.scalar} jeweils gefüttert wird. 
+Bei jedem Schreibzyklus in das Event-File werden diese Informationen dann mit übernommen und stehen dann in TensorBoard zur Verfügung.
+
 \paragraph{Histogram} \url{https://duckduckgo.com/?q=tensorboard+histogram&ia=qa}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
