@@ -590,8 +590,22 @@ Der Divisor n wird durch die Anzahl an Elementen im Trainingssatz und der Anzahl
 Zum Beispiel bei $100$ Elementen im Trainingssatz und $3$ Neuronen im Outputlayer würde der Divisor den Wert $300$ einnehmen.
 Dies ist erforderlich da diese Funktion bei jeder Evaluierung der Trainingsdaten berechnet wird.
 
-\paragraph{GPU - GPGPU}
+\paragraph{GPU - GPGPU} ist die Bezeichnung für die Verwendung des Grafikprozessors über seine ursprüngliche Auslegung darüber hinaus.
+In der aktuellen Zeit ist es nicht mehr möglich eine Geschwindigkeitssteigerung zu erreichen, in dem die Taktrate des Prozessors erhöht wird. 
+Deshalb wird mehr parallelisiert, da die Recheneinheiten kleiner werden und so mehrere auf die selbe Fläche platz finden. 
+Eine Grafikkarte besitzt die Eigenschaft, gleichförmige Operation in einem Schritt auf sehr viele Objekte gleichzeitig auszuführen. 
+So werden viele Pixel in einmal eingefärbt oder eine Multiplikation großer Matrizen. 
+Der Geschwindigkeitsvorteil kommt dabei durch den hohen Grad an Parallelität, da die Grafikkarte hauptsächlich für solche Operationen ausgelegt worden ist.
 
-\paragraph{Batch Learning}
+\paragraph{Batch Learning} gehört nicht direkt in die Kategorie der Optimierung, bietet trotzdem wie einen Performanzvorteil. 
+Durch Batch Learning wird immer ein Paket in das System eingeführt. 
+Dieses Paket wird je nach Implementierung parallel verarbeitet oder sequenziell. 
+Der Unterschied zu 'Online Learning' ist nun, dass nicht nach jedem Durchlauf die Gewichtungen und das System nachjustiert werden, sondern dass zu Erst das Paket verarbeitet wird und das System einmal angepasst wird. 
+Wenn also ein Paket mit einer Größe von $64$ in das System eingeführt wird, führt dies einmal zu einer Anpassung des Graphen, in dem die Gradienten zusammen gerechnet werden und einmal auf den Graphen adaptiert werden. \cite{AI3}
 
 %\section{Tensorflow Typen Unterstützung}
+
+
+
+
+

@@ -133,7 +133,13 @@ In den Meisten fällen wird ein Graphen einmal erstellt und mehrfach ausgeführt
 In TensorFlow ist ein Tensor ein typisiertes multidimensionales Array. 
 Die verwendbaren Typen reichen von Datentypen mit Vorzeichen und ohne sowie bis hin zu Doubles und Zeichenketten. \cite{wp2015tensorflow} 
 
-\subsection{Hyperparameter} \textbf{TODO}
+\subsection{Hyperparameter} 
+
+Hyperparameter werden im Umfeld von maschinellem Lernen verwendet, um Variationen an Kombinationen zu testen. 
+Dabei werden verschiedenste Parameter getestet, wie verschiedene Aktivierungsfunktionen oder Optimierungsalgorithmen, aber auch die Anzahl an Ebenen und Breiten dieser. 
+Im Gesamten führt dies meist zu sehr vielen Permutationen, welche ausgetestet werden müssen und somit voll trainiert werden. 
+Da die Zeit welche dafür benötigt werden würde, nicht in einer Relation dazu steht, werden solche BroudForce Tests nur mehr selten durchgeführt. 
+Für diesen Fall existieren eigene Techniken, welche sich nur um das Optimieren der Hyperparameter kümmern. \cite{bishop2006pattern}
 
 \section{Bibliotheksinhalt}
 
@@ -585,7 +591,9 @@ Die Informationen für die Lernrate sowie des Verlustes werden in diesem Fall am
 Dies wird ermöglicht indem die Tensoren, welche die Lernrate sowie den Verlust beinhalten, in die Methode \textit{tf.summary.scalar} jeweils gefüttert wird. 
 Bei jedem Schreibzyklus in das Event-File werden diese Informationen dann mit übernommen und stehen dann in TensorBoard zur Verfügung.
 
-\paragraph{Histogram} \url{https://duckduckgo.com/?q=tensorboard+histogram&ia=qa}
+\paragraph{Distributions} %\url{https://duckduckgo.com/?q=tensorboard+histogram&ia=qa}
+
+\paragraph{Histogram} 
 
 
 
