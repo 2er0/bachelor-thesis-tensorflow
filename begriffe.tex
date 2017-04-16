@@ -267,7 +267,7 @@ Diese Technik ermöglichte damit tiefe Netzwerke zu konstruieren und auch zu tra
 \paragraph{Lernrate} skaliert die Steigung des Lernprozesses, mit der Auswirkung ob schneller oder langsamer gelernt wird.
 Eine Lernrate unter $0$ würde die Lerngeschwindigkeit stark verlangsamen. 
 Ein Wert über $1$ würde eine hohe Lerngeschwindigkeit zur Folge haben. 
-Eine zu hohe Rate würde nicht zum Konvergieren (\ref{sec:Konvergieren}) führen, sondern zum Springen.
+Eine zu hohe Rate würde nicht zum Konvergieren \ref{sec:Konvergieren} führen, sondern zum Springen.
 
 \paragraph{Momentum} stellt wie die Lernrate eine Skalierung des Lernprozesses dar.
 Dabei werden mit dem Faktor die früheren Gewichtsupdates berücksichtigt. 
@@ -317,13 +317,13 @@ Zweitens aus den Ergebnissen zu welchem das Netzwerk kommen sollte.
 Der bekannte Wert wird meistens als Lable bezeichnet. 
 In diese Situation liefert das Netzwerk ein Ergebnis, welches mit dem erwarteten Wert verglichen werden kann.
 Dieser Unterschied wird zum Feststellen des Fehlers verwendet, welcher besagt wie inkorrekt das Ergebnis ist.
-Des Weiteren wird dieser Fehlerwert für die Backpropagation (\ref{sec:Backpropagation}) benötigt.
+Des Weiteren wird dieser Fehlerwert für die Backpropagation \ref{sec:Backpropagation} benötigt.
 
 \paragraph{Unüberwachtes Trainieren} kommt dann zu tragen, wenn nur Daten zum Trainieren zur Verfügung stehen.
 Der erwartete Ausgang ist unbekannt.
-Diese Strategie wird in Fällen von Clustering (\ref{subsec:Clustering}) verwendet.
+Diese Strategie wird in Fällen von Clustering \ref{subsec:Clustering} verwendet.
 Dabei sollen nicht bekannte Gruppen von zusammengehörenden Beispielen identifiziert werden. 
-Self-Organizing Maps (\ref{subsec:SelfOrganizingMap}) entdecken zusammengehörende Muster und geben dies in einer Grafik zum Beispiel weiter zur weiteren Interpretation.
+Self-Organizing Maps \ref{subsec:SelfOrganizingMap} entdecken zusammengehörende Muster und geben dies in einer Grafik zum Beispiel weiter zur weiteren Interpretation.
 %nur die Eingangsdaten werden zur Verfügung gestellt - der erwartete Ausgang wird nicht zur Verfügung gestellt
 
 \section{Domänenklassen}
@@ -429,7 +429,7 @@ FeedForward Netzwerke (FFN) waren bis for einigen Jahren noch der Stand der Fors
 Auf ihnen basieren einige andere Typen von Netzwerken, die bekanntesten werden in dieser Arbeit noch behandelt.
 Ein FFN basiert auf den Grundlagen eines Neurons (Neuron \ref{sec:Neuron}), sowie dem Ausbauen dieses zu Ebenen mit mehreren Neuronen (Layer \ref{sec:Layer}).
 So ein Netzwerk besitzt einen Inputlayer, einen Hiddenlayer sowie einen Outputlayer.
-Sobald das Netzwerk mehrere Hiddenlayer aufweist, wird es als Deep FeedForward Netzwerk (\ref{subsec:DeepFeedForward}) bezeichnet.
+Sobald das Netzwerk mehrere Hiddenlayer aufweist, wird es als Deep FeedForward Netzwerk \ref{subsec:DeepFeedForward} bezeichnet.
 Das FFN weist dabei eine Charakteristik auf, in der der Datenfluss eindeutig definiert ist. 
 Der Datenfluss beginnt beim Inputlayer und endet beim Outputlayer, ohne dass ein Datenrückfluss zum Beispiel vom Hiddenlayer in den vorhergehenden Hiddelayer vorhanden ist.
 Dies würde eine Rekursion oder einem Kurzzeitgedächtnis entsprechen.
@@ -438,7 +438,7 @@ Die einzelnen Ebenen müssen dabei aber nicht voll verbunden sein, die Vernetzun
 \subsection{Self-Organizing Map}
 \label{subsec:SelfOrganizingMap}
 
-Self-Organizing Map (SOM) findet vor allem im Bereich der Classification (\ref{subsec:Classification}) Verwendung und wurde von Kohonen (1988) erfunden. 
+Self-Organizing Map (SOM) findet vor allem im Bereich der Classification \ref{subsec:Classification} Verwendung und wurde von Kohonen (1988) erfunden. 
 Es ist nicht erforderlich einer SOM die Information zu geben, in wie viele Gruppen oder Klassen die Daten unterteilt werden sollen. 
 Dadurch gehört es zu den Systemen, welche unsupervised trainiert werden. 
 Außerdem besitzen sie die Möglichkeit, sich auch nach der Trainingsphase auf sich ändernde Eingangsdaten anzupassen. 
