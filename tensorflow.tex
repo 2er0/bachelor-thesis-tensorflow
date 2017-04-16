@@ -591,7 +591,76 @@ Die Informationen für die Lernrate sowie des Verlustes werden in diesem Fall am
 Dies wird ermöglicht indem die Tensoren, welche die Lernrate sowie den Verlust beinhalten, in die Methode \textit{tf.summary.scalar} jeweils gefüttert wird. 
 Bei jedem Schreibzyklus in das Event-File werden diese Informationen dann mit übernommen und stehen dann in TensorBoard zur Verfügung.
 
-\paragraph{Distributions} %\url{https://duckduckgo.com/?q=tensorboard+histogram&ia=qa}
+\paragraph{Distributions} stellt eine weiter Funktionalität von TensorBoard dar.  %\url{https://duckduckgo.com/?q=tensorboard+histogram&ia=qa}
+Diese Funktionalität war in den Versionen von 'r1.0' noch unter dem Punkt Histogramm. 
+Im Allgemeinen werden Tensoren mit der Methode \textit{tf.summary.histogram} wieder das Event-File serialisiert. 
+Das Ergebnis stellt einen Verteilung dar für die Werte die Tensor vorkommen. 
+Dabei werden alle Werte auf eine Gaussian Glockenkurve projiziert. 
+Das Diagramm repräsentiert auf der X-Achse die Anzahl der Schritte, die durchgeführt worden sind. 
+Die Y-Achse gibt die konkreten Werte wieder, welche sich in dem Tensor über die Zeit befinden. 
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.9]{images/Distripution-small.png}
+	\caption{Verteilung der Werte in einem Tensor über die Zeit}
+	\label{fig:Verteilungsdiagram}
+\end{figure}
+
+\noindent
+Im Diagramm \ref{fig:Verteilungsdiagram}) wird ein Tensor mit 100 Werten dargestellt. 
+Dieser Tensor wurde mit einer Normalverteilung initialisiert, wobei die Standartabweichung bei $0.5$ liegt und der Median zu Beginn bei $0.2$ liegt, mit einer geringen Abweichung. 
+Die Linien in diesem Diagramm (\ref{fig:Verteilungsdiagram}) und ihre Einfärbungen präsentieren die Verteilung der Werte im beobachteten Tensor. 
+Die Verteilung muss von unten Nach oben gelesen werden, dabei ergibt die unterste Linie den minimal Wert der vorgekommen ist. 
+Die nächste Linie besagt, dass 7\% der Werte in dem Bereich zwischen dem geringsten und der zweiten Linie sich befinden, was inklusive des geringsten Wertes ist.  
+Der nächste Bereich definiert, wie in einer Normalverteilung, dass bis zu Ende dieses Bereiches 16\% darin befinden. 
+Im gesamten sind dies $9$ Markierungen mit 8 Bereichen, welche zusammen alle Werte im Tensor wieder spiegeln. 
+Diese Folge an prozentualen Anteilen lauten wie folgend: $min, 7\%, 16\%, 31\%, 50\%, 69\%, 84\%, 93\%, max$. 
+Im Diagramm (\ref{fig:VerteilungsdiagrammPython}) ist diese Verteilung besser ersichtlich, zusätzlich befinden sich in der Abbildung \ref{fig:Ergebnistensor} die Rohdaten der Diagramme. 
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.8]{images/gaussian.png}
+	\caption{Verteilung der Werte in dem Tensor zu dem Diagramm \ref{fig:Verteilungsdiagram}}
+	\label{fig:VerteilungsdiagrammPython}
+\end{figure}
+
+\begin{figure}
+
+\lstset{language=Python}
+\begin{lstlisting}
+
+ -1.2645409, -0.92252451, -0.68004417, -0.63273954, -0.57005012, 
+ -0.5477351, -0.54554129, -0.51146084, -0.50482351, -0.4872272, 
+ -0.45631331, -0.44180638, -0.43258488, -0.38066232, -0.31675094, 
+ -0.29567719, -0.27768314, -0.27437925, -0.19503899, -0.18343721, 
+ -0.16653274, -0.13992153, -0.13946836, -0.12969615, -0.12044857, 
+ -0.11908005, -0.06734778, -0.062724337, -0.032598898, -0.02885592, 
+ 0.006216079, 0.015204117, 0.018379062, 0.036883533, 0.041039094, 
+ 0.063002124, 0.068820029, 0.072805718, 0.11137276, 0.11735194, 
+ 0.12555882, 0.12613684, 0.13053563, 0.13633718, 0.17283598, 
+ 0.18271323, 0.18530971, 0.18671049, 0.24375655, 0.25207496, 
+ 0.27566099, 0.27588493, 0.27921408, 0.28581429, 0.29526407, 
+ 0.30613232, 0.32309669, 0.33705187, 0.34577289, 0.34687665, 
+ 0.37553167, 0.41834235, 0.43759531, 0.4376972, 0.45076531, 
+ 0.47984695, 0.49715465, 0.50634104, 0.51550949, 0.5168677, 
+ 0.53031796, 0.5579083, 0.56285316, 0.57165861, 0.59320259, 
+ 0.60513371, 0.61539149, 0.61814398, 0.63975775, 0.64333171, 
+ 0.67751783, 0.67795348, 0.68242437, 0.70252627, 0.70793462, 
+ 0.72128826, 0.80693412, 0.83029318, 0.83635086, 0.84400082, 
+ 0.84558558, 0.86151552, 0.95068389, 0.95598722, 1.0072051, 
+ 1.1837469, 1.1992682, 1.285683, 1.3168017, 1.3521272
+
+\end{lstlisting}
+
+	\caption{Sortierter Ergebnistensor zum Verteilungsdiagramm \ref{fig:VerteilungsdiagrammPython} und \ref{fig:Verteilungsdiagram}}
+	\label{fig:Ergebnistensor}
+\end{figure}
+
+
+%[maximum, 93%, 84%, 69%, 50%, 31%, 16%, 7%, minimum]
+%[maximum, μ+1.5σ, μ+σ, μ+0.5σ, μ, μ-0.5σ, μ-σ, μ-1.5σ, minimum]
+
+%\textbf{TODO Grafik}
 
 \paragraph{Histogram} 
 
