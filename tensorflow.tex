@@ -28,7 +28,6 @@ Durch die Verwendung des trainierten Graphen kann dieser auch auf mobilen Plattf
 \subsection{Graphs/Dataflowgraph}
 
 \begin{figure}
-
 \lstset{language=Python}
 \begin{lstlisting}
 import tensorflow as tf
@@ -56,9 +55,7 @@ for step in xrange(0, 10):
 	\caption{TensorFlow Codefragment zur Definition eines Teils des Graphen}
 	\label{fig:SimpleFragmentGraphDefinition}
 \end{figure}
-
 \begin{figure}
-
 	\centering
 
 \begin{tikzpicture}
@@ -97,7 +94,6 @@ for step in xrange(0, 10):
 	\caption{Der resultierenden Teilgraph aus dem Codefragment aus Abbildung \ref{fig:SimpleFragmentGraphDefinition} nach dem Beispiel in \cite{wp2015tensorflow}}
 	\label{fig:SimpleFragmentGraphPic}
 \end{figure}
-
 Ein TensorFlow Graph kann wie in Abbildung \ref{fig:SimpleFragmentGraphDefinition} beschrieben werden.
 Dieser wurde zum Beispiel mit der Python API erstellt.
 Im Gesamten mit den Knoten und den Verbindungen ergibt sich ein Datenfluss, diese beinhaltet alle erforderlichen Komponenten auch für das per sistieren und aktualisieren der Daten.
@@ -199,7 +195,7 @@ So werden meist der Startzustand mithilfe von Zufallszahlen hergestellt.
 Einige dieser Funktionen benötigen sogenannte Seed-Werte, welche den Startwert der Zufallszahlen zerstreuen sollen sowie die Folge selbst. 
 Im Falle von TensorFlow beruht dies auf zwei Werten, einer wird für den Graphen spezifiziert, der zweite wird für die Operation selbst spezifiziert. 
 Der Wert für den Graphen kann mit \textit{tf.set\_random\_seed} gesetzt werden. 
-Für weiter Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Constants, Sequences, and Random Values  \url{https://www.tensorflow.org/api_guides/python/constant_op}}
+Für weiter Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Constants, Sequences, and Random Values  \url{www.tensorflow.org/api_guides/python/constant_op}}
 
 \subsubsection{Variables}
 
@@ -228,13 +224,12 @@ Bei diesem Vorgang kann ein Fehler entstehen, welcher in \textit{TypeError} resu
 \end{itemize}
 
 \paragraph{Slicing und Joining} wie in diversen Programmiersprachen unterstützt auch TensorFlow das Teilen und Zusammenfügen von Daten und aber hier im Speziellen mit Tensoren. 
-Diese Operationen reichen von einfachen Slicing Operationen über Transponieren bis hin zu dem Verketten von Tensoren, dabei kann definiert werde Anhand welcher Achse der Dimensionen die Operation ausgeführt werden soll.
-
+Diese Operationen reichen von einfachen Slicing Operationen über Transponieren bis hin zu dem Verketten von Tensoren, dabei kann definiert werde Anhand welcher Achse der Dimensionen die Operation ausgeführt werden soll. 
 %\paragraph{Fake quantization} => zu viel
 \phantom \newline
 
 \noindent
-Weiter Informationen befinden sich in der online Dokumentation. \footnote{Online Dokumentation: Tensor Transformations \url{https://www.tensorflow.org/api_guides/python/array_ops}}
+Weiter Informationen befinden sich in der online Dokumentation. \footnote{Online Dokumentation: Tensor Transformations \url{www.tensorflow.org/api_guides/python/array_ops}}
 
 \subsubsection{Mathematik} 
 
@@ -270,7 +265,7 @@ Zu diesen gibt es noch weiter, welche in diversen Fällen benötigt werden wenn 
 \noindent
 Die Anzahl an mathematischen Funktionen ist um einiges sehr viel Größer als die hier erwähnten. 
 Diese hier repräsentieren lediglich die meist verwendeten Operationen. 
-Für weiter Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Math  \url{https://www.tensorflow.org/api_guides/python/math_ops}}
+Für weiter Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Math  \url{www.tensorflow.org/api_guides/python/math_ops}}
 
 \subsubsection{Flusskontrolle}
 
@@ -291,7 +286,7 @@ Diese Operatoren geben wiederum einen Tensor mit Wahrheitswert aus.
 So kann Überprüft werden ob ein Tensor Werte mit undefinierten Zustand beinhaltet. 
 Die Funktion \textit{tf.Print} ermöglicht es Tensoren auszugeben wenn diese Funktion im Graphen evaluiert wird. 
 Aktuell sind die Möglichkeiten eine Graphen zu debuggen relative eingeschränkt, da der Graphen ist grundsätzlich einsehbar aber schwer zu verstehen in seiner rohen Darstellung.
-\footnote{Online Dokumentation: Control Flow \url{https://www.tensorflow.org/api_guides/python/control_flow_ops}}
+\footnote{Online Dokumentation: Control Flow \url{www.tensorflow.org/api_guides/python/control_flow_ops}}
 
 \subsubsection{Images}
 
@@ -312,7 +307,7 @@ Diese Technik wird beim Trainieren von Bilderkennungen eingesetzt um zum Beispie
 
 \noindent
 Zusätzlich gibt es noch die Möglichkeit die Farbkanäle des Bildes zu ändern sowie das Bild nachzujustieren. 
-\footnote{Online Dokumentation: Images \url{https://www.tensorflow.org/api_guides/python/image}}
+\footnote{Online Dokumentation: Images \url{www.tensorflow.org/api_guides/python/image}}
 
 \subsubsection{Input und Readers}
 
@@ -328,7 +323,7 @@ Dabei stehen spezifizierte Reader zur Verfügung welche die direkt Tensoren ausl
 
 \noindent
 Des Weiteren sind Protokoll Buffer sowie Queues implementiert die zum Vorverarbeiten von Daten sind.
-\footnote{Online Dokumentation: Input und Readers \url{https://www.tensorflow.org/api_guides/python/io_ops}}
+\footnote{Online Dokumentation: Input und Readers \url{www.tensorflow.org/api_guides/python/io_ops}}
 
 \subsubsection{Neuronale Netzwerke}
 
@@ -356,7 +351,6 @@ So bietet TensorFlow eine breite Unterstützung beziehungsweise eine große Impl
 	\caption{Sigmoide Aktivierungsfunktion}
 	\label{fig:Sigmoide Aktivierungsfunktion}
 \end{figure}
-
 	\item \textit{tf.relu} ersetzt mittlerweile immer mehr die Sigmoide Version. 
 	Ein Grund dafür ist, dass die Berechnung mit Sigmoidefunktionen Ressourcen intensive ist. 
 	Die rektifiziert lineare Funktion ist sehr viel einfacher, denn Werte unter $0$ werden als $0$ weiter gegeben und Werte darüber linear. 
@@ -376,7 +370,6 @@ So bietet TensorFlow eine breite Unterstützung beziehungsweise eine große Impl
 	\caption{rektifiziert lineare Aktivierungsfunktion}
 	\label{fig:rektifiziert lineare Aktivierungsfunktion}
 \end{figure}
-
 	\item \textit{tf.tanh} genannt als Hyperbolic Tangent gehört ebenfalls zu den grundlegenden Aktivierungsfunktionen. 
 	Der Unterschied zwischen dieser Funktion und der Sigmoiden Aktivierungsfunktion ist, dass der untere Grenzwert nicht bei $0$ liegt sondern bei $-1$. 
 	Im Diagramm \ref{fig:Hyperbolic Tangents Aktivierungsfunktion} ist zu sehen, wo sich der Wendepunkt befindet, was im Falle des Hyperbolic Tangent in der Koordinate $x = 0, y = 0$ ist. 
@@ -395,9 +388,6 @@ So bietet TensorFlow eine breite Unterstützung beziehungsweise eine große Impl
 	\label{fig:Hyperbolic Tangents Aktivierungsfunktion}
 \end{figure}
 \end{itemize}
-\phantom \newline
-
-\noindent
 Zu diesen Aktivierungsfunktion stehen noch einige weiter zur Verfügung, die ausführlich getestet gehören. 
 Im Grunde könnte jede Funktion verwendet werden, doch jede besitzt eine Eigenheit und beeinflusst so den gesamten Graphen. 
 
@@ -410,9 +400,6 @@ Dies entspricht dem als ob ein Auge auf etwas reagiert hätte.
 	\item \textit{tf.nn.conv2d} steht für zweidimensionale Bilder zur Verfügung. 
 	\item \textit{tf.nn.conv3d} ermöglicht es mit dreidimensionale Objekte zu arbeiten.
 \end{itemize}
-\phantom \newline
-
-\noindent
 Des Weiteren stehen noch weitere spezialisierte Versionen implementiert zur Verfügung.
 
 \paragraph{Bündelung} wird verwendet um Daten zu vereinfachen. 
@@ -449,7 +436,7 @@ Zu diesen existieren noch weitere Implementierungen mit weiteren Eigenheiten, we
 
 \noindent
 Des Weiteren gibt es Implementierungen für Wiederkehrende Neuronale Netzwere und weiter Dinge in diesem Themengebiet. 
-\footnote{Online Dokumentation: Neural Network \url{https://www.tensorflow.org/api_guides/python/nn}}
+\footnote{Online Dokumentation: Neural Network \url{www.tensorflow.org/api_guides/python/nn}}
 
 \subsubsection{Running Graphs}
 
@@ -467,7 +454,7 @@ Die Tensoren und Operatoren bietet in diesen Fall die Option sich und den Graphe
 
 \noindent
 Zusätzlich kann eine bestehende Basissession geholt werde sowie auf Fehler reagiert werden. 
-\footnote{Online Dokumentation: Running Graphs \url{https://www.tensorflow.org/api_guides/python/client}}
+\footnote{Online Dokumentation: Running Graphs \url{www.tensorflow.org/api_guides/python/client}}
 
 \subsubsection{Training}
 
@@ -498,7 +485,7 @@ In diesem Zuge können Hooks einfach in das System integriert werden welche Aufg
 
 \noindent
 Im Weiteren kann Threading sowie der Verfall der Lernrate beeinflusst werden.
-\footnote{Online Dokumentation: Training \url{https://www.tensorflow.org/api_guides/python/train}}
+\footnote{Online Dokumentation: Training \url{www.tensorflow.org/api_guides/python/train}}
 
 %\subsection{Probleme}
 
@@ -554,9 +541,6 @@ for step in xrange(0, 10):
 	\caption{TensorFlow Codefragment zur Namescope Verwendung in Graphen}
 	\label{fig:NameScopeFragmentGraphDefinition}
 \end{figure}
-\phantom \newline
-
-\noindent
 Wie in der Codefragment \ref{fig:NameScopeFragmentGraphDefinition} beschrieben werden die Tensoren und Operatoren \textit{b, W, x, relu} in einen Block zusammen gefasst. 
 In diesem Beispiel gibt es keinen Tensor, welcher in den Block übergeben wird, da die Daten in der Ausführung von außerhalb es System in dieses gelangen. 
 Die Operation \textit{relu} und der daraus resultierende Tensor bilden den Ausgang des Blockes. 
@@ -570,7 +554,7 @@ So können Bereiche vergrößert und geöffnet werden und die definierten Tensor
 Dieses Tool bietet zusätzliche Funktionalitäten, wie das das Darstellen wo am meisten Rechenzeit benötigt wurde sowie auch welche Berechnung auf welchem Gerät ausgeführt worden ist. 
 Alle diese zusätzlichen Funktionalitäten benötigen Daten, welchen beim Erstellen des Graphen mit definiert werden müssen und auch mit in des Event-File serialisiert werden müssen. 
 
-\paragraph{Event} repräsentiert den Bereich in welchem die Lernergebnisse dargestellt werden. 
+\paragraph{Scalars} repräsentiert den Bereich, in welchem die Lernergebnisse dargestellt werden können. 
 Dies umfasst die Präzision sowie die Verluste. 
 Das Ziel des Graphen ist im Grunde immer die Präzision zu erhöhen und die Verluste zu minimieren. 
 Aus diesem Grund sollte sich die Genauigkeit an $1$ annähern, außer die Definition dieser Berechnung liefert andere Werte oder besitzt einen anderen Grenzwert. 
@@ -598,15 +582,12 @@ Das Ergebnis stellt einen Verteilung dar für die Werte die Tensor vorkommen.
 Dabei werden alle Werte auf eine Gaussian Glockenkurve projiziert. 
 Das Diagramm repräsentiert auf der X-Achse die Anzahl der Schritte, die durchgeführt worden sind. 
 Die Y-Achse gibt die konkreten Werte wieder, welche sich in dem Tensor über die Zeit befinden. 
-
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.8]{images/Distripution-small.png}
 	\caption{Verteilung der Werte in einem Tensor über die Zeit}
 	\label{fig:Verteilungsdiagram}
 \end{figure}
-
-\noindent
 Im Diagramm \ref{fig:Verteilungsdiagram} wird ein Tensor mit 100 Werten dargestellt. 
 Dieser Tensor wurde mit einer Normalverteilung initialisiert, wobei die Standartabweichung bei $0.5$ liegt und der Median zu Beginn bei $0.2$ liegt, mit einer geringen Abweichung. 
 Die Linien in diesem Diagramm \ref{fig:Verteilungsdiagram} und ihre Einfärbungen präsentieren die Verteilung der Werte im beobachteten Tensor. 
@@ -616,43 +597,38 @@ Der nächste Bereich definiert, wie in einer Normalverteilung, dass bis zu Ende 
 Im gesamten sind dies $9$ Markierungen mit 8 Bereichen, welche zusammen alle Werte im Tensor wieder spiegeln. 
 Diese Folge an prozentualen Anteilen lauten wie folgend: $min, 7\%, 16\%, 31\%, 50\%, 69\%, 84\%, 93\%, max$. 
 Im Diagramm \ref{fig:VerteilungsdiagrammPython} ist diese Verteilung besser ersichtlich, zusätzlich befinden sich in der Abbildung \ref{fig:Ergebnistensor} die Rohdaten der Diagramme. 
-
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.6]{images/gaussian.png}
 	\caption{Verteilung der Werte in dem Tensor zu dem Diagramm \ref{fig:Verteilungsdiagram}}
 	\label{fig:VerteilungsdiagrammPython}
 \end{figure}
-
 \begin{figure}
 
 \lstset{language=Python}
 \begin{lstlisting}
-
- -1.2645409, -0.92252451, -0.68004417, -0.63273954, -0.57005012, 
- -0.5477351, -0.54554129, -0.51146084, -0.50482351, -0.4872272, 
- -0.45631331, -0.44180638, -0.43258488, -0.38066232, -0.31675094, 
- -0.29567719, -0.27768314, -0.27437925, -0.19503899, -0.18343721, 
- -0.16653274, -0.13992153, -0.13946836, -0.12969615, -0.12044857, 
+ -1.2645409,  -0.92252451, -0.68004417,  -0.63273954,  -0.57005012, 
+ -0.5477351,  -0.54554129, -0.51146084,  -0.50482351,  -0.4872272, 
+ -0.45631331, -0.44180638, -0.43258488,  -0.38066232,  -0.31675094, 
+ -0.29567719, -0.27768314, -0.27437925,  -0.19503899,  -0.18343721, 
+ -0.16653274, -0.13992153, -0.13946836,  -0.12969615,  -0.12044857, 
  -0.11908005, -0.06734778, -0.062724337, -0.032598898, -0.02885592, 
- 0.006216079, 0.015204117, 0.018379062, 0.036883533, 0.041039094, 
- 0.063002124, 0.068820029, 0.072805718, 0.11137276, 0.11735194, 
- 0.12555882, 0.12613684, 0.13053563, 0.13633718, 0.17283598, 
- 0.18271323, 0.18530971, 0.18671049, 0.24375655, 0.25207496, 
- 0.27566099, 0.27588493, 0.27921408, 0.28581429, 0.29526407, 
- 0.30613232, 0.32309669, 0.33705187, 0.34577289, 0.34687665, 
- 0.37553167, 0.41834235, 0.43759531, 0.4376972, 0.45076531, 
- 0.47984695, 0.49715465, 0.50634104, 0.51550949, 0.5168677, 
- 0.53031796, 0.5579083, 0.56285316, 0.57165861, 0.59320259, 
- 0.60513371, 0.61539149, 0.61814398, 0.63975775, 0.64333171, 
- 0.67751783, 0.67795348, 0.68242437, 0.70252627, 0.70793462, 
- 0.72128826, 0.80693412, 0.83029318, 0.83635086, 0.84400082, 
- 0.84558558, 0.86151552, 0.95068389, 0.95598722, 1.0072051, 
- 1.1837469, 1.1992682, 1.285683, 1.3168017, 1.3521272
-
+  0.006216079, 0.015204117, 0.018379062,  0.036883533,  0.041039094, 
+  0.063002124, 0.068820029, 0.072805718,  0.11137276,   0.11735194, 
+  0.12555882,  0.12613684,  0.13053563,   0.13633718,   0.17283598, 
+  0.18271323,  0.18530971,  0.18671049,   0.24375655,   0.25207496, 
+  0.27566099,  0.27588493,  0.27921408,   0.28581429,   0.29526407, 
+  0.30613232,  0.32309669,  0.33705187,   0.34577289,   0.34687665, 
+  0.37553167,  0.41834235,  0.43759531,   0.4376972,    0.45076531, 
+  0.47984695,  0.49715465,  0.50634104,   0.51550949,   0.5168677, 
+  0.53031796,  0.5579083,   0.56285316,   0.57165861,   0.59320259, 
+  0.60513371,  0.61539149,  0.61814398,   0.63975775,   0.64333171, 
+  0.67751783,  0.67795348,  0.68242437,   0.70252627,   0.70793462, 
+  0.72128826,  0.80693412,  0.83029318,   0.83635086,   0.84400082, 
+  0.84558558,  0.86151552,  0.95068389,   0.95598722,   1.0072051, 
+  1.1837469,   1.1992682,   1.285683,     1.3168017,    1.3521272
 \end{lstlisting}
-
-	\caption{Sortierter Ergebnistensor zum Verteilungsdiagramm \ref{fig:VerteilungsdiagrammPython} und \ref{fig:Verteilungsdiagram}}
+	\caption{Sortierter Ergebnistensor zum Verteilungsdiagramm \ref{fig:VerteilungsdiagrammPython} und \ref{fig:Verteilungsdiagram} im Schritt $0$}
 	\label{fig:Ergebnistensor}
 \end{figure}
 
@@ -662,14 +638,41 @@ Im Diagramm \ref{fig:VerteilungsdiagrammPython} ist diese Verteilung besser ersi
 
 %\textbf{TODO Grafik}
 
-\paragraph{Histogram} 
+\paragraph{Histogram} passiert auf den selben Daten wie Verteilungsansicht. 
+Im Grunde präsentiert diese Ansicht diese Daten nur auf eine andere Art und Weiße. 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{images/histogram-value.png}
+	\caption{Verteilung der Werte in dem Tensor in einem Histogramm}
+	\label{fig:Histogram}
+\end{figure}
+Wie auch in der anderen Darstellung werden die Schritte, direkt auf einer Achse dargestellt. 
+Im Falle des Histogramm \ref{fig:Histogram} ist dies die Achse, welche sich Dreidimensional aus dem Hintergrund des Bildes in den Vordergrund zieht. 
+Die horizontalen Achsen welche zu jedem Schritt gezeichnet werden immer auf die vorderste Achse projiziert. 
+Auf dieser wird der Wertebereich abgebildet, in welchem sich die Werte im Tensor befinden. 
+Die Erhebungen und die sich darunter bildenden Flächen geben die Verteilung der Werte wieder. 
+So wird beim überfahren eines Schrittes mit der Maus dieser aktiviert, wie im Histogramm \ref{fig:Histogram} ersichtlich ist. 
+In Falle dieses Diagramms und dieser Stelle bedeutet dies, dass sich in der Nähe des Wertes $3.00$ ungefähr $12.2$ Einträge im Tensor befinden. 
+Anders ausgedrückt haben $12.2$ konkrete Werte im Tensor den Wert $3.00$. 
+Durch die Verteilung der Werte entsteht nun der Fall, das ein Teil der Einträge zu einem Wertebereich vorher oder nachher auch gehören können. 
+Dieses Diagramm stellt die Verteilung in Wertebereiche dar, wobei alle vertikalen Werte in einem Schritt die Anzahl der Werte im Tensor ergeben müssen. 
+Im Falle dieses Beispieles ergeben diese aufsummiert einen Wert von $100.044$, was gerundet die $100$ Einträge im Tensor bestätigt. 
+Die Aufteilung der Werte in Wertebereiche mit teil Zuweisungen, erklärt auch den Schrittverlauf im Histogramm \ref{fig:Histogram}. 
+Hier ist ersichtlich, dass sich die Verteilungen und Zugehörigkeiten immer ein wenig sich ändern, obwohl in diesem Beispiel in jedem Schritt konstant $0.2$ zu jedem Wert hinzu addiert worden ist. 
+Dies lässt sich bei einer geringen Anzahl an Werten wie hier mit $100$ leichter beobachten, als bei einer sehr viel höheren. 
+\phantom \newline
 
+\noindent
+Tensorboard bietet noch weiter Möglichkeiten, wie Bilder- oder Soundinhalte mit in das Event-File zu geben, um diese dann in Tensorboard weiter zu verwenden. 
+So können diese Inhalte durch den Graphen gesendet werden und dabei beobachtet werden. 
+Die letzte Erweiterung in Tensorboard ist der Punkt mit 'Emeddings', wo gelernte Informationen, so wie sie vom Graphen gruppiert worden sind, dargestellt werden können. \footnote{Online Dokumentation: Emeddings \url{www.tensorflow.org/get_started/embedding_viz}}
+\phantom \newline
 
-
-
-
-
-
+\noindent
+Dieses Kapitel repräsentiert die grundsätzliche Funktionalität des TensorFlow-Systems. 
+Es wurde auf die Grundlagen und die am Meist benötigten Methoden eingegangen. 
+Das Verstehend dieser stellt die Grund für das nächste Kapitel dar. 
+In diesem wird ein praktisches Beispiel mit TensorFlow erläutert. 
 
 
 
