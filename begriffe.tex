@@ -244,7 +244,7 @@ Dies ist der Fall, wenn nur zwei Layer sich im Netzwerk befinden und einer davon
 Durch das Anpassen der Gewichtungen bei jedem Dateneingangsstrom mit Hilfe des Backpropagation-Algorithmus ist es möglich, Zustände zu speichern und diese auch zu merken. 
 Sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon einer einmal vorhanden war, dann sollte dieser ähnlich behandelt werden.
 %Dies führt dazu, sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon ein ähnlicher in einem Trainingszyklus vorhanden war, dies erkannt wird. %\textit{dieser ähnliche erkannt wird. \textbf{TODO}} 
-Dieser kann möglicherweise zu derselben Kategorie gehören, wie der zuvor schon bekannte gemachte und gelernte Dateneingang.
+Dieser kann möglicherweise zu derselben Kategorie gehören, wie der zuvor schon bekannt gemachte und gelernte Dateneingang.
 
 \section{Konvergieren im Maschinellen Lernen}
 \label{sec:Konvergieren}
@@ -270,7 +270,7 @@ Ein Wert über $1$ würde eine hohe Lerngeschwindigkeit zur Folge haben.
 Eine zu hohe Rate würde nicht zum Konvergieren \ref{sec:Konvergieren} führen, sondern zum Springen.
 
 \paragraph{Momentum} stellt wie die Lernrate eine Skalierung des Lernprozesses dar.
-Dabei werden mit dem Faktor die früheren Gewichtsupdates berücksichtigt. 
+Dabei werden mit dem definierten Faktor die früheren Gewichtsupdates berücksichtigt. 
 Dies führt dazu, dass lokale Tiefpunkte überwunden werden können und das System doch zum globalen Tiefpunkt konvergiert.
 
 %\textit{\textbf{TODO}}
@@ -294,7 +294,7 @@ Diese Arbeit wird auf die bekanntesten Probleme eingehen und auch Lösungen oder
 Ein Student lernt zum Beispiel auf eine Prüfung und ist im Besitz einer Klausur aus einem Vorjahr. 
 Nach öfterem Durchspielen der Fragen und sich selbst testen, befindet er sich in der Lage diese Klausur mit einer sehr hohen Wahrscheinlichkeit zu bestehen. 
 Dabei hat sich die Klausur in seinem Gehirn eingeprägt, aber nicht das Stoffgebiet zu welchem er eine Klausur schreiben muss. 
-Das Problem wird als Overfitting bezeichnet und beschreibt, dass etwas gemerkt wurde, aber nicht gelernt worden ist und somit eine Abwandlung von Informationen nicht wiedererkannt werden.
+Das Problem wird als Overfitting bezeichnet und beschreibt, dass etwas gemerkt wurde, aber nicht gelernt worden ist und somit eine Abwandlung von Informationen nicht wiedererkannt wird.
 
 %\subsection{Daten & Datensätze}
 
@@ -323,7 +323,8 @@ Des Weiteren wird dieser Fehlerwert für die Backpropagation \ref{sec:Backpropag
 Der erwartete Ausgang ist unbekannt.
 Diese Strategie wird in Fällen von Clustering \ref{subsec:Clustering} verwendet.
 Dabei sollen nicht bekannte Gruppen von zusammengehörenden Beispielen identifiziert werden. 
-Self-Organizing Maps \ref{subsec:SelfOrganizingMap} entdecken zusammengehörende Muster und geben dies in einer Grafik zum Beispiel weiter zur weiteren Interpretation.
+Self-Organizing Maps \ref{subsec:SelfOrganizingMap} entdecken zusammengehörende Muster und geben dies in einer Grafik zum Beispiel weiter zur weiteren Interpretation. 
+Diese Technik ist insbesondere interessant, da einem Netzwerk nie erklärt worden ist warum etwas so ist und steht damit in Relation zu einem natürlichen Lernprozess, wie bei uns Menschen.
 %nur die Eingangsdaten werden zur Verfügung gestellt - der erwartete Ausgang wird nicht zur Verfügung gestellt
 
 \section{Domänenklassen}
@@ -374,7 +375,7 @@ Das Ergebnis bei einer Regression wird dabei nicht in Prozent angegeben, sondern
 Predict-Problemstellungen kommen im Kontext von Business, beziehungsweise von E-Business zur Anwendung vor. 
 Hier muss anhand von meist zeitgesteuerten Ereignisse eine Vorhersage getroffen werden. 
 Zum Beispiel an der Börse ändern sich täglich die Kurse relativ rasch, sodass es für Menschen praktisch nicht mehr möglich ist, diesen zu folgen. 
-Im Falle der Börse sind zeitlich Kurse aus der Vergangenheit verfügbar. 
+Im Falle der Börse sind Aktienkurse mit zeitlichem Verlauf aus der Vergangenheit verfügbar. 
 Diese können als Trainingsdaten für ein Netzwerk verwendet werden, um den nächsten Tag möglicherweise vorherzusagen. 
 Es kann somit als eine Spezialisierung von Regression und Klassifikation angesehen werden, da Daten generiert werden diese aber mit einer Wahrscheinlichkeit.
 
@@ -406,7 +407,7 @@ So muss zum Beispiel ein Verkehrszeichen von einem Passanten unterschieden werde
 
 Optimierung bezieht sich auf eines der Grundprobleme der Informationstechnologie. 
 So werden immer bessere schnellere Algorithmen entwickelt, welche konkrete Probleme noch effizienter lösen können. 
-Durch das Thema BigData entstand ein Performanz-Problem, sodass selbst sehr effiziente Algorithmen einige Problemstellungen nicht mehr in konstanter oder adäquater Zeit lösen können. 
+Durch das Thema BigData entstand ein Performanzproblem, sodass selbst sehr effiziente Algorithmen einige Problemstellungen nicht mehr in konstanter oder adäquater Zeit lösen können. 
 Das 'Salesman' Problem gehört zu diesen Problemen. 
 Durch Optimierung wird in konstanter Zeit eine Lösung ermittelt, welche nicht die beste Lösung repräsentiert. 
 Diese Lösung liegt aber im Rahmen einer bestimmten definierten Toleranz und kann als Lösung verwendet werden. \cite{AI3}
@@ -451,7 +452,7 @@ Diese Art von Netzwerk kommt ohne Bias Neuron (siehe \ref{sec:Bias Neuron}) aus 
 
 \subsection{Hopfield Neuronal Network}
 
-Ein Hopfield Neuronal Network (HNN) ist ein einfaches Netzwerk, welches aus einem Layer besteht. 
+Ein Hopfield Neuronal Network (HNN) \textbf{TODO: Quelle} ist ein einfaches Netzwerk, welches aus einem Layer besteht. 
 In diesem Layer sind alle Neuronen mit jedem anderen Neuron verbunden. 
 Dieses Muster wurde von Hopfield (1982) erfunden. 
 Im Gegensatz zu anderen Netzwerken können Hopfield Netzwerke in einer Matrix abgebildet werden, in welcher die Gewichtung zu den einzelnen Neuronen abgebildet werden. 
@@ -462,7 +463,7 @@ Durch das Hinzugeben einer Energiefunktion kann festgestellt werden, in welchem 
 
 \subsection{Boltzmann Machine}
 
-Im Jahre 1985 stellten Hinton \& Sejnowski das erste Mal eine Boltzmann Maschine vor.
+Im Jahre 1985 stellten Hinton \& Sejnowski \textbf{TODO: Quelle} das erste Mal eine Boltzmann Maschine vor.
 Es stellt ein Zwei-Ebenensystem dar, mit einem Inputlayer und einem Outputlayer, wo jeder Knoten mit jedem verbunden ist, außer mit sich selbst.
 Das voll vernetzte System unterscheidet eine Boltzmann Maschine von einer eingeschränkten Boltzmann Maschine (RBM), welche eine Grundlage für tiefes Lernen und tiefe Neuronale Netzwerke darstellt.
 In einer RBM sind alle sichtbaren Neuronen mit allen Neuronen im Outputlayer verbunden. 
@@ -502,7 +503,7 @@ Mit der Fähigkeit andere Netzwerke zu kreieren, welche für ihre Aufgabe gute E
 
 Convolutional Neural Network werden selbst nicht als komplettes eigenes Netzwerk verwendet, sondern in FeedForward Netzwerken.
 Im Speziellen, wenn es sich um Bilderkennung geht.
-Dabei werden entweder zwei Ebenen nicht voll vernetzt sondern nur teilweise und somit Gewichtungen eingespart.
+Dabei werden zwei Ebenen nicht voll vernetzt sondern nur teilweise und somit Gewichtungen eingespart.
 Im zweiten Fall werden die Gewichtungen geteilt, sodass immer in die selbe Richtung verlaufende Verbindungen die selbe Gewichtung aufweisen.
 Dies ermöglicht es komplexe Strukturen zu speichern und trotzdem die Speicherauslastung niedrig zu halten und die Effektivität aufrecht zu halten.
 
