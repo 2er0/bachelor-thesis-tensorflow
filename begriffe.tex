@@ -22,7 +22,7 @@ Aus diesem gelernten Wissen besteht zusätzlich die Möglichkeit dieses zum Gene
 
 \section{Machine Intelligence}
 
-Machine Intelligence ist ein Begriff, der in dieser Form noch nicht definiert worden ist. 
+Machine Intelligence ist ein Begriff, der noch nicht definiert worden ist, aber schon Verwendung findet. 
 Einige namhafte Unternehmen wie Google Inc. und Microsoft Corporation bieten jeweils unterschiedliche Definitionen oder Beschreibungen. 
 Die Definitionen dieser Firmen weichten nur unwesentlich voneinander ab.
 %Dieser wird aber von allen ähnlich beschrieben und definiert.
@@ -39,21 +39,18 @@ Ein ganz anderer Zugang wurde in der Sowjetunion verfolgt, mit sogenannten 'Supp
 
 \section{Neuronale Netzwerke}
 
-Neuronale Netzwerke sind seit dem Jahr 2016 auch bekannt unter dem Begriff 'Deep Learning'. \newline
+Neuronale Netzwerke sind seit einigen Jahren auch bekannt unter dem Begriff 'Deep Learning'. \newline
 
 \noindent 
 Die Theorie und die ersten Grundlagen wurden im Jahre 1943 von Warrn McCulloch und Walter Pitts geschaffen, die ein Modell entwickelten, jedoch nicht die technischen Möglichkeiten hatten dieses umzusetzen.
 Dieses %basierte auf Mathematik und Algorithmen und 
-führte zur 'Threshold Logik'. 
-Durch den Grundstein des 'Backpropagation'-Algorithmus im Jahre 1975 ist es möglich, Netzwerke mit mehr als drei Ebenen zu trainieren. \\
-
-\noindent 
-\textit{
-Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben.%, welches dem Gehirn gleicht. %nachempfunden ist. 
-Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel Schleifen bilden.}
+führte zur 'Threshold Logik'. \textbf{TODO: beschreiben}
+Durch den Grundstein des 'Backpropagation'-Algorithmus im Jahre 1975 ist es möglich, Netzwerke mit mehr als drei Ebenen zu trainieren. 
+Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben. \cite{AI3} %, welches dem Gehirn gleicht. %nachempfunden ist. 
+%Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel Schleifen bilden.}
 
 %TODO: you can do anything with it, if it can be designed as a function
-\cite{AI3}
+
 
 \section{Neuron}
 \label{sec:Neuron}
@@ -99,7 +96,7 @@ Im einfachsten Fall werden alle Werte aufsummiert.
 Es wäre aber möglich, jegliche Berechnung hier einfließen zu lassen, welche mehrere Werte verwendet und daraus einen neuen Wert berechnet.
 
 \paragraph{Aktivierungsfunktion} berechnet den Ausgang eines Neurons. 
-Dabei wird eine weitere Funktion auf das im Kern berechnete Ergebnis ausgeführt und führt dazu, dass ein Ergebnis noch stärker ausgeprägt weitergegeben wird oder minimiert wird. 
+Dabei wird eine weitere Funktion auf das im Kern berechnete Ergebnis ausgeführt und führt dazu, dass ein Ergebnis noch stärker ausgeprägt weitergegeben wird oder minimiert wird, beziehungsweise in einen Wertebereich eingepasst wird. 
 Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funktion. 
 
 %\textit{Grafiken zu Sigmoid und lineare}
@@ -166,7 +163,7 @@ Diese Ebene nimmt die Daten ohne Gewichtung auf und gibt sie an die darauffolgen
 
 %\textit{\textbf{TODO}}
 \paragraph{Outputlayer} befindet sich am Ende eines Netzwerkes. 
-Dieser Layer hat die Aufgabe, die Daten nach außen weiterzugeben, anstatt an das darauffolgende Netzwerk. 
+Dieser Layer hat die Aufgabe, die Daten nach außen weiterzugeben, oder an das darauffolgende Netzwerk. 
 Hierbei werden die Informationen meist nur mehr für die Ausgabe aufbereitet. 
 In manchen Netzwerken existieren keine Outputlayer in diesem Sinne, sondern ein Layer, der als Hiddenlayer und Outputlayer fungiert. 
 Dies ist der Fall, wenn nur zwei Layer sich im Netzwerk befinden und einer davon vom Inputlayer eingenommen wird.
@@ -258,7 +255,7 @@ Für die Feststellung des Fehlers gibt es diverse Funktionen wie zum Beispiel di
 \label{sec:Backpropagation}
 
 %TODO: relative genauer Algorithmus mit Aufgabe
-Bis zum Jahre 1986 gab es keine automatisierte Möglichkeit, die Gewichtungen in einem Netzwerk anzupassen.
+Bis zum Jahre 1986 gab es keine automatisierte Möglichkeit, die Gewichtungen in einem Netzwerk automatisch anzupassen.
 In diesem Jahre entwickelten Rumelhart, Hinton \& Williams eine mögliche Lösung, welche sehr ähnlich zu anderen Ansätzen von früher war (Werbos, 1974; Parker, 1985; Cun, 1985).
 Die zentrale Idee in ihrer Lösung liegt darin, die Abweichung des produzierten Ergebnisses zum wirklichen erwarteten Ergebnis zu bestimmen. 
 Aufgrund dieses Fehlers lassen sich im Anschluss die Gewichtungen im Netzwerk vom Ende zum Anfang nachjustieren. 
@@ -307,7 +304,7 @@ Zusätzlich kann es sein, dass die zur Verfügung gestellten Daten selbst nicht 
 
 \paragraph{Datensätze} können ähnlich sein zu anderen, sind aber trotzdem wieder einzigartig. 
 Dies bedeutet, dass ein Netzwerk, welches für eine Problemstellung entwickelt und trainiert wurde, nicht eins zu eins übernommen werden kann.
-Für diese Daten muss wieder ein Netzwerk entwickelt werden.
+Für diese Daten muss wieder ein Netzwerk entwickelt, beziehungsweise trainiert werden.
 
 \section{Trainieren}
 
@@ -322,9 +319,9 @@ Des Weiteren wird dieser Fehlerwert für die Backpropagation \ref{sec:Backpropag
 \paragraph{Unüberwachtes Trainieren} kommt dann zu tragen, wenn nur Daten zum Trainieren zur Verfügung stehen.
 Der erwartete Ausgang ist unbekannt.
 Diese Strategie wird in Fällen von Clustering \ref{subsec:Clustering} verwendet.
-Dabei sollen nicht bekannte Gruppen von zusammengehörenden Beispielen identifiziert werden. 
+Dabei sollen nicht bekannte Gruppen von zusammengehörenden Daten identifiziert werden. 
 Self-Organizing Maps \ref{subsec:SelfOrganizingMap} entdecken zusammengehörende Muster und geben dies in einer Grafik zum Beispiel weiter zur weiteren Interpretation. 
-Diese Technik ist insbesondere interessant, da einem Netzwerk nie erklärt worden ist warum etwas so ist und steht damit in Relation zu einem natürlichen Lernprozess, wie bei uns Menschen.
+Diese Technik ist insbesondere interessant, da einem Netzwerk nie erklärt worden ist warum etwas so ist und steht damit in Relation zu einem natürlichen Lernprozess, wie bei einem Menschen.
 %nur die Eingangsdaten werden zur Verfügung gestellt - der erwartete Ausgang wird nicht zur Verfügung gestellt
 
 \section{Domänenklassen}
@@ -374,7 +371,7 @@ Das Ergebnis bei einer Regression wird dabei nicht in Prozent angegeben, sondern
 
 Predict-Problemstellungen kommen im Kontext von Business, beziehungsweise von E-Business zur Anwendung vor. 
 Hier muss anhand von meist zeitgesteuerten Ereignisse eine Vorhersage getroffen werden. 
-Zum Beispiel an der Börse ändern sich täglich die Kurse relativ rasch, sodass es für Menschen praktisch nicht mehr möglich ist, diesen zu folgen. 
+Zum Beispiel an der Börse ändern sich täglich die Kurse relativ rasch, sodass es für Menschen praktisch nicht mehr möglich ist, diese zu verfolgen. 
 Im Falle der Börse sind Aktienkurse mit zeitlichem Verlauf aus der Vergangenheit verfügbar. 
 Diese können als Trainingsdaten für ein Netzwerk verwendet werden, um den nächsten Tag möglicherweise vorherzusagen. 
 Es kann somit als eine Spezialisierung von Regression und Klassifikation angesehen werden, da Daten generiert werden diese aber mit einer Wahrscheinlichkeit.
@@ -384,7 +381,7 @@ Es kann somit als eine Spezialisierung von Regression und Klassifikation angeseh
 
 Auch bekannt unter dem Namen Robot-Learning. 
 Dabei lernen Roboter eigenständig neue Techniken oder passen sich automatisch ihrer Umgebung an. 
-Eines der Kernprobleme dabei ist, dass in Echtzeit etwas Dreidimensionales in einer höhere Dimension berechnet werden muss.
+Eines der Kernprobleme dabei ist, dass in Echtzeit etwas zum Beispiel Dreidimensionales in einer höheren Dimension berechnet werden muss.
 Aus diesen Daten muss zur selben Zeit gelernt werden, aber auch Aktionen eingeleitet werden, wie das Steuern von Motoren um zum Beispiel nicht umzufallen.
 %Im Bereich von Robotics entstehen häufig zu große Datenmengen. 
 %Diese Datenmengen müssten von einem Menschen analysiert werden. 
@@ -433,7 +430,7 @@ So ein Netzwerk besitzt einen Inputlayer, einen Hiddenlayer sowie einen Outputla
 Sobald das Netzwerk mehrere Hiddenlayer aufweist, wird es als Deep FeedForward Netzwerk \ref{subsec:DeepFeedForward} bezeichnet.
 Das FFN weist dabei eine Charakteristik auf, in der der Datenfluss eindeutig definiert ist. 
 Der Datenfluss beginnt beim Inputlayer und endet beim Outputlayer, ohne dass ein Datenrückfluss zum Beispiel vom Hiddenlayer in den vorhergehenden Hiddelayer vorhanden ist.
-Dies würde eine Rekursion oder einem Kurzzeitgedächtnis entsprechen.
+Dies würde einer Rekursion oder einem Kurzzeitgedächtnis entsprechen.
 Die einzelnen Ebenen müssen dabei aber nicht voll verbunden sein, die Vernetzung kann selbst bestimmt werden.
 
 \subsection{Self-Organizing Map}
@@ -482,7 +479,7 @@ Deep FeedForward Netzwerke unterscheiden sich von den normalen FeedForward Netzw
 NeuroEvolution of Augmenting Topologies (NEAT) Netzwerke sind relative jung, wobei NEAT für einen Algorithmus steht der Neuronale Netzwerke entwickelt.
 Er wurde von Stanley und Miikkulainen (2002) entwickelt. 
 Dieser Type verwendet genetische Algorithmen, um die Struktur und die Gewichtungen im Netzwerk zu optimieren.
-Die Input- und Outputlayer sind identisch einem FeedForward Netzwerk.
+Die Input- und Outputlayer sind identisch zu einem FeedForward Netzwerk.
 Dafür fehlt diesem Type eine innere Struktur. 
 Die Verbindungen sind lose, nicht klar definiert und können während dem Entwickeln entfernt werden, aber auch wieder hinzugefügt werden.
 
@@ -593,12 +590,12 @@ Dies ist erforderlich da diese Funktion bei jeder Evaluierung der Trainingsdaten
 
 \paragraph{GPU - GPGPU} ist die Bezeichnung für die Verwendung des Grafikprozessors über seine ursprüngliche Auslegung darüber hinaus.
 In der aktuellen Zeit ist es nicht mehr möglich eine Geschwindigkeitssteigerung zu erreichen, in dem die Taktrate des Prozessors erhöht wird. 
-Deshalb wird mehr parallelisiert, da die Recheneinheiten kleiner werden und so mehrere auf die selbe Fläche platz finden. 
+Deshalb wird mehr parallelisiert, da die Recheneinheiten kleiner werden und so mehrere auf der selben Fläche platz finden. 
 Eine Grafikkarte besitzt die Eigenschaft, gleichförmige Operation in einem Schritt auf sehr viele Objekte gleichzeitig auszuführen. 
 So werden viele Pixel in einmal eingefärbt oder eine Multiplikation großer Matrizen. 
 Der Geschwindigkeitsvorteil kommt dabei durch den hohen Grad an Parallelität, da die Grafikkarte hauptsächlich für solche Operationen ausgelegt worden ist.
 
-\paragraph{Batch Learning} gehört nicht direkt in die Kategorie der Optimierung, bietet trotzdem wie einen Performanzvorteil. 
+\paragraph{Batch Learning} gehört nicht direkt in die Kategorie der Optimierung, bietet trotzdem einen Performanzvorteil. 
 Durch Batch Learning wird immer ein Paket in das System eingeführt. 
 Dieses Paket wird je nach Implementierung parallel verarbeitet oder sequenziell. 
 Der Unterschied zu 'Online Learning' ist nun, dass nicht nach jedem Durchlauf die Gewichtungen und das System nachjustiert werden, sondern dass zu Erst das Paket verarbeitet wird und das System einmal angepasst wird. 
