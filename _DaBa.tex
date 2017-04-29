@@ -17,6 +17,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{subfig}
 \usetikzlibrary{
   arrows.meta, % for Straight Barb arrow tip
   fit, % to fit the group box around the central neurons
@@ -26,7 +27,7 @@
 \tikzset{
   neuron/.style={ % style for each neuron
     circle,draw,thick, % drawn as a thick circle
-    inner sep=0pt, % no built-in padding between the text and the circle shape
+    inner sep=5pt, % no built-in padding between the text and the circle shape
     minimum size=1.5em, % make each neuron the same size regardless of the text inside
     node distance=1ex and 3em, % spacing between neurons (y and x)
   },

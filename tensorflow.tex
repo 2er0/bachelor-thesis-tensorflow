@@ -338,9 +338,9 @@ TensorFlow bietet eine breite Unterstützung beziehungsweise eine große Impleme
 	Im negativen Zahlenbereich auf der X-Achse wird der Grenzwert der Funktion mit $0$ definiert und im positiven Zahlenbereich mit dem Grenzwert von maximal $1$. 
 	Ein negativer Wert führt somit zu einem geringen Aktivierungswert, welcher sich im Negativen an $0$ annähert sowie im Positiven an $1$.
 	Im Diagramm \ref{fig:Sigmoide Aktivierungsfunktion} befindet sich diese Funktion mit ihren Grenzwerten. 
-\begin{figure}
+\begin{figure}[ht!]
 	\centering
-	\resizebox {\linewidth} {5cm} {
+	\resizebox {0.5\linewidth} {5cm} {
 	\begin{tikzpicture}
 	\begin{axis}
 
@@ -357,9 +357,9 @@ TensorFlow bietet eine breite Unterstützung beziehungsweise eine große Impleme
 	Die rektifiziert lineare Funktion ist sehr viel einfacher, da Werte unter $0$ als $0$ weiter gegeben werden und Werte darüber linear sind. 
 	Somit resultiert ein Eingangswert von $-0.1$ in einer $0$ und ein Wert von $0.5$ in $0.5$.
 	Wie im Diagramm \ref{fig:rektifiziert lineare Aktivierungsfunktion} ersichtlich ist, führt dies bei einem negativen Wert dazu, dass eine Multiplikation mit der Gewichtung in der nächsten Ebene ebenfalls in einer $0$ sich repräsentiert und somit in der Addition ignoriert wird.
-\begin{figure}
+\begin{figure}[ht!]
 	\centering
-	\resizebox {\linewidth} {5cm} {
+	\resizebox {!} {5cm} {
 	\begin{tikzpicture}
 	\begin{axis}
 
@@ -374,9 +374,9 @@ TensorFlow bietet eine breite Unterstützung beziehungsweise eine große Impleme
 	\item \textit{tf.tanh} genannt als Hyperbolic Tangent gehört ebenfalls zu den grundlegenden Aktivierungsfunktionen. 
 	Der Unterschied zwischen dieser Funktion und der Sigmoiden Aktivierungsfunktion ist, dass der untere Grenzwert nicht bei $0$ liegt sondern bei $-1$. 
 	Im Diagramm \ref{fig:Hyperbolic Tangents Aktivierungsfunktion} ist ersichtlich wo sich der Wendepunkt befindet, und liegt im Falle des Hyperbolic Tangent in der Koordinate $x = 0, y = 0$. 
-\begin{figure}
+\begin{figure}[ht!]
 	\centering
-	\resizebox {\linewidth} {5cm} {
+	\resizebox {!} {5cm} { %\linewidth
 	\begin{tikzpicture}
 	\begin{axis}
 
@@ -416,7 +416,7 @@ Diese Art der Verlustfeststellung wird bei Regressionsprobleme benötigt, sie ha
 	Im Falle dieser Implementierung wird keine Wurzel des Quadrats berechnet, sondern es werden die Werte nur addiert und durch $2$ dividiert.
 	\item \textit{tf.nn.log\_poisson\_loss} berechnet den Logarithmischen-Wahrscheinlichkeitsverlust zwischen dem Ergebnis und einem erwarteten Ergebnis. 
 	Diese Methode liefert im Normalfall nicht den exakten Verlust, stellt jedoch für Optimierungen nicht das Problem dar. 
-	Sollte trotzdem ein genauerer Wert zum Vergleichen von Verlusten berechnet werden, muss die aufwändige Stirling Approximation \textbf{TODO: REF | CITE} aktiviert werden. 
+	Sollte trotzdem ein genauerer Wert zum Vergleichen von Verlusten berechnet werden, muss die aufwändige Stirling Approximation \cite{feller1968introduction} aktiviert werden. 
 \end{itemize}
 
 \paragraph{Klassifizierungen} repräsentieren einen großen Bereich des maschinellen Lernens. 

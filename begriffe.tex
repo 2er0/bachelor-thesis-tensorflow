@@ -44,7 +44,8 @@ Neuronale Netzwerke sind seit einigen Jahren auch bekannt unter dem Begriff 'Dee
 \noindent 
 Die Theorie und die ersten Grundlagen wurden im Jahre 1943 von Warrn McCulloch und Walter Pitts geschaffen, die ein Modell entwickelten, jedoch nicht die technischen Möglichkeiten hatten dieses umzusetzen.
 Dieses %basierte auf Mathematik und Algorithmen und 
-führte zur 'Threshold Logik'. \textbf{TODO: beschreiben}
+führte zur 'Threshold Logik', welche bestimmt ab wann etwas weitergegeben wird und wie stark ausgeprägt. \cite{rojas2013neural}
+%\textbf{TODO: beschreiben}
 Durch den Grundstein des 'Backpropagation'-Algorithmus im Jahre 1975 ist es möglich, Netzwerke mit mehr als drei Ebenen zu trainieren. 
 Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben. \cite{AI3} %, welches dem Gehirn gleicht. %nachempfunden ist. 
 %Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel Schleifen bilden.}
@@ -97,14 +98,16 @@ Es wäre aber möglich, jegliche Berechnung hier einfließen zu lassen, welche m
 
 \paragraph{Aktivierungsfunktion} berechnet den Ausgang eines Neurons. 
 Dabei wird eine weitere Funktion auf das im Kern berechnete Ergebnis ausgeführt und führt dazu, dass ein Ergebnis noch stärker ausgeprägt weitergegeben wird oder minimiert wird, beziehungsweise in einen Wertebereich eingepasst wird. 
-Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funktion. 
+Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funktion, welcher in der Abbildung \ref{fig:Aktivierungsfunktion} zu erkennen sind.
 
 %\textit{Grafiken zu Sigmoid und lineare}
 %Wobei in den vergangen Jahren die Linearen-Funktionen häufiger zum Einsatz kommen.
 %\\
-TODO FORMAT Diagramm
-\begin{figure}
-\begin{minipage}{0.5\linewidth}
+\begin{figure}[ht!]
+\centering
+%\begin{minipage}{0.7\linewidth}
+\subfloat{
+\resizebox {0.5\linewidth} {5cm} {
 	\begin{tikzpicture}
 	\begin{axis}
 
@@ -112,8 +115,12 @@ TODO FORMAT Diagramm
 
 	\end{axis}
 	\end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.5\linewidth}
+}
+%\end{minipage}
+}
+\subfloat{
+%\begin{minipage}{0.7\linewidth}
+\resizebox {0.5\linewidth} {5cm} {
 	\begin{tikzpicture}
 	\begin{axis} [xmin=-1, xmax=1]
 
@@ -121,8 +128,10 @@ TODO FORMAT Diagramm
 
 	\end{axis}
 	\end{tikzpicture}
-\end{minipage}
-	\caption{Basisaktivierungsfunktionen}
+}
+%\end{minipage}
+}
+	\caption{Basisaktivierungsfunktionen: (l) eine Sigmoid-Funktion, (r) eine lineare Funktion}
 	\label{fig:Aktivierungsfunktion}
 \end{figure}
 
@@ -449,7 +458,7 @@ Diese Art von Netzwerk kommt ohne Bias Neuron (siehe \ref{sec:Bias Neuron}) aus 
 
 \subsection{Hopfield Neuronal Network}
 
-Ein Hopfield Neuronal Network (HNN) \textbf{TODO: Quelle} ist ein einfaches Netzwerk, welches aus einem Layer besteht. 
+Ein Hopfield Neuronal Network (HNN) \cite{demuth2014neural} ist ein einfaches Netzwerk, welches aus einem Layer besteht. 
 In diesem Layer sind alle Neuronen mit jedem anderen Neuron verbunden. 
 Dieses Muster wurde von Hopfield (1982) erfunden. 
 Im Gegensatz zu anderen Netzwerken können Hopfield Netzwerke in einer Matrix abgebildet werden, in welcher die Gewichtung zu den einzelnen Neuronen abgebildet werden. 
@@ -460,7 +469,7 @@ Durch das Hinzugeben einer Energiefunktion kann festgestellt werden, in welchem 
 
 \subsection{Boltzmann Machine}
 
-Im Jahre 1985 stellten Hinton \& Sejnowski \textbf{TODO: Quelle} das erste Mal eine Boltzmann Maschine vor.
+Im Jahre 1985 stellten Hinton \& Sejnowski \cite{Hinton:Boltzman:2007} das erste Mal eine Boltzmann Maschine vor.
 Es stellt ein Zwei-Ebenensystem dar, mit einem Inputlayer und einem Outputlayer, wo jeder Knoten mit jedem verbunden ist, außer mit sich selbst.
 Das voll vernetzte System unterscheidet eine Boltzmann Maschine von einer eingeschränkten Boltzmann Maschine (RBM), welche eine Grundlage für tiefes Lernen und tiefe Neuronale Netzwerke darstellt.
 In einer RBM sind alle sichtbaren Neuronen mit allen Neuronen im Outputlayer verbunden. 
