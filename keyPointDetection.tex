@@ -42,7 +42,7 @@ In diesem Sinne stehen nur Bilder in Graustufen zur Verfügung mit einer Auflös
 Für diese Aufgabe werde im Grunde auch nur die Konturen benötigt, was somit den einen Farbkanal erklärt aber auch die Aufgabe schwieriger macht. 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.8]{images/ausgangsDaten.png}
+	\includegraphics[scale=0.75]{images/ausgangsDaten.png}
 	\caption{Ein Gesicht aus dem Datenbestand mit der Verteilung der Graustufenwerten}
 	\label{fig:ausgangsdaten}
 \end{figure}
@@ -155,9 +155,7 @@ with tf.name_scope("loss"):
     # sollte sich im Laufe der Trainingsphasen an 0 annähern
     loss = tf.reduce_sum(
     			tf.square(
-    				tf.subtract(graph, train_labels_node)
-    			)
-    		)
+    				tf.subtract(graph, train_labels_node)))
 
 # Auswahl eines konkreten Optimierungsalgorithmuses in der Kurzschreibweise
 # mit einer Lernrate von 0.00001
@@ -186,11 +184,14 @@ Die Bias Werte werden dabei immer erst nach der Kernfunktion an das Ergebnis ang
 \begin{lstlisting}
 def conv_layer(x_, size_in, size_out, name="conv"):
     with tf.name_scope(name):
-        weights = tf.Variable(tf.truncated_normal([3, 3, size_in, size_out], dtype=tf.float32, stddev=1e-1), 
-                              trainable=True, name='weights')
+        weights = tf.Variable(tf.truncated_normal(
+        						[3, 3, size_in, size_out], 
+        						dtype=tf.float32, stddev=1e-1), 
+							trainable=True, name='weights')
         conv = tf.nn.conv2d(x_, weights, [1, 1, 1, 1], padding='SAME')
-        biases = tf.Variable(tf.constant(0.0, shape=[size_out], dtype=tf.float32), 
-                             trainable=True, name='biases')
+        biases = tf.Variable(tf.constant(0.0, 
+								shape=[size_out], dtype=tf.float32), 
+                            trainable=True, name='biases')
         bias = tf.nn.bias_add(conv, biases)
         conv = tf.nn.relu(bias, name="act")
 
@@ -198,21 +199,21 @@ def conv_layer(x_, size_in, size_out, name="conv"):
                              ksize=[1, 2, 2, 1],
                              strides=[1, 2, 2, 1],
                              padding='VALID')
-
     return conv
 
 def fc_layer(x_, size_out, name="fc", act=None):
     with tf.name_scope(name):
         size_in = x_.get_shape()[1].value
-        weights = tf.Variable(tf.truncated_normal([size_in, size_out], dtype=tf.float32, stddev=1e-2), 
-                              trainable=True, name='weights')
-        biases = tf.Variable(tf.constant(0.0, shape=[size_out], dtype=tf.float32), 
-                                  trainable=True, name='biases')
+        weights = tf.Variable(tf.truncated_normal([size_in, size_out], 
+								dtype=tf.float32, stddev=1e-2), 
+							trainable=True, name='weights')
+        biases = tf.Variable(tf.constant(0.0, shape=[size_out], 
+								dtype=tf.float32), 
+							trainable=True, name='biases')
         mul = tf.nn.xw_plus_b(x_, weights, biases)
         
         if act is not None:
             mul = act(mul)
-
         return mul
 \end{lstlisting}
 	\caption{Definition der Convolutional- und Vollvernetzen-Ebenen}
@@ -235,7 +236,7 @@ def model(data):
     net = conv_layer(net, 32, 64, "conv2")
     net = conv_layer(net, 64, 128, "conv3")
 
-	# Transformieren in eine flache Struktur
+    # Transformieren in eine flache Struktur
     dims = net.get_shape()[1:]
     k = dims.num_elements()
     with tf.name_scope('flatten'):
@@ -248,8 +249,10 @@ def model(data):
     return net
     
 # Definition der Platzhalter für die Datenübergabe
-train_data_node = tf.placeholder(tf.float32, shape=(BATCH_SIZE, IMAGE_SIZE, IMAGE_SIZE, 1))
-train_labels_node = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 4))
+train_data_node = tf.placeholder(tf.float32, 
+						shape=(BATCH_SIZE, IMAGE_SIZE, IMAGE_SIZE, 1))
+train_labels_node = tf.placeholder(tf.float32, 
+						shape=(BATCH_SIZE, 4))
 
 # erstellen eines Graphen mit dem definierten Model
 graph = model(train_data_node)
@@ -265,8 +268,9 @@ Wie im Code \ref{fig:initRun} zu erkennen ist wird ein globale Initialisierung v
 In der For-Schleife werden fast alle Datensätze einmal durch den Graphen gesendet und entweder zum Trainieren oder Evaluieren verarbeitet. 
 Der Session wird in der \textit{Run}-Methode eine Liste and Endpunkten des Graphen mitgegeben welche Evaluiert werden sollen. 
 In der Trainingsphase ist dies der Optimierungsendpunkt und in der Evaluierungsphase die Punkte \textit{accuracy} und \textit{graph}. 
-Accuracy damit ein vergleichbarer Wert zur Verfügung steht, an welchem der Lernfortschritt erkennbar ist und der Hauptendpunkt des Graphen selbst, damit die Ergebnis direkt in die Bilder gezeichnet werden können. 
+Accuracy damit ein vergleichbarer Wert zur Verfügung steht, an welchem der Lernfortschritt erkennbar ist und der Hauptendpunkt des Graphen selbst, damit die Ergebnisse direkt in Bilder gezeichnet werden können. 
 Dies ermöglicht eine visualisierte Verifikation durch einen Supervisor. 
+Diese Code-Fragment ergibt eine so genannte Epoche in der alle Datensätze einmal durch das Netzwerk verarbeitet wurden. 
 \begin{figure}[ht!]
 \lstset{language=Python}
 \begin{lstlisting}
@@ -278,7 +282,7 @@ init_op = tf.global_variables_initializer()
 # initialisieren aller Konstanten und Variablen
 sess.run(init_op)
 
-# durchlaufen aller Datensätze
+# durchlaufen aller Datensätze -> 1 Epoche
 runing = train_data.shape[0] // BATCH_SIZE
 for i in range(runing):
     offset = i * BATCH_SIZE
@@ -293,12 +297,12 @@ for i in range(runing):
      
     # ausführen des Graphen zur Evaluierung
     if i % 5 == 0:
-        [train_accuracy, data] = sess.run([accuracy, graph], feed_dict=feed)
+        [train_accuracy, data] = sess.run([accuracy, graph], 
+        								 feed_dict=feed)
         print data[0:4]
         print batch_labels[0:4]
         
         print i, train_accuracy
-        
     # ausführen einer Trainingsiteration
     else:
         sess.run(train, feed_dict=feed)
@@ -308,6 +312,91 @@ for i in range(runing):
 \end{figure}
 
 \section{Validierungsresultate}
+
+Durch längeres kann das Netzwerk sich entwickeln. 
+Dies führt natürlich auch zu der Möglichkeit, dass das Netzwerk beginnt Muster zu Speichern anstatt zu Lernen auch bekannt als Overfitting (siehe \ref{sec:AllgeProb}). 
+In der Abbildung \ref{fig:runns} sind die Ergebniszustände am Ende der ersten Epoche sowie am Ende der $800$ Epoche zu sehen. 
+Im Gesamten könnte nun festgestellt werden, dass das Netzwerk seine Arbeit relative korrekt durchführt, wenn man die Größe und Dimension des Netzwerkes berücksichtigt. 
+\begin{figure}[ht!]
+\lstset{language=Python}
+\begin{lstlisting}
+# Ist-Ergebnis 
+[[ 0.75577307  0.4491435   0.35817528  0.47219035]
+ [ 0.38678363  0.22854103  0.18176009  0.24241655]
+ [ 0.62869424  0.36920831  0.30089244  0.38922197]
+ [ 0.57703853  0.34728855  0.27663416  0.35776597]]
+# Soll-Ergebnis
+[[ 0.67538255  0.36768322  0.32565034  0.41764497]
+ [ 0.68114937  0.33625063  0.29470228  0.37676456]
+ [ 0.6498429   0.33644043  0.34131129  0.42557183]
+ [ 0.6834211   0.39188917  0.32566972  0.40061486]]
+# Trainingsgenauigkeit
+0.0311323
+.... 800 Epochen ....
+# Ist-Ergebnis
+[[ 0.70133466  0.36625051  0.30835846  0.35559893]
+ [ 0.68118954  0.38087887  0.30591199  0.37864769]
+ [ 0.68135881  0.39241019  0.30538917  0.38810176]
+ [ 0.69876605  0.37630308  0.30220476  0.42244384]]
+# Soll-Ergebnis
+[[ 0.72585385  0.33306885  0.38976731  0.38570897]
+ [ 0.68310326  0.36581968  0.32061663  0.38434095]
+ [ 0.69111852  0.4122763   0.30096296  0.41956889]
+ [ 0.67226801  0.40288592  0.32735435  0.35304291]]
+# Trainingsgenauigkeit
+1.81956e-05
+\end{lstlisting}
+	\caption{Ergebnisse am Ende der ersten Epoche und am Ende der $800$ Epoche}
+	\label{fig:runns}
+\end{figure}
+Zum besseren Vergleichen befindet sich in der Abbildung \ref{fig:resultPic} eine direkte Vergleichsmöglichkeit. 
+Dabei wird der Sollzustand durch blaue Punkte gekennzeichnet und der Istzustand durch rote Punkte. 
+Erkennbar ist hier, dass es Abweichungen zwischen den Werten gibt. 
+Dies lässt sich aber durch die sehr schlanke Struktur, sowie durch die geringe Anzahl an Datensätze erklären. 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{images/epoch-800-full.png}
+	\caption{Ist- und Soll- Visualisierung des Ergebnisses}
+	\label{fig:resultPic}
+\end{figure}
+In der Abbildung \ref{fig:lossDiag} sind die gesamte Trainingsergebnisse in Form der Verluste aufgezeichnet. 
+In diesem Fall nähert sich dieser Verlustwert der $0$-Grenze, trotzdem scheint es gewisse Probleme zu geben. 
+Eine mögliche Interpretation wäre, dass die Lernrate mit '$1e-5$' noch zu hoch definiert wurde und so, das Netzwerk sich zu schnell einem lokalen Minima genähert hat, obwohl es möglicherweise ein globales Minima gegeben hätte. 
+Eine andere Möglichkeit wäre, dass die Datensätze Bilder beinhalten in welchen, das Gesicht nicht vollständig zu erkennen ist oder das diese stärker Rotiert ist. 
+Sollte es nicht so viel Datensätze mit diesen Eigenheiten geben, so könnte dies ein weiterer Grund sein warum das Netzwerk zum Springen kommt. 
+In diesem Fall lässt sich erkennen, dass die Sprünge nicht regelmäßig sind, was auf ein Mischen der Datensätze am Ende jeder Epoche zurück geführt werden kann. 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{images/loss-diagram-all.png}
+	\caption{Trainings-Verlustergebnisse in 800 Epochen}
+	\label{fig:lossDiag}
+\end{figure}
+
+\section{Graphenvisualisierung}
+
+Der Graphen wurde in diesem Beispiel in ein Event-File serialisiert, dabei wurde aus Performanzgründen die Speicherung von den Veränderungen in den Ebenen sowie anderer Skalar-Werten weggelassen. 
+In der Abbildung \ref{fig:graphDig} ist der aktuelle Graphen des Beispieles ersichtlich. 
+Dieser beinhaltet die $3$ Convolutional-Ebenen, die Transformation in eine flache Struktur sowie der Vollvernetzten-Ebenen und den Optimizer sowie die Verlustberechnung. 
+Im Gesamten lässt sich ein Graphen erkennen in welchem der Datenfluss am Ende beginnt und nach oben läuft. 
+Am Rande der Abbildung befinden sich noch zwei zusätzliche Objekte, welche Verbindungen zu allen Objekte haben. 
+Diese werden automatisch durch TensorFlow hinzugefügt und werden für die Ausführung benötigt. 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.25]{images/graph-run.png}
+	\caption{Aktueller Graphen des Beispiels}
+	\label{fig:graphDig}
+\end{figure}
+
+\section{Verbesserungen}
+
+Dieses Netzwerk stellt rein einen möglichen Lösungsansatz dar, mit welchem die Problemstellung verstanden werden soll. 
+Im Grund existieren mehrere Möglichkeiten, um das Ergebnis des Netzwerks zu verbessern. 
+\begin{itemize}
+	\item Verbreitern der Vollvernetzen-Ebenen, damit mehr Muster gespeichert werden können
+	\item Convolutional-Ebenen doppelt ausführen 
+	\item Grundanzahl an Convolutional-Ebenen erhöhen
+	\item Anzahl der Datensätze durch spiegeln verdoppeln
+\end{itemize}
 
 
 
