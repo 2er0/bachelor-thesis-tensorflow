@@ -130,7 +130,7 @@ In diesem Beispiel handelt es sich nicht um eine Klassifizierungsaufgabe, sonder
 In diesem Fall kann nicht eine einfach 'Cross Entroy' \textbf{TODO checken} Funktionen verwendet werden, um die Daten zu evaluieren und zu adaptieren. 
 Aus diesem Grund muss dies Manuel durchgeführt werden und selbst eine Berechnung aufgestellt werden, welche diese Werte liefert, damit diese einem Optimierer übergeben werden können. 
 Der Verlust beziehungsweise die Differenz zwischen Ergebnis des Netzwerkes und dem bekannten Ergebnis, kann durch eine Subtraktion sowie einer Quadrierung berechnet werden. 
-Diese ist in der Gleichung \ref{eq:lossCalc} zu erkennen, wobei \textit{graph} eine Matrix (Tensor) an Ergebnissen ist, mit der Anzahl an Zeilen wie in der Konstante \textit{BATCH\_SIZE} definiert. 
+Diese ist in der Gleichung \ref{eq:lossCalc} \textbf{TODO Calc/EQ richtigstellen} zu erkennen, wobei \textit{graph} eine Matrix (Tensor) an Ergebnissen ist, mit der Anzahl an Zeilen wie in der Konstante \textit{BATCH\_SIZE} definiert. 
 Die Variable \textit{train\_labels\_node} beinhaltet die bekannten Ergebnisse zu Bilder mit den selben Dimensionen wie in der Matrix \textit{graph}. 
 \textit{tf.subtract} führt eine Subtraktion auf jeden Inhalt der beiden Matrizen aus, was auch dazu führt, dass diese die selben Dimensionen haben müssen. 
 \textit{tf.square} quadriert die berechneten Differenzen um negative Werte zu entfernen. 
