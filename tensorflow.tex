@@ -12,7 +12,7 @@ Der Graph selbst stellt damit einen Datenflussgraphen dar, welcher Knoten beinha
 Diese Knoten bilden numerische Operationen ab.
 Der Informationsaustausch zwischen den Knoten erfolgt mit multidimensionalen Arrays, den Tensoren.
 TensorFlow bietet wie andere Bibliotheken die Möglichkeit, die Berechnungen auf eine Grafikkarte auszulagern.
-Zusätzlich sind weite Routinen eingebaut, damit das Trainieren über mehrere Grafikkarten, sowie auf weitere Computer verteilt werden kann. \newline
+Zusätzlich sind weitere Routinen eingebaut, damit das Trainieren über mehrere Grafikkarten, sowie auf weitere Computer verteilt werden kann. \newline
 
 \noindent
 TensorFlow steht für mehrere Programmiersprachen zur Verfügung, welche offiziell unterstützt werden, wobei noch weitere durch die Open Source Gemeinschaft unterstützt werden.
@@ -93,12 +93,12 @@ for step in xrange(0, 10):
 	\caption{Der resultierenden Teilgraph aus dem Codefragment aus Abbildung \ref{fig:SimpleFragmentGraphDefinition} nach dem Beispiel in \cite{wp2015tensorflow}}
 	\label{fig:SimpleFragmentGraphPic}
 \end{figure}
-Ein TensorFlow Graph kann wie in Abbildung \ref{fig:SimpleFragmentGraphDefinition} ersichtlich, beschrieben werden.
+Ein TensorFlow Graph kann wie in Abbildung \ref{fig:SimpleFragmentGraphDefinition} ersichtlich, beschrieben werden und wie in Abbildung \ref{fig:SimpleFragmentGraphPic} grafisch dargestellt werden.
 Dieser wurde zum Beispiel mit der Python API erstellt.
 Die Knoten und Verbindungen ergeben einen Datenfluss, dieser beinhaltet alle erforderlichen Komponenten, auch für das Persistieren und Aktualisieren der Daten.
 Dies sind Erweiterungen für den Hauptgraphen und beinhalten auch Logik für Schleifenverwaltungen.
 Ein Knoten in einem Graphen besitzt $0$ bis $n$ Ein- und Ausgänge und eine Kernfunktion. 
-Zum Datenhauptfluss mit den Tensoren gibt es zusätzlich spezielle Verbindungen, welche "control dependencies"  genannt werden. 
+Zum Datenhauptfluss mit den Tensoren gibt es zusätzlich spezielle Verbindungen, welche \glqq control dependencies\grqq genannt werden. 
 Anhand dieser Verbindungen werden keine Daten im Sinne der Tensoren übertragen, sondern werden herangezogen um Abhängigkeiten zu definieren, wie zum Beispiel eine Ausführung in einem anderen Knoten vor einem anderen zu definieren.
 Ein Quellknoten muss die Ausführung abgeschlossen haben, bevor der darauf Wartende mit der Ausführung beginnen kann. \cite{wp2015tensorflow}
 
@@ -107,11 +107,11 @@ Ein Quellknoten muss die Ausführung abgeschlossen haben, bevor der darauf Warte
 Die Operation stellt in jedem Knoten den Kern dar, wie zum Beispiel eine Matrix Multiplikation oder eine Addition.
 In TensorFlow selbst gibt es einen Unterschied zwischen Operation und Kernel.
 Operationen besitzen Attribute, welche spätestens zum Zeitpunkt der Grapherstellung bekannt sein müssen. 
-Ein solches Attribut wäre zum Beispiel, um einer Operation Polymorphismus  ermöglichen.  
+Ein solches Attribut wäre zum Beispiel, um einer Operation polymorphismus ermöglichen.  
 Der Kernel hingegen ist die Implementierung der Operation selbst. 
 Dieser kann auf verschiedenen Geräten ausgeführt werden, wie zum Beispiel auf der CPU oder GPU.
 Die Operationen und die dazugehörigen Kernel werden über einen Registrierungsmechanismus zur Verfügung gestellt. 
-Diese Sammlung an Operationen kann auch erweitert werden. \cite{wp2015tensorflow} 
+Diese Sammlung an Operationen kann auch erweitert werden \cite{wp2015tensorflow}. 
 
 \subsection{Sessions}
 
@@ -121,12 +121,12 @@ Ohne die Initialisierung der Knoten und Verbindungen würde die weitere Ausführ
 Diese stellt eine weitere Funktion zur Verfügung genannt \textit{Run}. 
 Der Run-Funktion wird eine Liste an Endknoten übergeben, welche berechnet werden sollen und die zu dem initialisierten Graphen gehören. 
 Die Platzhalter Tensoren werden mit Daten verknüpft und an den Graphen gereicht. 
-In den meisten Fällen wird ein Graph einmal erstellt und mehrfach ausgeführt. \cite{wp2015tensorflow} 
+In den meisten Fällen wird ein Graph einmal erstellt und mehrfach ausgeführt \cite{wp2015tensorflow}. 
 
 \subsection{Tensor}
 
 In TensorFlow ist ein Tensor ein typisiertes multidimensionales Array. 
-Die verwendbaren Typen reichen von Datentypen mit und ohne Vorzeichen, sowie bis hin zu Doubles und Zeichenketten. \cite{wp2015tensorflow} 
+Die verwendbaren Typen reichen von Datentypen mit und ohne Vorzeichen, sowie bis hin zu Doubles und Zeichenketten  \cite{wp2015tensorflow}. 
 
 \subsection{Hyperparameter} 
 
@@ -146,7 +146,7 @@ Diese stehen in verschiedenen Wertebereichen zur Verfügung.
 Es gibt Gleitkommazahlen mit unterschiedlichen Genauigkeiten. 16-bit steht für eine halbe Genauigkeit und 64-bit Genauigkeit entspricht einer doppelten Genauigkeit.
 Der Grund für diese verschiedenen Anzahlen an Datentypen ist, dass diese zur Optimierung verwendet werden können. 
 Ein trainiertes Netzwerk, welches nie in den Wertebereich von 64-bit signierte Integers gekommen ist, wird diese möglicherweise nie benötigen. 
-In diesem Fall können die Wertebereiche reduziert werden, zum Beispiel auf 32-bit signierte Integer, somit können die Berechnungen hochperformanter ausgeführt werden. \cite{TensorFlow}
+In diesem Fall können die Wertebereiche reduziert werden, zum Beispiel auf 32-bit signierte Integer, somit können die Berechnungen hochperformanter ausgeführt werden \cite{TensorFlow}. 
 
 \subsection{Operationen}
 
@@ -191,8 +191,8 @@ So wird der Startzustand oft mithilfe von Zufallszahlen hergestellt.
 \end{itemize} \phantom \newline
 
 \noindent
-Einige dieser Funktionen benötigen sogenannte Seed-Werte, welche den Startwert der Zufallszahlen zerstreuen sollen, sowie die Folge selbst. 
-Im Falle von TensorFlow beruht dies auf zwei Werten, einer wird für den Graphen spezifiziert, der Zweite für die Operation selbst. 
+Einige dieser Funktionen benötigen sogenannte Seed-Werte, welche für die zufällige Verteilung den Startwert benötigt wird. 
+Im Falle von TensorFlow beruht dies auf zwei Werten, einer wird für den Graphen spezifiziert, der andere für Operationen selbst. 
 Der Wert für den Graphen kann mit \textit{tf.set\_random\_seed} gesetzt werden. 
 Für weitere Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Constants, Sequences, and Random Values  \url{www.tensorflow.org/api_guides/python/constant_op}}
 
@@ -215,7 +215,8 @@ Bei diesem Vorgang kann ein Fehler entstehen, welcher in einem \textit{TypeError
 	Diese Anzahl ergibt sich aus den konkreten Werten.
 	\item \textit{tf.rank} verhält sich ähnlich zu \textit{tf.size} mit dem Unterschied, dass die Anzahl der Dimensionen gezählt werden.
 	\item \textit{tf.reshape} wird verwendet um Tensoren in eine neue Struktur zu bringen. 
-	Dabei kann für das Einebnen der Dimensionen eine Kurzschreibweise verwendet werden, mit $-1$ als Zielausführung der Gestalt.
+	Dabei steht für das Einebnen der Struktur auf eine Ebene eine Kurzschreibweise zur Verfügung, mit $-1$ als Zieldefinition. 
+%	Dabei kann für das Einebnen der Dimensionen eine Kurzschreibweise verwendet werden, mit $-1$ als Zielausführung der Gestalt.
 	\item \textit{tf.squeeze} entfernt ganze Dimensionen aus dem gegebenen Tensor. 
 	Ohne Achsenangabe werden alle Dimensionen mit der Größe $1$ entfernt oder es werden die spezifizierten Dimensionen herausgenommen.
 	\item \textit{tf.expand\_dims} gliedert eine Dimensionen in einen Tensor wieder ein. 
@@ -255,7 +256,7 @@ Diese Gleichungen müssen in Matrizenschreibweise im Tensor abgebildet sein.
 \paragraph{Reduzierungsoperationen} kommen dann zum Einsatz, wenn der Unterschied zwischen dem erzielten und dem erwarteten Ergebnis festgestellt werden soll. 
 \begin{itemize}
 	\item \textit{tf.reduce\_sum} berechnet die Summe aller Werte in einem Tensor.
-	\item \textit{tf.reduce\_mean} berechnet die Summe aller Werte an der Diagonale eines Tensors. 
+	\item \textit{tf.reduce\_mean} berechnet das arithmetische Mittel eines Tensors. 
 	\item \textit{tf.reduce\_max} reduziert einen Tensor auf die maximalen Werte in der letzten Dimension und reduziert dabei den Rang um eins.
 \end{itemize}
 
@@ -264,7 +265,7 @@ Zu diesen gibt es noch weitere, welche in diversen Fällen benötigt werden, zum
 
 \noindent
 Die Anzahl an mathematischen Funktionen ist sehr viel größer, als die hier Erwähnten. 
-Die Angeführten repräsentieren lediglich die meist verwendeten Operationen. 
+Die angeführten repräsentieren lediglich die meist verwendeten Operationen. 
 Für weitere Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Math  \url{www.tensorflow.org/api_guides/python/math_ops}}
 
 \subsubsection{Flusskontrolle}
@@ -275,18 +276,18 @@ In beiden Fällen müssen die auszuführenden Verzweigungen als Funktionen vorli
 Zusätzlich gibt es noch eine \textit{While} und eine \textit{For} Schleife. 
 Zu beachten ist, dass diese Operationen den Fluss durch den Graphen stark beeinträchtigen können.
 
-\paragraph{Logik Operatoren} können verwenden werden, um Vergleiche zwischen Tensoren durchzuführen. 
-Diese werden aber als Logik Operationen ausgeführt und liefern immer Wahrheitswerte, wie eine Logische Und-Verknüpfung auf Binärebene.
+\paragraph{Logik Operatoren} können verwendet werden, um Vergleiche zwischen Tensoren durchzuführen. 
+Diese werden aber als Logik Operationen ausgeführt und liefern immer Wahrheitswerte, wie eine logische Und-Verknüpfung auf Binärebene.
 
-\paragraph{Vergleichsoperatoren} sind neben den Logischen Operatoren weitere Vergleichsoperatoren, welche zur Verfügung stehen. 
+\paragraph{Vergleichsoperatoren} sind neben den logischen Operatoren weitere Vergleichsoperatoren, welche zur Verfügung stehen. 
 Hierzu zählen \textit{tf.equal} sowie die verneinte Variante, \textit{tf.less} und \textit{tf.greater} mit jeweils einer gleich Version. 
-Diese Operatoren geben wiederum einen Tensor mit Wahrheitswert aus.
+Diese Operatoren geben wiederum einen Tensor mit Wahrheitswerten aus.
 
 \paragraph{Debugging Operationen} ermöglichen es in den Graphen Kontrollstrukturen einzubauen, welchen auf diverse Bedingungen reagieren.
 So kann überprüft werden, ob ein Tensor Werte mit undefinierten Zustand beinhaltet. 
 Die Funktion \textit{tf.Print} ermöglicht es Tensoren auszugeben, wenn diese als Funktion im Graphen evaluiert wird. 
 Aktuell sind die Möglichkeiten einen Graphen zu debuggen relativ eingeschränkt. 
-Grund dafür ist, dass der Graphen, in seiner rohen Darstellung schwer zu verstehen ist. \footnote{Online Dokumentation: Control Flow \url{www.tensorflow.org/api_guides/python/control_flow_ops}}
+Grund dafür ist, dass der Graph, in seiner rohen Darstellung schwer zu verstehen ist. \footnote{Online Dokumentation: Control Flow \url{www.tensorflow.org/api_guides/python/control_flow_ops}}
 
 \subsubsection{Images}
 
