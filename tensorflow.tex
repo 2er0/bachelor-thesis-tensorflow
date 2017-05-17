@@ -26,9 +26,7 @@ Durch die Verwendung des trainierten Graphen kann dieser auch auf mobilen Plattf
 
 \subsection{Graphs/Dataflowgraph}
 
-\begin{figure}
-\lstset{language=Python}
-\begin{lstlisting}
+\begin{lstlisting}[caption={TensorFlow Codefragment zur Definition eines Teils des Graphen},label=fig:SimpleFragmentGraphDefinition,captionpos=b,language=Python]
 import tensorflow as tf
 
 b = tf.Variable(tf.zeros([100])) 
@@ -50,10 +48,6 @@ for step in xrange(0, 10):
 	print step, result 
 		# Ausgabe des Berechneten Resultats
 \end{lstlisting}
-
-	\caption{TensorFlow Codefragment zur Definition eines Teils des Graphen}
-	\label{fig:SimpleFragmentGraphDefinition}
-\end{figure}
 \begin{figure}
 	\centering
 
@@ -295,8 +289,8 @@ Grund dafür ist, dass der Graph, in seiner rohen Darstellung schwer zu verstehe
 Dabei können Bildern von den Datentypen Gif, Jpeg und PNG gelesen werden, sowie das Erstellen von Bildern in diese Datentypen, ausgenommen Gif.
 In allen Fällen wird das Bild als Zeichenkette mit Pfad angegeben. 
 
-\paragraph{Größenänderung} von Bildern ist erforderlich, da die eingelesenen Bilder meist zu groß sind und somit in die Struktur des Graphen nicht eingepasst werden können. 
-Für die Größenänderung stehen mehrere Implementierungen mit unterschiedlichen Algorithmen und Vorgehen im Hintergrund zur Verfügung.
+\paragraph{Größenänderung} von Bildern ist erforderlich, da im laufe der Zeit sehr wahrscheinlich größere Bilder verwendet werden, diese aber nicht in das fixe Raster des Netzwerkes passen. 
+Für die Größenänderung stehen mehrere Implementierungen mit unterschiedlichen Algorithmen zur Verfügung.
 
 \paragraph{Beschneiden} wird dann benötigt, wenn aus einem Bild ein Teil herausgenommen werden soll. 
 Zum Herausnehmen stehen wiederum mehrere Operationen zur Verfügung, welche mit umschließenden Boxen arbeiten oder wie viel Prozent von der Mitte des Bildes aus verwendet werden soll.
@@ -332,39 +326,41 @@ Des Weiteren sind Protokoll Buffer sowie Queues implementiert, die zum Vorverarb
 Neuronale Netzwerke sind eine Spezialisierung im Gebiet des maschinellen Lernens. 
 TensorFlow bietet eine breite Unterstützung beziehungsweise eine große Implementierungsvielfalt für diesen Typ an. 
 
-\paragraph{Aktivierungsfunktionen} repräsentieren den Ausgang eines Neurons, dabei existieren aus der Vergangenheit einige Ansätze für diesen Bereich eines Neuronalen Netzwerkes. 
+\paragraph{Aktivierungsfunktionen} repräsentieren den Ausgang eines Neurons, dabei existieren aus der Vergangenheit einige Ansätze für diesen Bereich eines neuronalen Netzwerkes. 
 \begin{itemize}
 	\item \textit{tf.sigmoid} ist eine der bekanntesten und ältesten diesen Typs.
 	Diese Funktion besitzt im Punkt $0$ einen Aktivierungswert von $0.5$ und hat zwei Beschränkungen. 
 	Im negativen Zahlenbereich auf der X-Achse wird der Grenzwert der Funktion mit $0$ definiert und im positiven Zahlenbereich mit dem Grenzwert von maximal $1$. 
 	Ein negativer Wert führt somit zu einem geringen Aktivierungswert, welcher sich im Negativen an $0$ annähert sowie im Positiven an $1$.
-	Im Diagramm \ref{fig:Sigmoide Aktivierungsfunktion} befindet sich diese Funktion mit ihren Grenzwerten. 
+	In der Abbildung \ref{fig:Sigmoide Aktivierungsfunktion} befindet sich diese Funktion mit ihren Grenzwerten. 
 \begin{figure}[ht!]
 	\centering
 	\resizebox {0.5\linewidth} {5cm} {
 	\begin{tikzpicture}
 	\begin{axis}
 
-		\addplot expression { 1/(1+exp(-x) };
+		\addplot[black, no markers] expression {1};
+		\addplot[blue, no markers] expression { 1/(1+exp(-x) };
+		\addplot[black, no markers] expression {0};
 
 	\end{axis}
 	\end{tikzpicture}
 	}
-	\caption{Sigmoide Aktivierungsfunktion}
+	\caption{Sigmoide Aktivierungsfunktion mit den Grenzwerten an den Stellen $1$ und $0$}
 	\label{fig:Sigmoide Aktivierungsfunktion}
 \end{figure}
-	\item \textit{tf.relu} ersetzt mittlerweile immer mehr die Sigmoide Version. 
-	Ein Grund dafür ist, dass die Berechnung mit Sigmoidefunktionen Ressourcen intensiv ist. 
+	\item \textit{tf.relu} ersetzt mittlerweile immer mehr die sigmoiden Funktionen. 
+	Ein Grund dafür ist, dass die Berechnung einer sigmoiden Funktionen Ressourcen intensiver ist und da negative Werte meist nicht gewollt sind. 
 	Die rektifiziert lineare Funktion ist sehr viel einfacher, da Werte unter $0$ als $0$ weitergegeben werden und Werte darüber linear sind. 
 	Somit resultiert ein Eingangswert von $-0.1$ in einer $0$ und ein Wert von $0.5$ in $0.5$.
-	Wie im Diagramm \ref{fig:rektifiziert lineare Aktivierungsfunktion} ersichtlich ist, führt dies bei einem negativen Wert dazu, dass eine Multiplikation mit der Gewichtung in der nächsten Ebene ebenfalls in einer $0$ sich repräsentiert und somit in der Addition ignoriert wird.
+	Wie in der Abbildung \ref{fig:rektifiziert lineare Aktivierungsfunktion} ersichtlich ist, führt dies bei einem negativen Wert dazu, dass eine Multiplikation mit der Gewichtung in der nächsten Ebene ebenfalls in einer $0$ sich repräsentiert und somit in der Addition ignoriert wird.
 \begin{figure}[ht!]
 	\centering
 	\resizebox {!} {5cm} {
 	\begin{tikzpicture}
 	\begin{axis}
 
-		\addplot expression { max(0, x)};
+		\addplot[blue, no markers] expression { max(0, x)};
 
 	\end{axis}
 	\end{tikzpicture}
@@ -372,29 +368,32 @@ TensorFlow bietet eine breite Unterstützung beziehungsweise eine große Impleme
 	\caption{rektifiziert lineare Aktivierungsfunktion}
 	\label{fig:rektifiziert lineare Aktivierungsfunktion}
 \end{figure}
-	\item \textit{tf.tanh} genannt als Hyperbolic Tangent gehört ebenfalls zu den grundlegenden Aktivierungsfunktionen. 
-	Der Unterschied zwischen dieser Funktion und der Sigmoiden Aktivierungsfunktion ist, dass der untere Grenzwert nicht bei $0$ liegt sondern bei $-1$. 
-	Im Diagramm \ref{fig:Hyperbolic Tangents Aktivierungsfunktion} ist ersichtlich wo sich der Wendepunkt befindet und liegt im Falle des Hyperbolic Tangent in der Koordinate $x = 0, y = 0$. 
+	\item \textit{tf.tanh} genannt Hyperbolic Tangent gehört ebenfalls zu den grundlegenden Aktivierungsfunktionen. 
+	Der Unterschied zwischen dieser Funktion und der sigmoiden Aktivierungsfunktion ist, dass der untere Grenzwert nicht bei $0$ liegt sondern bei $-1$. 
+	In der Abbildung \ref{fig:Hyperbolic Tangents Aktivierungsfunktion} lässt sich erkennen wo sich der Wendepunkt befindet und liegt im Falle des Hyperbolic Tangent in der Koordinate $x = 0, y = 0$. 
 \begin{figure}[ht!]
 	\centering
 	\resizebox {!} {5cm} { %\linewidth
 	\begin{tikzpicture}
 	\begin{axis}
 
-		\addplot expression { tanh(x)};
+		\addplot[black, no markers] expression {1};
+		\addplot[blue, no markers] expression { tanh(x)};
+		\addplot[black, no markers] expression {-1};
 
 	\end{axis}
 	\end{tikzpicture}
 	}
-	\caption{Hyperbolic Tangents Aktivierungsfunktion}
+	\caption{Hyperbolic Tangents Aktivierungsfunktion mit den Grenzwerten an den Stellen $1$ und $-1$}
 	\label{fig:Hyperbolic Tangents Aktivierungsfunktion}
 \end{figure}
 \end{itemize}
-Zu diesen Aktivierungsfunktionen stehen noch einige weiter zur Verfügung, die ausführlich getestet werden sollten. 
+Zu diesen Aktivierungsfunktionen stehen noch einige weitere zur Verfügung, die ausführlich getestet werden sollten. 
 Im Grunde kann jede Funktion angewendet werden, doch besitzt jede eine Eigenheit und beeinflusst so den gesamten Graphen. 
 
-\paragraph{Faltung Operationen} werden bei Bilderkennungen unter anderem deshalb verwendet, da sie eine Operation auf einen Stapel an Daten gleichzeitig anwenden können. 
-Es wird ein Fenster über ein Bild geschoben und auf jedem Bild wird im selben Fenster die Operation durchgeführt. 
+\paragraph{Faltung Operationen} werden bei Bilderkennungen unter anderem deshalb verwendet, da eine Operation mit unterschiedlichen Daten in einem Schritt auf mehrere Daten angewendet werden kann. 
+%da sie eine Operation auf einen Stapel an Daten gleichzeitig anwenden können. 
+Dabei wird ein Fenster über ein Bild geschoben und auf jedem Bild wird im selben Fenster die Operation durchgeführt. 
 Diese Operation generalisiert die darunterliegenden Daten so, als ob sie auf etwas reagiert hätten. 
 Dies entspricht in etwa dem, als ob ein Auge auf etwas reagiert hätte. 
 \textbf{TODO: Diagramm}
@@ -404,20 +403,21 @@ Dies entspricht in etwa dem, als ob ein Auge auf etwas reagiert hätte.
 \end{itemize}
 Des Weiteren stehen noch andere spezialisierte Versionen implementiert zur Verfügung.
 
-\paragraph{Bündelung} wird verwendet, um Daten zu vereinfachen. 
+\paragraph{Bündelung} wird verwendet, um Daten zu vereinfachen wie zum Beispiel \glqq MaxPool\grqq in Convolutional Netzwerken. 
 Eine Faltungsoperation führt dazu, dass aus einem Bild viele mit unterschiedlichen Filtern erzeugt werden.
-Eine Bündelung ermöglicht eine Vereinfachung der Bilder, die Schlüsselinformationen jedoch bleiben dennoch erhalten. 
-Diese Technik wurde in früheren Zeiten eingesetzt, um Computerressourcen zu sparen, da diese nicht so leistungsfähig gegenüber heute waren. 
-TensorFlow bietet mehrere Umsetzungen, so kann der Maximalwert aus der Filtermatrix als auch der Mittelwert übernommen werden. 
+Eine Bündelung ermöglicht eine Vereinfachung der Daten, wobei die Schlüsselinformationen dennoch erhalten bleiben sollen. 
+%die Schlüsselinformationen jedoch bleiben dennoch erhalten. 
+%Diese Technik wurde in früheren Zeiten eingesetzt, um Computerressourcen zu sparen, da diese nicht so leistungsfähig gegenüber heute waren. 
+TensorFlow bietet mehrere Umsetzungen, so kann ein Maximalwert aus der Filtermatrix als auch der Mittelwert übernommen werden. 
 
 \paragraph{Verluste} beschreiben, wie weit ein Ergebnis vom erwarteten Ergebnis entfernt liegt. 
 Diese Art der Verlustfeststellung wird bei Regressionsproblemen benötigt, sie haben generell auch die Funktion des Regulierens.
 \begin{itemize}
-	\item \textit{tf.nn.l2\_loss} berechnet einen Wert, welcher den Inhalt des Tensors repräsentiert. 
+	\item \textit{tf.nn.l2\_loss} \textbf{nachlesen} berechnet einen Wert, welcher den Inhalt des Tensors repräsentiert. 
 	Im Falle dieser Implementierung wird keine Wurzel des Quadrats berechnet,  es werden die Werte nur addiert und durch $2$ dividiert.
-	\item \textit{tf.nn.log\_poisson\_loss} berechnet den Logarithmischen-Wahrscheinlichkeitsverlust zwischen dem Ergebnis und einem erwarteten Ergebnis. 
-	Diese Methode liefert im Normalfall nicht den exakten Verlust, stellt jedoch für Optimierungen nicht das Problem dar. 
-	Sollte trotzdem ein genauerer Wert zum Vergleichen von Verlusten berechnet werden, muss die aufwändige Stirling Approximation \cite{feller1968introduction} aktiviert werden. 
+	\item \textit{tf.nn.log\_poisson\_loss} berechnet den logarithmischen Wahrscheinlichkeitsverlust zwischen dem Ergebnis und einem erwarteten Ergebnis. 
+	Diese Methode liefert nicht den exakten Verlust, dies stellt in Bezug auf Optimizer (\ref{training}) kein das Problem dar. 
+	Sollte trotzdem ein genauerer Wert bentötigt werden, muss die aufwändige Stirling Approximation \cite{feller1968introduction} aktiviert werden. 
 \end{itemize}
 
 \paragraph{Klassifizierungen} repräsentieren einen großen Bereich des maschinellen Lernens. 
@@ -437,26 +437,27 @@ Zu diesen existieren noch weitere Implementierungen mit weiteren Eigenheiten, we
 %\paragraph{Wiederkehrend Neuronale Netzwerke} 
 
 \noindent
-Des Weiteren gibt es Implementierungen für wiederkehrende Neuronale Netzwerke und weitere Dinge in diesem Themengebiet. 
+Des Weiteren gibt es Implementierungen für rekursive neuronale Netzwerke und noch mehr. 
 \footnote{Online Dokumentation: Neural Network \url{www.tensorflow.org/api_guides/python/nn}}
 
 \subsubsection{Running Graphs}
 
 \paragraph{Session} stellt eine Hauptklasse des TensorFlow-Systems dar, mit der TensorFlow Engine im Hintergrund.
 In ihr werden alle Operationen ausgeführt und alle Tensoren evaluiert. 
-Dieser Session wird der Graphen mitgegeben, in dem der Endpunkt des Graphen angeben wird. 
-Zur Ausführungszeit führt die Engine alle Operationen des Graphen durch und evaluiert die Tensoren in diesem. 
+Dieser Session wird ein Graphen mitgegeben, in dem der Endpunkt des Graphen angeben wird. 
+Zur Ausführungszeit führt die Engine alle Operationen bis zum definierten Endpunkt des Graphen durch und evaluiert die Tensoren in diesem. 
 Die Engine führt dabei alles bis zu dem gegebenen Punkt aus, welcher als Ausgangspunkt übergeben wurde. 
 Sollte der Graphen weiterführen, so wird dieser nicht mehr durchlaufen. 
 Dies bietet eingeschränkte Möglichkeit, um das aufgebaute System zu testen. 
 Eine Session wird mit \textit{tf.Session} erstellt und stellt die Funktionalität zum Ausführen, sowie die Möglichkeit, diese zu schließen zur Verfügung. 
 Mit \textit{tf.InteractiveSession} wird ebenfalls eine Session erstellt, diese wird aber zugleich als Basissession installiert. 
-Dies bietet die Möglichkeit, interaktive in einer Kommandozeile, Operationen auszuführen, ohne die Session expliziert zu übertragen und anzusprechen. 
+Dies bietet die Möglichkeit, interaktiv in einer Kommandozeile, Operationen auszuführen, ohne die Session expliziert zu übertragen und anzusprechen. 
 Die Tensoren und Operatoren bieten in diesem Fall die Option sich und den Graphen auszuführen, indem die Methoden \textit{TensorVariable.eval} sowie \textit{OperationsVariable.run} in diesen aufgerufen werden. 
-Zusätzlich kann eine bestehende Basissession geholt werden sowie auf Fehler reagiert werden. 
+%Zusätzlich kann eine bestehende Basissession geholt werden sowie auf Fehler reagiert werden. 
 \footnote{Online Dokumentation: Running Graphs \url{www.tensorflow.org/api_guides/python/client}}
 
 \subsubsection{Training}
+\label{training}
 
 \paragraph{Optimizers} stellen einen weiteren Kernteil des System dar. 
 TensorFlow stellt einen Menge an implementierten Optimierungsalgorithmen zur Verfügung. 
@@ -494,7 +495,7 @@ Im Weiteren kann Threading, sowie der Verfall der Lernrate beeinflusst werden. \
 \noindent
 TensorFlow beinhaltet noch sehr viele weitere Komponenten und Möglichkeiten. 
 Dies würde aber den Rahmen und den ersten Einblick in die Materie des maschinellen Lernens und im Speziellen von TensorFlow sprengen. 
-Im Grunde kann mit diesen Grundlagen ein Netzwerk erstellt werden und damit gearbeitet werden. 
+Im Grunde kann mit diesen Grundlagen ein Netzwerk entwickelt werden und damit gearbeitet werden. 
 Seit der Offenlegung kommen immer mehr Erweiterungen aus der Community dazu, was auch dazu führt, dass Teile die sehr oft benötigt werden und aus mehreren Komponenten bestehen, als Modul oder Funktion zur Verfügung stehen. 
 Im Zuge dessen besteht die Möglichkeit sich einen bestehen Graphen zu nehmen, welcher zum Teil schon vortrainiert worden ist. 
 Im Zuge dessen werden nur mehr die letzten Ebenen des Graphen trainiert und auf die konkrete Aufgabe hin ausgelegt. 
@@ -509,17 +510,15 @@ Bei dieser Serialisierung werden alle Informationen des Graphen inklusive der Ge
 TensorBoard bietet nun die Möglichkeit diesen Graphen zu laden und diesen visualisiert darzustellen.
 Zu den Graph-Informationen kann jeder Tensor mitgespeichert werden und als Diagramm visualisiert werden, mit einer zeitlichen Komponente. 
 Dies ermöglicht es einem den Verlauf des Trainings zu analysieren. 
-Aus einem Graphen können mehrere dieser Event-Files erzeugt werden sowie fixe Punkte definiert werden. 
-Beim Laden eines Graphen in die TensorFlow sowie TensorBoard-Umgebung kann spezifiziert werden zu welchen Zeitpunkt geladen werden soll. 
+Aus einem Graphen können mehrere dieser Event-Files erzeugt werden sowie Zustände festgehalten werden. 
+Beim Laden eines Graphen in die TensorFlow- sowie TensorBoard-Umgebung kann spezifiziert werden zu welchen Zeitpunkt geladen werden soll. 
 Damit wird ermöglicht, viele Trainingsdurchläufe zu durchlaufen und bei einer Verschlechterung der Präzision zu einem früheren Zustand zurückzuspringen.
 Dieses Tool ermöglicht es einem in das Verhalten eines Graphen ein wenig Einsicht zu nehmen und so die sogenannte Black Box zu durchleuchten. 
 
-\paragraph{Namesbereiche (\textit{tf.name\_scope})} stellen eine Hilfe für die Darstellung und die Lesbarkeit des visualisierten Graphen dar. 
+\paragraph{Namensbereiche (\textit{tf.name\_scope})} stellen eine Hilfe für die Darstellung und die Lesbarkeit des visualisierten Graphen in TensorBoard dar. 
 Durch die Verwendung des Python-Schlüsselwortes \textit{with} wird eine Ressource verwaltet und wieder freigegeben. 
 In Verwendung mit \textit{tf.name\_scope} werden alle Operationen und Tensoren in diesem Block in der Visualisierung in einen benannten Block zusammengefasst.
-\begin{figure}[ht!]
-\lstset{language=Python}
-\begin{lstlisting}
+\begin{lstlisting}[caption={TensorFlow Codefragment zur Namescope Verwendung in Graphen},label=fig:NameScopeFragmentGraphDefinition,captionpos=b,language=Python]
 import tensorflow as tf
 
 with tf.name_scope("func"):
@@ -536,10 +535,6 @@ for step in xrange(0, 10):
 
 	print step, result 
 \end{lstlisting}
-
-	\caption{TensorFlow Codefragment zur Namescope Verwendung in Graphen}
-	\label{fig:NameScopeFragmentGraphDefinition}
-\end{figure}
 Wie im Codefragment \ref{fig:NameScopeFragmentGraphDefinition} beschrieben, werden die Tensoren und Operatoren \textit{b, W, x, relu} in einem Block zusammengefasst. 
 In diesem Beispiel gibt es keinen Tensor, welcher in den Block übergeben wird, da die Daten in der Ausführung von außerhalb des Systems in dieses gelangen. 
 Die Operation \textit{relu} und der daraus resultierende Tensor bilden den Ausgang des Blockes. 
@@ -551,7 +546,7 @@ Durch die Verwendung der Namensbereiche werden Gruppen gebildet, was dazu führt
 Der dargestellte Graphen kann nach dem Einlesen und Generieren interaktiv analysiert werden. 
 So können Bereiche vergrößert und geöffnet werden und die definierten Tensoren betrachtet werden. 
 Dieses Tool bietet zusätzliche Funktionalitäten, wie das Darstellen, wo am meisten Rechenzeit benötigt wurde sowie auch welche Berechnung auf welchem Gerät ausgeführt worden sind. 
-Alle diese zusätzlichen Funktionalitäten benötigen Daten, welchen beim Erstellen des Graphen mit definiert werden müssen und auch mit in des Event-File serialisiert werden müssen. 
+Alle diese zusätzlichen Funktionalitäten benötigen Daten, welchen beim Erstellen des Graphen mit definiert werden müssen und auch mit in das Event-File serialisiert werden müssen. 
 
 \paragraph{Scalars} repräsentiert den Bereich, in welchem die Lernergebnisse dargestellt werden können. 
 Dies umfasst die Präzision sowie die Verluste. 
@@ -565,7 +560,7 @@ Dies hängt aber wieder von dem entwickelten Graphen ab und kann sich somit eine
 TensorBoard bietet die Möglichkeit mehrere Graphen und ihre Eventdaten zu visualisieren. 
 In diesem Fall werden alle gelesenen Events in einer Liste aufgelistet, in welcher ausgewählt werden kann, welche Ausführungen in den Diagrammen dargestellt werden sollen. 
 In diesem Zuge können diese Diagramme zusammengeführt werden und so die Ergebnisse direkt verglichen werden. 
-Dies hat den Vorteil, dass ein Netzwerk mit Hyperparameter automatisch getestet werden kann und jede Kombination ein eigenes Event-File erzeugt. 
+Dies hat den Vorteil, dass ein Netzwerk mit Hyperparametern automatisch getestet werden kann und jede Kombination ein eigenes Event-File erzeugt. 
 Solche Testdurchläufe benötigen mehr Zeit, abhängig von den definierten Kombinationen an Parameter, muss $x * y * ...$ alles durch getestet werden.
 \phantom \newline
 
@@ -578,7 +573,7 @@ Bei jedem Schreibzyklus in das Event-File werden diese Informationen dann mit ü
 Diese Funktionalität war in den Versionen von 'r1.0' noch unter dem Punkt Histogramm. 
 Im Allgemeinen werden Tensoren mit der Methode \textit{tf.summary.histogram} wieder in das Event-File serialisiert. 
 Das Ergebnis stellt eine Verteilung dar für die Werte, die im Tensor vorkommen. 
-Dabei werden alle Werte auf eine Gaussian Glockenkurve projiziert. 
+%Dabei werden alle Werte auf eine Gaussian Glockenkurve projiziert. 
 Das Diagramm repräsentiert auf der X-Achse die Anzahl der Schritte, die durchgeführt worden sind. 
 Die Y-Achse gibt die konkreten Werte wieder, welche sich im Tensor über die Zeit befinden. 
 \begin{figure}
@@ -592,7 +587,7 @@ Dieser Tensor wurde mit einer Normalverteilung initialisiert, wobei die Standard
 Die Linien in diesem Diagramm und ihre Einfärbungen präsentieren die Verteilung der Werte im beobachteten Tensor. 
 Die Verteilung muss von unten nach oben gelesen werden, dabei ergibt die unterste Linie den Minimalwert, der vorgekommen ist. 
 Die nächste Linie besagt, dass 7\% der Werte in dem Bereich zwischen dem geringsten und der zweiten Linie sich befinden, was inklusiv des geringsten Wertes ist.  
-Der nächste Bereich definiert, wie in einer Normalverteilung, dass sich bis zum Ende dieses Bereiches 16\% darin befinden. 
+Der nächste Bereich definiert, wie in einer gaußschen Normalverteilung, dass sich bis zum Ende dieses Bereiches 16\% darin befinden. 
 Im Gesamten sind dies $9$ Markierungen mit 8 Bereichen, welche zusammen alle Werte im Tensor widerspiegeln. 
 Diese Folge an prozentualen Anteilen lauten wie folgend: $min, 7\%, 16\%, 31\%, 50\%, 69\%, 84\%, 93\%, max$. 
 Im Diagramm \ref{fig:VerteilungsdiagrammPython} ist diese Verteilung besser ersichtlich, zusätzlich befinden sich in der Abbildung \ref{fig:Ergebnistensor} die Rohdaten der Diagramme. 
@@ -602,10 +597,7 @@ Im Diagramm \ref{fig:VerteilungsdiagrammPython} ist diese Verteilung besser ersi
 	\caption{Verteilung der Werte in dem Tensor zu dem Diagramm \ref{fig:Verteilungsdiagram}}
 	\label{fig:VerteilungsdiagrammPython}
 \end{figure}
-\begin{figure}
-
-\lstset{language=Python}
-\begin{lstlisting}
+\begin{lstlisting}[caption={Sortierter Ergebnistensor zum Verteilungsdiagramm \ref{fig:VerteilungsdiagrammPython} und \ref{fig:Verteilungsdiagram} im Schritt $0$},label=fig:Ergebnistensor,captionpos=b,language=Python]
  -1.2645409,  -0.92252451, -0.68004417,  -0.63273954,  -0.57005012, 
  -0.5477351,  -0.54554129, -0.51146084,  -0.50482351,  -0.4872272, 
  -0.45631331, -0.44180638, -0.43258488,  -0.38066232,  -0.31675094, 
@@ -627,9 +619,6 @@ Im Diagramm \ref{fig:VerteilungsdiagrammPython} ist diese Verteilung besser ersi
   0.84558558,  0.86151552,  0.95068389,   0.95598722,   1.0072051, 
   1.1837469,   1.1992682,   1.285683,     1.3168017,    1.3521272
 \end{lstlisting}
-	\caption{Sortierter Ergebnistensor zum Verteilungsdiagramm \ref{fig:VerteilungsdiagrammPython} und \ref{fig:Verteilungsdiagram} im Schritt $0$}
-	\label{fig:Ergebnistensor}
-\end{figure}
 
 
 %[maximum, 93%, 84%, 69%, 50%, 31%, 16%, 7%, minimum]
@@ -657,14 +646,14 @@ Durch die Verteilung der Werte entsteht nun der Fall, dass ein Teil der Einträg
 Dieses Diagramm stellt die Verteilung in Wertebereiche dar, wobei alle vertikalen Werte in einem Schritt die Anzahl der Werte im Tensor ergeben müssen. 
 Im Falle dieses Beispiels ergeben diese aufsummiert einen Wert von $100.044$, was gerundet die $100$ Einträge im Tensor bestätigt. 
 Die Aufteilung der Werte in Wertebereiche mit Teilzuweisungen erklärt auch den Schrittverlauf im Histogramm \ref{fig:Histogram}. 
-Hier ist ersichtlich, dass sich die Verteilungen und Zugehörigkeiten immer ein wenig ändern, obwohl in diesem Beispiel in jedem Schritt konstant $0.2$ zu jedem Wert hinzuaddiert worden ist. 
+Hier ist ersichtlich, dass sich die Verteilungen und Zugehörigkeiten immer ein wenig zum vorhergehenden abweichen, obwohl in diesem Beispiel in jedem Schritt konstant $0.2$ zu jedem Wert hinzu addiert worden ist. 
 Dies lässt sich bei einer geringen Anzahl an Werten, wie hier mit $100$ leichter beobachten, als bei einer sehr viel höheren. 
 \phantom \newline
 
 \noindent
 TensorBoard bietet noch weitere Möglichkeiten, wie Bilder- oder Soundinhalte mit in das Event-File zu geben, um diese dann in Tensorboard weiter zu verwenden. 
 So können diese Inhalte durch den Graphen gesendet werden und dabei beobachtet werden. 
-Die letzte Erweiterung in Tensorboard ist der Punkt mit 'Emeddings', wo gelernte Informationen, so wie sie vom Graphen gruppiert worden sind, dargestellt werden können. \footnote{Online Dokumentation: Emeddings \url{www.tensorflow.org/get_started/embedding_viz}}
+Die letzte Erweiterung in Tensorboard ist der Punkt mit 'Embedding', wo gelernte Informationen, so wie sie vom Graphen gruppiert worden sind, dargestellt werden können. \footnote{Online Dokumentation: Emeddings \url{www.tensorflow.org/get_started/embedding_viz}}
 \phantom \newline
 
 \noindent
