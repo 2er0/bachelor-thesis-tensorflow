@@ -84,17 +84,17 @@ for step in xrange(0, 10):
 
 \end{tikzpicture}
 
-	\caption{Der resultierenden Teilgraph aus dem Codefragment aus Abbildung \ref{fig:SimpleFragmentGraphDefinition} nach dem Beispiel in \cite{wp2015tensorflow}}
+	\caption{Der resultierenden Teilgraph aus dem Codefragment \ref{fig:SimpleFragmentGraphDefinition} nach dem Beispiel in \cite{wp2015tensorflow}}
 	\label{fig:SimpleFragmentGraphPic}
 \end{figure}
-Ein TensorFlow Graph kann wie in Abbildung \ref{fig:SimpleFragmentGraphDefinition} ersichtlich, beschrieben werden und wie in Abbildung \ref{fig:SimpleFragmentGraphPic} grafisch dargestellt werden.
+Ein TensorFlow Graph kann wie im Codefragment \ref{fig:SimpleFragmentGraphDefinition} ersichtlich, beschrieben werden und wie in Abbildung \ref{fig:SimpleFragmentGraphPic} grafisch dargestellt werden.
 Dieser wurde zum Beispiel mit der Python API erstellt.
 Die Knoten und Verbindungen ergeben einen Datenfluss, dieser beinhaltet alle erforderlichen Komponenten, auch für das Persistieren und Aktualisieren der Daten.
 Dies sind Erweiterungen für den Hauptgraphen und beinhalten auch Logik für Schleifenverwaltungen.
 Ein Knoten in einem Graphen besitzt $0$ bis $n$ Ein- und Ausgänge und eine Kernfunktion. 
 Zum Datenhauptfluss mit den Tensoren gibt es zusätzlich spezielle Verbindungen, welche \glqq control dependencies\grqq genannt werden. 
 Anhand dieser Verbindungen werden keine Daten im Sinne der Tensoren übertragen, sondern werden herangezogen um Abhängigkeiten zu definieren, wie zum Beispiel eine Ausführung in einem anderen Knoten vor einem anderen zu definieren.
-Ein Quellknoten muss die Ausführung abgeschlossen haben, bevor der darauf Wartende mit der Ausführung beginnen kann. \cite{wp2015tensorflow}
+Ein Quellknoten muss die Ausführung abgeschlossen haben, bevor der darauf Wartende mit der Ausführung beginnen kann \cite{wp2015tensorflow}. \\ 
 
 \subsection{Operation}
 
@@ -128,7 +128,7 @@ Hyperparameter werden im Umfeld von maschinellem Lernen verwendet, um Variatione
 Dabei werden verschiedenste Parameter getestet, wie verschiedene Aktivierungsfunktionen oder Optimierungsalgorithmen, aber auch die Anzahl an Ebenen und Breiten dieser. 
 Im Gesamten führt dies meist zu sehr vielen Permutationen, welche ausgetestet werden müssen und somit voll trainiert werden. 
 Da die Zeit, welche dafür benötigt werden würde, nicht in einer Relation dazu steht, werden solche Brute-Force Tests nur mehr selten durchgeführt. 
-Für diesen Fall existieren eigene Techniken, welche sich nur um das Optimieren der Hyperparameter kümmern. \cite{bishop2006pattern}
+Für diesen Fall existieren eigene Techniken, welche sich nur um das Optimieren der Hyperparameter kümmern \cite{bishop2006pattern}. 
 
 \section{Bibliotheksinhalt}
 
