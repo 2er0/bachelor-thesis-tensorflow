@@ -3,25 +3,25 @@
 
 \section{Ausgangssituation}
 
-Gesichtserkennung spielt im 21st Jahrhundert eine immer größer werdende Rolle. 
-So existieren auch Herausforderungen mit den Schlüsselpunkten im Gesicht eines Menschen, welche wieder für Gesichtserkennungen verwendet werden können. 
+Gesichtserkennung spielt im 21sten Jahrhundert eine immer größer werdende Rolle. 
+So existieren Herausforderungen mit den Schlüsselpunkten im Gesicht eines Menschen, welche wieder für Gesichtserkennungen verwendet werden können. 
 Im Gesicht eines Menschen wird zum Beispiel die Iris in beiden Augen als Schlüsselpunkt definiert, aber auch dich Nasenspitzen und die Mundwinkel sowie viele weitere.
-Diese Schlüsselpunkte variieren sehr stark von einem Individuum zu nächsten, aber auch jedes Individuum selbst hat eine Menge an Variationen. 
+Diese Schlüsselpunkte variieren sehr stark von einem Individuum zum Nächsten, aber auch jedes Individuum selbst hat eine Menge an Variationen. 
 So spielt hier die Größe, die Position, die Neigung sowie die Beleuchtung eine Rolle und erzeugt eine fast unendliche Menge an Möglichkeiten. 
 Mit Computer Vision konnten sehr viele Verbesserungen in diesem Bereich erzielt werden, wobei noch sehr viel Raum für Forschung und Verbesserungen bleibt. \newline
 
 \noindent
-Die Aufgabenstellung wird auf der Online-Plattform Kaggle \footnote{Kaggle: Facial Keypoints Detection \url{https://www.kaggle.com/c/facial-keypoints-detection}} gehostet wo auch die Trainings- und Testdaten zur Verfügung gestellt werden. 
-Diese Aufgabe war im Jahr 2016 eine Herausforderung wo sich jeder beteiligen konnte, um den ersten Platz zu erreichen. 
+Die Aufgabenstellung wird auf der Online-Plattform Kaggle \footnote{Kaggle: Facial Keypoints Detection \url{https://www.kaggle.com/c/facial-keypoints-detection}} gehostet, wo auch die Trainings- und Testdaten zur Verfügung gestellt werden. 
+Diese Aufgabe war im Jahr 2016 eine Herausforderung, an der sich jeder beteiligen konnte, um den ersten Platz zu erreichen. 
 Das Ziel für jeden Teilnehmer war es ein System zu entwickeln, welches mit den Trainingsdaten trainiert wird.
 Im Anschluss sollte dieses System dann mit den Testdaten getestet werden. 
-Dieses Ergebnis musste im Anschluss eingereicht werden, welches dann überprüft und bewertet wurde. 
+Das Ergebnis musste im Anschluss eingereicht werden, welches dann überprüft und bewertet wurde. 
 
 \section{Vorbereitung}
 
-Die Daten welche zur Verfügung gestellt werden, sind auf mehreren Dateien aufgeteilt. 
+Die Daten, die zur Verfügung gestellt werden, sind auf mehreren Dateien aufgeteilt. 
 In diesem Fall beinhaltet die Datei mit den Trainingsdaten die meisten Daten. 
-Diese beinhaltet die Bilder der Gesichter, sowie die Koordinaten der Schlüsselpunkte, gespeichert in einer CSV-Notation.
+Sie beinhaltet die Bilder der Gesichter, sowie die Koordinaten der Schlüsselpunkte, gespeichert in einer CSV-Notation.
 %Im gesamten Gesicht gibt es 15 Schlüsselpunkte welche hier berücksichtigt werden. 
 Im gesamten Gesicht werden in diesem Beispiel 15 Schlüsselpunkte berücksichtigt. 
 In der Auflistung \ref{fig:15keypoints} sind die Bezeichnungen der Spalten mit den Werten ersichtlich, wobei zu jeder Bezeichnung ein \glqq X\grqq und ein \glqq Y\grqq existiert.
@@ -34,11 +34,11 @@ nose_tip,
 mouth_left_corner, mouth_right_corner, 
 mouth_center_top_lip, mouth_center_bottom_lip
 \end{lstlisting}
-Jeder diese Schlüsselpunkte besteht aus einer X und Y Koordinate. 
-Diese Datei besitzt zusätzlich in der $31$ Spalte das Bild mit dem dazugehörigen Gesicht.
+Jeder diese Schlüsselpunkte besteht aus einer X und einer Y Koordinate. 
+Diese Datei besitzt zusätzlich in der $31.$ Spalte das Bild mit dem dazugehörigen Gesicht.
 Das Bild ist encodiert abgelegt und besteht aus $96 * 96$ Werten. 
-In diesem Sinne stehen nur Bilder in Graustufen zur Verfügung mit einer Auflösung von $96 * 96$ Pixel und einer Farbtiefe von $[0, 255]$, wie in der Abbildung \ref{fig:ausgangsdaten} zu erkennen ist. 
-Für diese Aufgabe werde im Grunde auch nur die Konturen benötigt, was somit den einen Farbkanal erklärt aber auch die Aufgabe schwieriger macht, denn mehrere Farbkanäle könnten mit Filter bearbeitet werden und so noch weiter Konturen hervorheben. 
+In diesem Sinne stehen nur Bilder in Graustufen zur Verfügung mit einer Auflösung von $96 * 96$ Pixel und einer Farbtiefe von $[0, 255]$ zur Verfügung, wie in der Abbildung \ref{fig:ausgangsdaten} zu erkennen ist. 
+Für diese Aufgabe werden im Grunde auch nur die Konturen benötigt, was somit den einen Farbkanal erklärt, aber auch die Aufgabe schwieriger macht, denn mehrere Farbkanäle könnten mit Filter bearbeitet werden und so noch weiter Konturen hervorheben. 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.75]{images/ausgangsDaten.png}
@@ -68,15 +68,15 @@ Für diese Aufgabe werde im Grunde auch nur die Konturen benötigt, was somit de
 
 \subsection{Daten vorbereiten und normalisieren}
 
-Diese Daten müssen zu Beginn vorbereitet und normalisiert werden. 
-Um die Problemgröße zu verringern empfiehlt es sich die Aufgabe aufzuteilen auf mehrere Netzwerke. 
+Zu Beginn diese Daten müssen vorbereitet und normalisiert werden. 
+Um die Problemgröße zu verringern, empfiehlt es sich, die Aufgabe auf mehrere Netzwerke aufzuteilen. 
 Dies hat einen zusätzlichen Grund, da die Trainingsdaten nicht komplett sind und somit nicht zu allen Bildern alle 15 Schlüsselpunkte vorhanden sind. 
 Sollte dies ignoriert werden, würde sich die Anzahl der zur Verfügung stehenden Datensätze von $7049$ auf $2140$ reduzieren. 
-Ein weiterer Grund für die Auftrennung der Problemstellung ist, da Aufgaben leichter verteilt werden können und die Netzwerke noch genauer angepasst werden könnten. \newline
+Ein weiterer Grund für die Auftrennung der Problemstellung ist, damit Aufgaben leichter verteilt werden können und die Netzwerke noch genauer angepasst werden könnten. \newline
 
 \noindent
-Unter der Zuname von Pandas \footnote{Pandas: Python Data Analysis Library \url{http://pandas.pydata.org/}} und NumPy \footnote{NumPy: Scientific Computing \url{http://www.numpy.org/}} besteht die Möglichkeit sehr einfach und effizient auf die Datensätze zuzugreifen und diese zu verwenden. 
-Wie in dem Codebeispiel \ref{fig:datenLesenEinschränken} ersichtlich ist, werden die Daten mit Hilfe von Pandas geladen und unter Zunahme von NumPy normalisiert und neu strukturiert. 
+Unter der Zuname von Pandas \footnote{Pandas: Python Data Analysis Library \url{http://pandas.pydata.org/}} und NumPy \footnote{NumPy: Scientific Computing \url{http://www.numpy.org/}} besteht die Möglichkeit, sehr einfach und effizient auf die Datensätze zuzugreifen und diese zu verwenden. 
+Wie im Codebeispiel \ref{fig:datenLesenEinschränken} ersichtlich ist, werden die Daten mit Hilfe von Pandas geladen und unter Zunahme von NumPy normalisiert und neu strukturiert. 
 \begin{lstlisting}[caption={Daten einlesen und einschränken},label=fig:datenLesenEinschränken,captionpos=b,language=Python]
 import pandas as pd
 import numpy as np
@@ -112,20 +112,20 @@ Y = df[df.columns[:-1]].values
 Y = Y / 96.0
 \end{lstlisting}
 
-\subsection{Evaluation- und Errorfunktion}
+\subsection{Evaluations- und Errorfunktion}
 
 Die Ergebnisse des Netzwerkes müssen immer verglichen und validiert werden. 
 In diesem Beispiel handelt es sich nicht um eine Klassifizierungsaufgabe, sondern um eine Regressionsproblemstellung. 
 Deshalb kann nicht einfach eine 'Cross Entropy' Funktionen verwendet werden, um die Daten zu evaluieren und zu adaptieren. 
 Aus diesem Grund muss dies manuell durchgeführt werden und selbst eine Berechnung aufgestellt werden, welche diese Werte liefert, damit diese einem Optimierer übergeben werden können. 
-Der Verlust beziehungsweise die Differenz zwischen Ergebnis des Netzwerkes und dem bekannten Ergebnis, kann durch eine Subtraktion sowie einer Quadrierung berechnet werden. 
+Der Verlust, beziehungsweise die Differenz zwischen Ergebnis des Netzwerkes und dem bekannten Ergebnis, kann durch eine Subtraktion sowie einer Quadrierung berechnet werden. 
 Diese ist in der Gleichung \ref{eq:lossCalc} zu erkennen, wobei \textit{graph} eine Matrix (Tensor) an Ergebnissen ist, mit der Anzahl an Zeilen wie in der Konstante \textit{BATCH\_SIZE} definiert. 
-Die Variable \textit{train\_labels\_node} beinhaltet die bekannten Ergebnisse zu Bilder mit den selben Dimensionen wie in der Matrix \textit{graph}. 
-\textit{tf.subtract} führt eine Subtraktion auf jeden Inhalt der beiden Matrizen aus, was auch dazu führt, dass diese die selben Dimensionen haben müssen. 
+Die Variable \textit{train\_labels\_node} beinhaltet die bekannten Ergebnisse zu Bildern mit denselben Dimensionen wie in der Matrix \textit{graph}. 
+\textit{tf.subtract} führt eine Subtraktion auf jeden einzelnen Wert der beiden Matrizen aus, was auch dazu führt, dass diese dieselben Dimensionen haben müssen. 
 \textit{tf.square} quadriert die berechneten Differenzen um negative Werte zu entfernen. 
 Zum Abschluss werden alle Ergebnisse in der Ergebnismatrix mit \textit{tf.reduce\_sum} aufsummiert, was zu einem Skalar führt. 
 Für diese konkrete Implementierung wurde als Optimierungsalgorithmus ein \textit{Adam}-Algorithmus \cite{DBLP:journals/corr/KingmaB14} verwendet. 
-Um das Verlustergebnis für einen Leser lesbare zu machen, muss der Verlustwert durch die Anzahl der Batchgröße dividiert werden, was die Differenz in einem Datensatz als Durchschnitt ergibt, ohne die Quadrierung zu berücksichtigen. 
+Um das Verlustergebnis für einen Leser lesbarer zu machen, muss der Verlustwert durch die Anzahl der Batchgröße dividiert werden, was die Differenz in einem Datensatz als Durchschnitt ergibt, ohne die Quadrierung zu berücksichtigen. 
 Die gesamte Umsetzung ist im Codebeispiel \ref{fig:VerlustKonkreOpitimier} zu finden. 
 \begin{equation}
 	Verlust := \sum{(R - L)^2}
@@ -157,11 +157,11 @@ with tf.name_scope("accuracy"):
  
 \section{Neuronale Ebenen vorbereiten}
 
-Damit die Ebenen einfacher verwendet werden können, können dies als konfigurierbare Muster definiert werden. 
-Dadurch wird erzielt, dass gleiche Ebenen im visualisierten Graphen die selbe Farbe besitzen und zum anderen alle Inhalte darin zusammengefasst werden. 
+Damit die Ebenen einfacher verwendet werden können, können diese als konfigurierbare Muster definiert werden. 
+Dadurch wird erzielt, dass gleiche Ebenen im visualisierten Graphen dieselbe Farbe besitzen und zum anderen alle Inhalte darin zusammengefasst werden. 
 Im Grunde existieren zwei verschiedene Haupttypen an Ebenen. 
 Zum einen die Convolutional-Ebenen und zum anderen die Vollvernetzen-Ebenen. 
-Wie im Code \ref{fig:ConvFc} ersichtlich ist besitzen beide Hauptgruppen an Ebenen jeweils eine Datenquelle beschrieben als \textit{x\_} und Gewichtungen und Biaseswerte. 
+Wie im Code \ref{fig:ConvFc} ersichtlich ist, besitzen beide Hauptgruppen an Ebenen jeweils eine Datenquelle, beschrieben als \textit{x\_} und Gewichtungen und Biaseswerte. 
 Die Bias-Werte werden dabei erst nach der Kernfunktion an das Ergebnis angefügt und somit erst in der Aktivierungsfunktion berücksichtigt. 
 \begin{lstlisting}[caption={Definition der Convolutional- und Vollvernetzen-Ebenen},label=fig:ConvFc,captionpos=b,language=Python]
 def conv_layer(x_, size_in, size_out, name="conv"):
@@ -201,10 +201,10 @@ def fc_layer(x_, size_out, name="fc", act=None):
 
 \section{Neuronale Ebenen verknüpfen}
 
-Diese Definitionen der Ebenen aus dem Codefragment \ref{fig:ConvFc} müssen im nächsten Schritt zu einem Netzwerk zusammen gesetzt werden. 
-Ein neuronales Netzwerk welches relativ leichtgewichtig ist und diese Problematik relativ brauchbar lösen kann, ist im Grunde ein sehr vereinfachtes 'VGG16' Netzwerk. \footcite{VGG16: https://arxiv.org/pdf/1409.1556.pdf}
+Diese Definitionen der Ebenen aus dem Codefragment \ref{fig:ConvFc} müssen im nächsten Schritt zu einem Netzwerk zusammengesetzt werden. 
+Ein neuronales Netzwerk welches, relativ leichtgewichtig ist und diese Problematik relativ brauchbar lösen kann, ist im Grunde ein sehr vereinfachtes 'VGG16' Netzwerk. \footcite{VGG16: https://arxiv.org/pdf/1409.1556.pdf}
 Für diesen Fall besteht dieses aus $3$ Convolutional-Ebenen und $3$ Vollvernetzen-Ebenen, wie im Codefragment \ref{fig:buildGraph} zu sehen ist. 
-Das originale VGG16 Netzwerk besitzt im Gegensatz zum aktuell verwendeten, $5$ Convolutional-Ebenen mit je $2$ integrierten Convolutional-Ebenen mit den selben Dimensionen und die Hauptebenen $3$ bis $5$ zusätzlich eine $3$ Convolutional-Ebenen. 
+Das originale VGG16 Netzwerk besitzt im Gegensatz zum aktuell verwendeten, $5$ Convolutional-Ebenen mit je $2$ integrierten Convolutional-Ebenen mit denselben Dimensionen, die Hauptebenen $3$ bis $5$ zusätzlich eine $3$ Convolutional-Ebene. 
 Die letzte Ebene der Vollvernetzen-Ebenen wird dabei ohne Aktivierungsfunktion ausgeführt, um die Roh-Ergebnisse zu bekommen. 
 Im aktuellen Fall werden für die $2$ Iris-Positionen im Gesicht $4$ Ergebnisse benötigt. 
 An diesem Beispiel lässt sich erkennen, dass hier Variablen wiederverwendet werden, dies ist durch Python möglich und durch die Beschreibung des Graphen, welcher im Hintergrund aufgebaut und verbunden wird. 
@@ -239,13 +239,13 @@ graph = model(train_data_node)
 \section{Trainieren}
 
 Um das erzeugte Netzwerk aus \ref{fig:buildGraph} verwenden und trainieren zu können, muss dieses zuerst initialisiert werden. 
-Wie im Code \ref{fig:initRun} zu erkennen ist wird ein globale Initialisierung verwendet welchen alle Konstanten und Variablen der aktuellen Umgebung initialisiert. 
+Wie im Code \ref{fig:initRun} zu erkennen ist, wird eine globale Initialisierung verwendet, welche alle Konstanten und Variablen der aktuellen Umgebung initialisiert. 
 In der For-Schleife werden fast alle Datensätze einmal durch den Graphen gesendet und entweder zum Trainieren oder Evaluieren verarbeitet. 
-Der Session wird in der \textit{Run}-Methode eine Liste and Punkten des Graphen mitgegeben welche evaluiert werden sollen. 
+Der Session wird in der \textit{Run}-Methode eine Liste an Punkten des Graphen mitgegeben, welche evaluiert werden sollen. 
 In der Trainingsphase ist dies der Optimierungsendpunkt und in der Evaluierungsphase die Punkte \textit{accuracy} und \textit{graph}. 
-Accuracy damit ein vergleichbarer Wert zur Verfügung steht, an welchem der Lernfortschritt erkennbar ist und der Hauptendpunkt des Graphen selbst, damit die Ergebnisse direkt in Bilder gezeichnet werden können. 
+\textit{accuracy}, damit ein vergleichbarer Wert zur Verfügung steht, an welchem der Lernfortschritt erkennbar ist und der Hauptendpunkt des Graphen selbst, damit die Ergebnisse direkt in Bilder gezeichnet werden können. 
 Dies ermöglicht eine visuelle Verifikation durch einen Supervisor. 
-Dieses Codefragment ergibt eine so genannte Epoche, in der alle Datensätze einmal von dem Netzwerk verarbeitet wurden. 
+Dieses Codefragment ergibt eine sogenannte Epoche, in der alle Datensätze einmal vom Netzwerk verarbeitet werden. 
 \begin{lstlisting}[caption={Initialisierung des Graphen und durchführen einer Epoche},label=fig:initRun,captionpos=b,language=Python]
 # erstellen einer Session
 sess = tf.Session()
@@ -283,10 +283,10 @@ for i in range(runing):
 
 \section{Validierungsresultate}
 
-Durch längeres Trainieren kann das Netzwerk sich entwickeln und mit dem Lauf der Epochen möglicherweise bessere Ergebnisse liefern. 
-Dies führt natürlich auch zu der Möglichkeit, dass das Netzwerk beginnt Muster zu Speichern anstatt zu Lernen, auch bekannt als Overfitting (siehe \ref{sec:AllgeProb}). 
-In der Abbildung \ref{fig:runns} sind die Ergebniszustände am Ende der ersten Epoche sowie am Ende der $800$ Epoche zu sehen. 
-Im Gesamten könnte nun festgestellt werden, dass das Netzwerk seine Arbeit relativ korrekt durchführt, wenn man die Größe und Dimension des Netzwerkes berücksichtigt. 
+Durch längeres Trainieren kann sich das Netzwerk entwickeln und im Lauf der Epochen möglicherweise bessere Ergebnisse liefern. 
+Dies führt natürlich auch zu der Möglichkeit, dass das Netzwerk beginnt, Muster zu speichern anstatt zu lernen, auch bekannt als Overfitting. 
+In der Abbildung \ref{fig:runns} sind die Ergebniszustände am Ende der ersten Epoche sowie am Ende der 800sten Epoche zu sehen. 
+Im Gesamten kann nun festgestellt werden, dass das Netzwerk seine Arbeit relativ korrekt durchführt, wenn man die Größe und Dimension des Netzwerkes berücksichtigt. 
 \begin{lstlisting}[caption={Ergebnisse am Ende der ersten Epoche und am Ende der $800$ Epoche},label=fig:runns,captionpos=b,language=Python]
 # Ist-Ergebnis 
 [[ 0.75577307  0.4491435   0.35817528  0.47219035]
@@ -317,7 +317,7 @@ Im Gesamten könnte nun festgestellt werden, dass das Netzwerk seine Arbeit rela
 Zum besseren Vergleichen befindet sich in der Abbildung \ref{fig:resultPic} eine direkte Vergleichsmöglichkeit. 
 Dabei wird der Sollzustand durch blaue Punkte gekennzeichnet und der Istzustand durch rote Punkte. 
 Erkennbar ist hier, dass es Abweichungen zwischen den Werten gibt. 
-Dies lässt sich aber durch die sehr schlanke Struktur, sowie durch die geringe Anzahl an Datensätze erklären. 
+Dies lässt sich aber durch die sehr schlanke Struktur, sowie durch die geringe Anzahl an Datensätzen erklären. 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.5]{images/epoch-800-full.png}
@@ -325,12 +325,12 @@ Dies lässt sich aber durch die sehr schlanke Struktur, sowie durch die geringe 
 	\label{fig:resultPic}
 \end{figure}
 In der Abbildung \ref{fig:lossDiag} sind die gesamten Trainingsergebnisse in Form der Verluste aufgezeichnet. 
-In diesem Fall nähert sich dieser Verlustwert der $0$-Grenze, trotzdem scheint es gewisse Probleme zu geben. 
-Eine mögliche Interpretation wäre, dass die Lernrate mit '$1e-5$' noch zu hoch definiert wurde und so, das Netzwerk sich zu schnell einem lokalen Minima genähert hat, obwohl es möglicherweise ein globales Minima gegeben hätte. 
-Eine andere Möglichkeit wäre, dass die Datensätze Bilder beinhalten, in welchen das Gesicht nicht vollständig zu erkennen ist oder das diese stärker rotiert sind. 
-Sollte es nicht so viel Datensätze mit diesen Eigenheiten geben, so könnte dies ein weiterer Grund sein warum das Netzwerk zum Springen kommt. 
+In diesem Fall nähert sich der Verlustwert der $0$-Grenze, trotzdem scheint es gewisse Probleme zu geben. 
+Eine mögliche Interpretation wäre, dass die Lernrate mit '$1e-5$' noch zu hoch definiert wurde und sich das Netzwerk so zu schnell einem lokalen Minima genähert hat, obwohl es möglicherweise ein globales Minima gegeben hätte. 
+Eine andere Möglichkeit wäre, dass die Datensätze Bilder beinhalten, in welchem das Gesicht nicht vollständig zu erkennen ist oder dass diese stärker rotiert sind. 
+Sollte es nicht so viel Datensätze mit diesen Eigenheiten geben, so könnte dies ein weiterer Grund sein warum das Netzwerk springt. 
 Dies bedeutet, dass ein nicht stabiler Zustand vorhanden ist und möglicherweise ein Rauschen in den Daten nicht ignoriert wurde sondern darauf reagiert wird.
-In diesem Diagramm lässt sich erkennen, dass die Sprünge nicht regelmäßig sind, was auf ein Mischen der Datensätze am Ende jeder Epoche zurück geführt werden kann. 
+In diesem Diagramm lässt sich erkennen, dass die Sprünge nicht regelmäßig sind, was auf ein Mischen der Datensätze am Ende jeder Epoche zurückgeführt werden kann. 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.4]{images/loss-diagram-all.png}
@@ -342,11 +342,11 @@ In diesem Diagramm lässt sich erkennen, dass die Sprünge nicht regelmäßig si
 
 \section{Graphenvisualisierung}
 
-Der Graphen wurde in diesem Beispiel in ein Event-File serialisiert, dabei wurde aus Performanzgründen die Speicherung von den Veränderungen in den Ebenen sowie anderer Skalar-Werten weggelassen. 
-In der Abbildung \ref{fig:graphDig} ist der aktuelle Graph des Beispieles ersichtlich. 
+Der Graphen wurde in diesem Beispiel in ein Event-File serialisiert, dabei wurde aus Performanzgründen die Speicherung von Veränderungen in den Ebenen sowie anderer Skalar-Werten weggelassen. 
+In der Abbildung \ref{fig:graphDig} ist der aktuelle Graph des Beispiels ersichtlich. 
 Dieser beinhaltet die $3$ Convolutional-Ebenen, die Transformation in eine flache Struktur sowie die Vollvernetzten-Ebenen und den Optimizer sowie die Verlustberechnung. 
-Im Gesamten lässt sich ein Graph erkennen in welchem der Datenfluss am Ende beginnt und nach oben läuft. 
-Am Rande der Abbildung befinden sich noch zwei zusätzliche Objekte, welche Verbindungen zu allen Objekte haben. 
+Im Gesamten lässt sich ein Graph erkennen, in welchem der Datenfluss am Ende beginnt und nach oben läuft. 
+Am Rande der Abbildung befinden sich noch zwei zusätzliche Objekte, welche Verbindungen zu allen Objekten haben. 
 Diese werden automatisch durch TensorFlow hinzugefügt und werden für die Ausführung benötigt. 
 \begin{figure}
 	\centering
@@ -357,11 +357,11 @@ Diese werden automatisch durch TensorFlow hinzugefügt und werden für die Ausf�
 
 \section{Verbesserungen}
 
-Dieses Netzwerk stellt rein einen möglichen Lösungsansatz dar, mit welchem die Problemstellung verstanden werden soll. 
+Dieses Netzwerk stellt lediglich einen möglichen Lösungsansatz dar, mit welchem die Problemstellung verstanden werden soll. 
 Im Grund existieren mehrere Möglichkeiten, um das Ergebnis des Netzwerks zu verbessern. 
 Diese Möglichkeiten führen aber dazu, dass mehr Ressourcen benötigt werden. 
 \begin{itemize}
-	\item verbreitern der Vollvernetzen-Ebenen, damit mehr Muster gespeichert werden können
+	\item Verbreitern der Vollvernetzten-Ebenen, damit mehr Muster gespeichert werden können
 	\item Convolutional-Ebenen doppelt ausführen 
 	\item Grundanzahl an Convolutional-Ebenen erhöhen
 	\item Anzahl der Datensätze durch Spiegeln verdoppeln
