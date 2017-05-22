@@ -96,6 +96,15 @@ Zum Datenhauptfluss mit den Tensoren gibt es zusätzlich spezielle Verbindungen,
 Anhand dieser Verbindungen werden keine Daten im Sinne der Tensoren übertragen, sondern werden herangezogen um Abhängigkeiten zu definieren, wie zum Beispiel eine Ausführung in einem anderen Knoten vor einem anderen zu definieren.
 Ein Quellknoten muss die Ausführung abgeschlossen haben, bevor der darauf Wartende mit der Ausführung beginnen kann \cite{wp2015tensorflow}. \\ 
 
+\subsection{Datenfluss Programmierung}
+
+In traditionellen Programmierparadigmen, wie der Sequenziellen, Prozeduralen oder Imperativen, werden eine Reihe von Operationen definiert welche in einer speziellen Reihenfolge abgearbeitet werden sollen, wie von Neumann beschrieben. 
+TensorFlow wird nicht im traditionellen verwendet sonder im Sinne eines Datenflusses. 
+Hierbei werden die Bewegungen von Daten in einem Modellen beschrieben. 
+In diesem Modell existieren Operationen mit explizit definierten Ein und Ausgängen, wobei die Aktion in der Operation für das Modell verborgen bleibt wie eine \glqq black box\grqq. 
+Eine Operation wird hier ausgeführt sobald alle Eingänge vorhanden sind und valide sind. 
+Dies Art der Programmierung bietet von Haus aus die Möglichkeit der parallelen Ausführung, sowie ein Einfaches verteilen der Berechnungen auf ein dezentrales System. 
+
 \subsection{Operation}
 
 Die Operation stellt in jedem Knoten den Kern dar, wie zum Beispiel eine Matrix Multiplikation oder eine Addition.

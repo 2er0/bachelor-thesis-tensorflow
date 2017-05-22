@@ -135,7 +135,7 @@ Die gesamte Umsetzung ist im Codebeispiel \ref{fig:VerlustKonkreOpitimier} zu fi
 import tensorflow as tf
 
 # Konstanten Definition
-BATCH_SIZE = 64
+BATCH_SIZE = 20
 
 # Verlustberechnung
 with tf.name_scope("loss"):
@@ -281,64 +281,122 @@ for i in range(runing):
         sess.run(train, feed_dict=feed)
 \end{lstlisting}
 
-\section{Validierungsresultate}
+\section{Validierungsergebnisse}
 
 Durch längeres Trainieren kann sich das Netzwerk entwickeln und im Lauf der Epochen möglicherweise bessere Ergebnisse liefern. 
 Dies führt natürlich auch zu der Möglichkeit, dass das Netzwerk beginnt, Muster zu speichern anstatt zu lernen, auch bekannt als Overfitting. 
-In der Abbildung \ref{fig:runns} sind die Ergebniszustände am Ende der ersten Epoche sowie am Ende der 800sten Epoche zu sehen. 
+In der Abbildung \ref{fig:runns} sind die Ergebniszustände am Ende der 100sten Epoche sowie am Ende der 150sten Epoche zu sehen. 
 Im Gesamten kann nun festgestellt werden, dass das Netzwerk seine Arbeit relativ korrekt durchführt, wenn man die Größe und Dimension des Netzwerkes berücksichtigt. 
-\begin{lstlisting}[caption={Ergebnisse am Ende der ersten Epoche und am Ende der $800$ Epoche},label=fig:runns,captionpos=b,language=Python]
+\begin{lstlisting}[caption={Ergebnisse am Ende der 100sten Epoche und am Ende der 150sten Epoche},label=fig:runns,captionpos=b,language=Python]
+.... 100 Epochen ....
 # Ist-Ergebnis 
-[[ 0.75577307  0.4491435   0.35817528  0.47219035]
- [ 0.38678363  0.22854103  0.18176009  0.24241655]
- [ 0.62869424  0.36920831  0.30089244  0.38922197]
- [ 0.57703853  0.34728855  0.27663416  0.35776597]]
+[[ 0.66568404  0.38626809  0.35157766  0.4218266 ]
+ [ 0.68138432  0.40295351  0.27889865  0.40295351]
+ [ 0.676839    0.4047336   0.3197888   0.397911  ]
+ [ 0.66469301  0.41260486  0.29902736  0.42368389]]
 # Soll-Ergebnis
-[[ 0.67538255  0.36768322  0.32565034  0.41764497]
- [ 0.68114937  0.33625063  0.29470228  0.37676456]
- [ 0.6498429   0.33644043  0.34131129  0.42557183]
- [ 0.6834211   0.39188917  0.32566972  0.40061486]]
+[[ 0.69634622  0.37385067  0.32604855  0.38231322]
+ [ 0.70251364  0.34271669  0.32569841  0.3908942 ]
+ [ 0.67929983  0.36809221  0.2629534   0.36637166]
+ [ 0.71011567  0.39950868  0.3037816   0.3843804 ]]
 # Trainingsgenauigkeit
-0.0311323
-.... 800 Epochen ....
+0.0001787
+.... 150 Epochen ....
 # Ist-Ergebnis
-[[ 0.70133466  0.36625051  0.30835846  0.35559893]
- [ 0.68118954  0.38087887  0.30591199  0.37864769]
- [ 0.68135881  0.39241019  0.30538917  0.38810176]
- [ 0.69876605  0.37630308  0.30220476  0.42244384]]
+[[ 0.6832875   0.381525    0.32855     0.40945625]
+ [ 0.67460902  0.36388947  0.33187218  0.38741128]
+ [ 0.68836184  0.38701776  0.29144079  0.38995789]
+ [ 0.6741519   0.37355443  0.32906962  0.40749367]]
 # Soll-Ergebnis
-[[ 0.72585385  0.33306885  0.38976731  0.38570897]
- [ 0.68310326  0.36581968  0.32061663  0.38434095]
- [ 0.69111852  0.4122763   0.30096296  0.41956889]
- [ 0.67226801  0.40288592  0.32735435  0.35304291]]
+[[ 0.67965472  0.3785463   0.32667899  0.40375352]
+ [ 0.67585701  0.35977855  0.33285627  0.38183641]
+ [ 0.68490797  0.38329497  0.29059213  0.3844119 ]
+ [ 0.67040122  0.3710691   0.32904905  0.40210161]]
 # Trainingsgenauigkeit
-1.81956e-05
+5.38928e-05
 \end{lstlisting}
-Zum besseren Vergleichen befindet sich in der Abbildung \ref{fig:resultPic} eine direkte Vergleichsmöglichkeit. 
-Dabei wird der Sollzustand durch blaue Punkte gekennzeichnet und der Istzustand durch rote Punkte. 
-Erkennbar ist hier, dass es Abweichungen zwischen den Werten gibt. 
-Dies lässt sich aber durch die sehr schlanke Struktur, sowie durch die geringe Anzahl an Datensätzen erklären. 
-\begin{figure}
+Zum besseren Vergleichen befindet sich in der Abbildung \ref{fig:resultPic} ein direkter Vergleich. 
+Dabei wird der Istzustand durch blaue Punkte gekennzeichnet. 
+\begin{figure}[ht!]
 	\centering
-	\includegraphics[scale=0.5]{images/epoch-800-full.png}
+	\includegraphics[scale=0.5]{images/normal.png}
 	\caption{Ist- und Soll- Visualisierung des Ergebnisses}
 	\label{fig:resultPic}
 \end{figure}
+
+\section{Ergebnis}
+
 In der Abbildung \ref{fig:lossDiag} sind die gesamten Trainingsergebnisse in Form der Verluste aufgezeichnet. 
-In diesem Fall nähert sich der Verlustwert der $0$-Grenze, trotzdem scheint es gewisse Probleme zu geben. 
+Diese wiederum ergeben sich aus dem quadrierten Abstand zwischen Soll- und Ist-Punkt.
+In diesem Fall nähert sich der Verlustwert der $0$-Grenze, trotzdem scheint es ein Probleme zu geben mit diversen Bildern zugeben.
 Eine mögliche Interpretation wäre, dass die Lernrate mit '$1e-5$' noch zu hoch definiert wurde und sich das Netzwerk so zu schnell einem lokalen Minima genähert hat, obwohl es möglicherweise ein globales Minima gegeben hätte. 
 Eine andere Möglichkeit wäre, dass die Datensätze Bilder beinhalten, in welchem das Gesicht nicht vollständig zu erkennen ist oder dass diese stärker rotiert sind. 
 Sollte es nicht so viel Datensätze mit diesen Eigenheiten geben, so könnte dies ein weiterer Grund sein warum das Netzwerk springt. 
 Dies bedeutet, dass ein nicht stabiler Zustand vorhanden ist und möglicherweise ein Rauschen in den Daten nicht ignoriert wurde sondern darauf reagiert wird.
-In diesem Diagramm lässt sich erkennen, dass die Sprünge nicht regelmäßig sind, was auf ein Mischen der Datensätze am Ende jeder Epoche zurückgeführt werden kann. 
-\begin{figure}
+In der Abbildung \ref{fig:lossDiag} lässt sich erkennen, dass die Sprünge nicht regelmäßig sind, was auf ein Mischen der Datensätze am Ende jeder Epoche zurückgeführt werden kann. 
+\begin{figure}[ht!]
 	\centering
-	\includegraphics[scale=0.4]{images/loss-diagram-all.png}
-	\caption{Trainings-Verlustergebnisse in 800 Epochen}
+	\includegraphics[scale=0.4]{images/loss-diagram-all-new.png}
+	\caption{Trainings-Verlustergebnisse in 100 Epochen mit 350 Tests pro Epoche}
 	\label{fig:lossDiag}
-\end{figure}
+\end{figure} \phantom \newline
 
-\section{Ergebnis}
+\noindent
+Durch einen Test aller Datensätze und herausfinden des Besten und des Schlechtesten Ergebnisses, lässt sich feststellen warum das Netzwerk diverse Probleme mit Bildern besitzt. 
+Im Konkreten beinhalten die Daten einige wenige relativ dubiose Bilder. 
+Ein Beispiel dazu befindet sich in der Abbildung \ref{fig:dubio}. 
+Hier ist erkennbar, dass sich in den zwei oberen Bildern, mehrere Bilder auf einem Brett vorhanden sind. 
+Zum Einen ist hier das Problem, dass sich hier mehr als ein Gesichter im Bild befindet und das Netzwerk nicht für so einen Fall ausgelegt und trainiert worden ist. 
+Zum Anderen lässt sich erkennen, dass das Netzwerk hier ein anderes Bild bevorzugt, auf welchem ebenfalls Menschen abgebildet sind. 
+Dies führt zu der Annahme, dass das Netzwerk hier sich nicht die Positionen durch das Trainieren gemerkt hat und dies als Rauschen annimmt, sowie sich an die sonst zentralisierten Gesichter orientiert und trotzdem versucht hier zwei Augen zu finden, welche mehr oder weniger nebeneinander liegen sollten. 
+In den zwei unteren Bildern kann festgestellt werden, dass das Netzwerk ansonsten doch sehr akkuraten Ergebnisse liefert. 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.6]{images/Bad_2.png}
+	\caption{Schlechtester Fall in der 150sten Epoche; blauer Punkt = Soll-, roter Punkt = Ist-Wert}
+	\label{fig:dubio}
+\end{figure} \phantom \newline
+
+\noindent
+Im besten Fall erzielt das Netzwerk eine Abweichung von $5.1624589e-05$ was in der 150sten Epoche doch sehr annehmbar ist. 
+Das beste Ergebnis der 150sten Epoche ist in der Abbildung \ref{fig:good} ersichtlich. 
+An diesem Ergebnis lässt sich erkennen, dass das Netzwerk mehr oder weniger keine Probleme mit diversen Hautfarben und Kontrasten hat. 
+Des Weiteren werden Brillen ignoriert und auch leichte Neigungen nach links und rechts stellen keine Schwierigkeit dar. 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.6]{images/Good_2.png}
+	\caption{Bester Fall in der 150sten Epoche; blauer Punkt = Soll-, roter Punkt = Ist-Wert}
+	\label{fig:good}
+\end{figure} \phantom \newline
+
+\noindent
+Im Langzeittest bis zu der 800sten Epoche lässt sich feststellen, dass das Netzwerk noch genauer wird, wobei hier der zeitliche Aufwand für das Trainieren sehr viel Zeit beansprucht und zusätzlich das Problem des Overfittung akut werden könnte. 
+In der Tabelle \ref{tab:time} sind zwei Systeme aufgeführt auf welchem das Netzwerk trainiert wurde, wo der Berechnungsvorteil der GPU ersichtlich ist. 
+\begin{table}[htb]%[ht!]
+\centering% NICHT \begin{center}
+\begin{tabular}{c c c}
+%\hline 
+System & 1 Epoche & 100 Epochen \\ 
+\hline 
+Amazon EC2 Instanz, c3.8xlarge \\ Intel Xeon E5-2680 v2, 32 Kerne 60 GiB Ram \\ keine GPU & 466 & 46609 \\ 
+\hline 
+Dell Optiplex 790 \\ Intel Core 2 Duo CPU E8400, 2 Kerne, 8 GiB Ram \\ Nvidia TitanX, 12 GiB & 87 & 8700 \\ 
+%\hline 
+\end{tabular} 
+\caption{Aufschlüsselung der benötigten Berechnungszeiten pro 1er und 100 Epochen in Sekunden}
+\label{tab:time}
+\end{table} \phantom \newline
+
+\noindent
+Zur genaueren Feststellung der Funktionalität des Netzwerkes befindet sich in der Abbildung \ref{fig:meTest} ein Test mit einem noch komplett unbekannten Gesicht. 
+Dieses wurde für diesen Test manuell aufgenommen und konvertiert sowie im Weiteren in das Netzwerk als Testdatensatz eingefügt. 
+Wie zu erkennen ist, befindet sich das Netzwerk bei Epoche 150 bereits in einem Zustand der als verwendbar  einstuft werden kann. 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[scale=0.8]{images/me-test.png}
+	\caption{Testaufnahme mit Ergebnis des Netzwerkes}
+	\label{fig:meTest}
+\end{figure}
 
 \section{Graphenvisualisierung}
 
@@ -348,7 +406,7 @@ Dieser beinhaltet die $3$ Convolutional-Ebenen, die Transformation in eine flach
 Im Gesamten lässt sich ein Graph erkennen, in welchem der Datenfluss am Ende beginnt und nach oben läuft. 
 Am Rande der Abbildung befinden sich noch zwei zusätzliche Objekte, welche Verbindungen zu allen Objekten haben. 
 Diese werden automatisch durch TensorFlow hinzugefügt und werden für die Ausführung benötigt. 
-\begin{figure}
+\begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.28]{images/graph-run.png}
 	\caption{Aktueller Graphen des Beispiels}
