@@ -98,19 +98,19 @@ Ein Quellknoten muss die Ausführung abgeschlossen haben, bevor der darauf Warte
 
 \subsection{Datenfluss Programmierung}
 
-In traditionellen Programmierparadigmen, wie der Sequenziellen, Prozeduralen oder Imperativen, werden eine Reihe von Operationen definiert welche in einer speziellen Reihenfolge abgearbeitet werden sollen, wie von Neumann beschrieben. 
+In traditionellen Programmierparadigmen, wie dem Sequenziellen, Prozeduralen oder Imperativen, werden eine Reihe von Operationen definiert welche in einer speziellen Reihenfolge abgearbeitet werden sollen, wie von Neumann beschrieben. 
 TensorFlow wird nicht im traditionellen verwendet sonder im Sinne eines Datenflusses. 
-Hierbei werden die Bewegungen von Daten in einem Modellen beschrieben. 
-In diesem Modell existieren Operationen mit explizit definierten Ein und Ausgängen, wobei die Aktion in der Operation für das Modell verborgen bleibt wie eine \glqq black box\grqq. 
-Eine Operation wird hier ausgeführt sobald alle Eingänge vorhanden sind und valide sind. 
-Dies Art der Programmierung bietet von Haus aus die Möglichkeit der parallelen Ausführung, sowie ein Einfaches verteilen der Berechnungen auf ein dezentrales System. 
+Hierbei werden die Bewegungen von Daten in einem Modell beschrieben. 
+In diesem Modell existieren Operationen mit explizit definierten Ein- und Ausgängen, wobei die Aktion in der Operation für das Modell verborgen bleibt wie eine \glqq black box\grqq. 
+Eine Operation wird ausgeführt sobald alle Eingänge vorhanden und valide sind. 
+Dies Art der Programmierung bietet von sich aus die Möglichkeit der parallelen Ausführung, sowie ein Einfaches verteilen der Berechnungen auf ein dezentrales System. 
 
 \subsection{Operation}
 
 Die Operation stellt in jedem Knoten den Kern dar, wie zum Beispiel eine Matrix Multiplikation oder eine Addition.
 In TensorFlow selbst gibt es einen Unterschied zwischen Operation und Kernel.
 Operationen besitzen Attribute, welche spätestens zum Zeitpunkt der Grapherstellung bekannt sein müssen. 
-Ein solches Attribut wäre zum Beispiel, um einer Operation polymorphismus ermöglichen.  
+Ein solches Attribut wäre zum Beispiel, um einer Operation polymorphismus zu ermöglichen.  
 Der Kernel hingegen ist die Implementierung der Operation selbst. 
 Dieser kann auf verschiedenen Geräten ausgeführt werden, wie zum Beispiel auf der CPU oder GPU.
 Die Operationen und die dazugehörigen Kernels werden über einen Registrierungsmechanismus zur Verfügung gestellt. 
@@ -148,7 +148,7 @@ Diese reichen von Grunddatentypen wie 'Boolean' und 'String' bis hin zu verschie
 Sie stehen in verschiedenen Wertebereichen zur Verfügung. 
 Es gibt Gleitkommazahlen mit unterschiedlichen Genauigkeiten. 16-bit steht für eine halbe Genauigkeit und 64-bit Genauigkeit entspricht einer doppelten Genauigkeit.
 Der Grund für diese verschiedenen Anzahlen an Datentypen ist, dass diese zur Optimierung verwendet werden können. 
-Ein trainiertes Netzwerk, welches nie in den Wertebereich von 64-bit signierte Integers gekommen ist, wird diese möglicherweise nie benötigen. 
+Ein trainiertes Netzwerk, welches nie in den Wertebereich von 64-bit signierte Integers gekommen ist, wird diesen möglicherweise nie benötigen. 
 In einem solchen Fall können die Wertebereiche reduziert werden, zum Beispiel auf 32-bit signierte Integer, somit können die Berechnungen hochperformanter ausgeführt werden \cite{TensorFlow}. 
 
 \subsection{Operationen}
@@ -165,7 +165,7 @@ Diese stellen initialisierte Tensoren für den ersten Trainingsdurchlauf zur Ver
 	In diesem Schritt kann der Datentyp mit angepasst werden, wenn die Dimensionen übernommen werden sollen.
 	\item \textit{tf.ones} agiert genau wie der Tensor \textit{tf.zeros}, mit dem Unterschied, dass alles mit $1$ gefüllt wird.
 	\item \textit{tf.ones\_like} repräsentiert dasselbe wie \textit{tf.zeros\_like}, jedoch mit dem Wert $1$.
-	\item \textit{tf.fill} fügt eine neue Dimension in einen Tensor ein, mit dem gegebenen Skalar, der für die Werte eingesetzt werden sollen.
+	\item \textit{tf.fill} fügt eine neue Dimension in einen Tensor ein, mit dem gegebenen Skalar, der für die Werte eingesetzt werden soll.
 	\item \textit{tf.constant} liefert einen Tensor mit selbst definierbaren Werten. 
 	Diese Werte können sowohl eine Liste sein, als auch ein einzelner Wert, welcher beliebig eingefügt werden soll. 
 \end{itemize}
@@ -187,14 +187,14 @@ So wird der Startzustand oft mithilfe von Zufallszahlen hergestellt.
 	\item \textit{tf.random\_normal} liefert einen Tensor mit Zufallswerten anhand einer Normalverteilung (Gaussian). 
 	Die Dimension des Ergebnistensors muss spezifiziert werden, der Median, die Standardabweichung sowie der resultierende Datentyp können angegeben werden. 
 	\item \textit{tf.truncated\_normal} verhält sich gleich zu \textit{tf.random\_normal} mit dem Unterschied, dass bei Werten die größer als $2$-mal die Standardabweichung sind, diese ignoriert werden und ein neuer Wert ausgewählt wird.
-	\item \textit{tf.random\_uniform} generiert einen Tensor in welchem Werte gleich wahrscheinlich vorkommen.
-	Die Werte werden aus dem spezifizierten Wertebereich genommen, wobei diese exklusive der oberen Grenze entsprechen (siehe Beispiel '$[0, 1)$').
+	\item \textit{tf.random\_uniform} generiert einen Tensor, in welchem Werte gleich wahrscheinlich vorkommen.
+	Die Werte werden aus dem spezifizierten Wertebereich genommen, wobei diese exklusiv der oberen Grenze entsprechen (siehe Beispiel '$[0, 1)$').
 	\item \textit{tf.random\_shuffle} erstellt eigenständig keine neuen Werte, sondern mischt einen Tensor anhand seiner ersten Dimension durch. 
 	\item \textit{tf.random\_crop} liefert einen zufälligen Teil eines Tensors mit derselben Anzahl an Dimensionen jedoch mit der spezifizierten Größe.
 \end{itemize} \phantom \newline
 
 \noindent
-Einige dieser Funktionen benötigen sogenannte Seed-Werte, welche für die zufällige Verteilung den Startwert benötigt wird. 
+Einige dieser Funktionen benötigen sogenannte Seed-Werte, welche für die zufällige Verteilung der Startwert benötigt werden. 
 Im Falle von TensorFlow beruht dies auf zwei Werten, einer wird für den Graphen spezifiziert, der andere für Operationen selbst. 
 Der Wert für den Graphen kann mit \textit{tf.set\_random\_seed} gesetzt werden. 
 Für weitere Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Constants, Sequences, and Random Values  \url{www.tensorflow.org/api_guides/python/constant_op}}
@@ -222,7 +222,7 @@ Bei diesem Vorgang kann ein Fehler entstehen, welcher in einem \textit{TypeError
 %	Dabei kann für das Einebnen der Dimensionen eine Kurzschreibweise verwendet werden, mit $-1$ als Zielausführung der Gestalt.
 	\item \textit{tf.squeeze} entfernt ganze Dimensionen aus dem gegebenen Tensor. 
 	Ohne Achsenangabe werden alle Dimensionen mit der Größe $1$ entfernt oder es werden die spezifizierten Dimensionen herausgenommen.
-	\item \textit{tf.expand\_dims} gliedert eine Dimensionen in einen Tensor wieder ein. 
+	\item \textit{tf.expand\_dims} gliedert eine Dimension in einen Tensor wieder ein. 
 	Standardmäßig an der Indexstelle $0$, außer es wurde spezifiziert.
 \end{itemize}
 
@@ -269,7 +269,7 @@ Zu diesen gibt es noch weitere, welche in diversen Fällen benötigt werden, zum
 
 \noindent
 Die Anzahl an mathematischen Funktionen ist sehr viel größer, als die hier Erwähnten. 
-Die angeführten repräsentieren lediglich die meist verwendeten Operationen. 
+Die hier Angeführten repräsentieren lediglich die meist verwendeten Operationen. 
 Für weitere Informationen steht die online Dokumentation zur Verfügung. \footnote{Online Dokumentation: Math  \url{www.tensorflow.org/api_guides/python/math_ops}}
 
 \subsubsection{Flusskontrolle}
@@ -284,10 +284,10 @@ Zu beachten ist, dass diese Operationen den Fluss durch den Graphen stark beeint
 Diese werden aber als Logik Operationen ausgeführt und liefern immer Wahrheitswerte, wie eine logische Und-Verknüpfung auf Binärebene.
 
 \paragraph{Vergleichsoperatoren} sind neben den logischen Operatoren weitere Vergleichsoperatoren, welche zur Verfügung stehen. 
-Hierzu zählen \textit{tf.equal} sowie die verneinte Variante, \textit{tf.less} und \textit{tf.greater} mit jeweils einer gleichen Version. 
+Hierzu zählen \textit{tf.equal} sowie die verneinte Variante \textit{tf.less} und \textit{tf.greater} mit jeweils einer gleichen Version. 
 Diese Operatoren geben wiederum einen Tensor mit Wahrheitswerten aus.
 
-\paragraph{Debugging Operationen} ermöglichen es in den Graphen Kontrollstrukturen einzubauen, welchen auf diverse Bedingungen reagieren.
+\paragraph{Debugging Operationen} ermöglichen es in den Graphen Kontrollstrukturen einzubauen, welche auf diverse Bedingungen reagieren.
 So kann überprüft werden, ob ein Tensor Werte mit undefinierten Zustand beinhaltet. 
 Die Funktion \textit{tf.Print} ermöglicht es Tensoren auszugeben, wenn diese als Funktion im Graphen evaluiert werden. 
 Aktuell sind die Möglichkeiten einen Graphen zu debuggen relativ eingeschränkt. 
@@ -296,10 +296,10 @@ Grund dafür ist, dass der Graph, in seiner rohen Darstellung schwer zu verstehe
 \subsubsection{Images}
 
 \paragraph{Encodieren und Decodieren} von Bilddateien wird in TensorFlow direkt unterstützt.
-Dabei können Bildern von den Datentypen Gif, Jpeg und PNG gelesen werden, sowie das Erstellen von Bildern in diese Datentypen, ausgenommen Gif.
+Dabei können Bilder der Datentypen Gif, Jpeg und PNG gelesen werden, sowie das Erstellen von Bildern in diese Datentypen, ausgenommen Gif.
 In allen Fällen wird das Bild als Zeichenkette mit Pfad angegeben. 
 
-\paragraph{Größenänderung} von Bildern ist erforderlich, da im laufe der Zeit sehr wahrscheinlich größere Bilder verwendet werden, diese aber nicht in das fixe Raster des Netzwerkes passen. 
+\paragraph{Größenänderung} von Bildern ist erforderlich, da im Laufe der Zeit sehr wahrscheinlich größere Bilder verwendet werden, diese aber nicht in das fixe Raster des Netzwerkes passen. 
 Für die Größenänderung stehen mehrere Implementierungen mit unterschiedlichen Algorithmen zur Verfügung.
 
 \paragraph{Beschneiden} wird dann benötigt, wenn aus einem Bild ein Teil herausgenommen werden soll. 
@@ -307,8 +307,7 @@ Zum Herausnehmen stehen wiederum mehrere Operationen zur Verfügung, welche mit 
 
 \paragraph{Flippen, Rotieren und Transponieren} ermöglicht es, Bilder zu verändern, sodass es für einen Menschen mehr oder weniger noch dieselbe Bedeutung hat, jedoch nicht mehr für einen Computer. 
 Für diesen stellt ein rotiertes oder gespiegeltes Bild ein neues Bild dar. 
-Diese Technik wird beim Trainieren von Bilderkennungen eingesetzt, um zum Beispiel aus geringen Datenmengen, die zum Trainieren verfügbar sind, mehrere zu generieren.
-\phantom \newline
+Diese Technik wird beim Trainieren von Bilderkennungen eingesetzt, um zum Beispiel aus geringen Datenmengen, die zum Trainieren verfügbar sind, mehrere zu generieren. \phantom \newline
 
 \noindent
 Zusätzlich gibt es noch die Möglichkeit die Farbkanäle des Bildes zu ändern sowie das Bild nachzujustieren. 
@@ -360,7 +359,7 @@ TensorFlow bietet eine breite Unterstützung beziehungsweise eine große Impleme
 	\label{fig:Sigmoide Aktivierungsfunktion}
 \end{figure}
 	\item \textit{tf.relu} ersetzt mittlerweile immer mehr die sigmoiden Funktionen. 
-	Ein Grund dafür ist, dass die Berechnung einer sigmoiden Funktionen Ressourcen intensiver ist und da negative Werte meist nicht gewollt sind. 
+	Ein Grund dafür ist, dass die Berechnung eines Wertes in einer sigmoiden Funktionen Ressourcen intensiver ist und dass negative Werte meist nicht gewollt sind. 
 	Die rektifiziert lineare Funktion ist sehr viel einfacher, da Werte unter $0$ als $0$ weitergegeben werden und Werte darüber linear sind. 
 	Somit resultiert ein Eingangswert von $-0.1$ in einer $0$ und ein Wert von $0.5$ in $0.5$.
 	Wie in der Abbildung \ref{fig:rektifiziert lineare Aktivierungsfunktion} ersichtlich ist, führt dies bei einem negativen Wert dazu, dass sich eine Multiplikation mit der Gewichtung in der nächsten Ebene ebenfalls in einer $0$ sich repräsentiert und somit in der Addition ignoriert wird.
@@ -413,7 +412,7 @@ Dies entspricht in etwa dem, als ob ein Auge auf etwas reagiert hätte.
 \end{itemize}
 Des Weiteren stehen noch andere spezialisierte Versionen implementiert zur Verfügung.
 
-\paragraph{Bündelung} wird verwendet, um Daten zu vereinfachen wie zum Beispiel \glqq MaxPool\grqq in Convolutional Netzwerken. 
+\paragraph{Bündelung} wird verwendet, um Daten zu vereinfachen, wie zum Beispiel \glqq MaxPool\grqq in Convolutional Netzwerken. 
 Eine Faltungsoperation führt dazu, dass aus einem Bild viele mit unterschiedlichen Filtern erzeugt werden.
 Eine Bündelung ermöglicht eine Vereinfachung der Daten, wobei die Schlüsselinformationen dennoch erhalten bleiben sollen. 
 %die Schlüsselinformationen jedoch bleiben dennoch erhalten. 
@@ -426,7 +425,7 @@ Diese Art der Verlustfeststellung wird bei Regressionsproblemen benötigt, sie h
 	\item \textit{tf.nn.l2\_loss} berechnet die Hälfte der L2 Norm für den gegebenen Tensor. % deinen Wert, welcher den Inhalt des Tensors repräsentiert. 
 	Im Falle dieser Implementierung wird keine Wurzel des Quadrats berechnet, sondern das Ergebnis der Summierung durch $2$ dividiert.
 	\item \textit{tf.nn.log\_poisson\_loss} berechnet den logarithmischen Wahrscheinlichkeitsverlust zwischen dem Ergebnis und einem erwarteten Ergebnis. 
-	Diese Methode liefert nicht den exakten Verlust, dies stellt in Bezug auf Optimizer (\ref{training}) kein das Problem dar. 
+	Diese Methode liefert nicht den exakten Verlust, dies stellt in Bezug auf Optimizer (\ref{training}) aber kein Problem dar. 
 	Sollte trotzdem ein genauerer Wert bentötigt werden, muss die aufwändige Stirling Approximation \cite{feller1968introduction} aktiviert werden. 
 \end{itemize}
 
@@ -435,11 +434,11 @@ TensorFlow besitzt deshalb mehrere Hilfsfunktionen, welche das Arbeiten mit Klas
 \begin{itemize}
 	\item \textit{tf.nn.softmax} bildet alle Ergebnisse auf einen prozentualen Bereich ab. 
 	So ergeben alle möglichen Ausgänge in Summe $100\%$, was so viel bedeutet, dass ein Ergebnis eine gewisse Wahrscheinlichkeit besitzt. 
-	\item \textit{tf.nn.softmax\_cross\_entropy\_with\_logits} bietet die Möglichkeit, den Fehlerwert für Diskret Klassifikationen zu berechnen wo jedes Ergebnis genau einer Klasse zugeordnet werden muss. 
+	\item \textit{tf.nn.softmax\_cross\_entropy\_with\_logits} bietet die Möglichkeit, den Fehlerwert für Diskret-Klassifikationen zu berechnen, wobei jedes Ergebnis genau einer Klasse zugeordnet werden muss. 
 	%bietet einem die Möglichkeit auf nicht skalierte Daten ein Ergebnis zu berechnen, welches eine \textit{tf.nn.softmax} Berechnung liefern würde. 
-	Diese Funktion kann zum Trainieren verwendet werden, und benötigt die unskalierten Werte des Netzwerkes und liefert für jeden Eintrag im Batch einen Fehlerwert. 
+	Diese Funktion kann zum Trainieren verwendet werden, benötigt die unskalierten Werte des Netzwerkes und liefert für jeden Eintrag im Batch einen Fehlerwert. 
 	%Zusätzlich wird eine weitere sogenannte 'Cross Entropy' Operation ausgeführt, in welcher das Ergebnis für Optimierungen benötigt wird. 
-	Die gesamte Methode berücksichtigt im gesamten Prozess Spezialfälle, welche schwer manuell zu berücksichtigen sind. 
+	%Die gesamte Methode berücksichtigt im gesamten Prozess Spezialfälle, welche schwer manuell zu berücksichtigen sind. 
 \end{itemize}
 \phantom \newline
 
@@ -458,9 +457,9 @@ Des Weiteren gibt es Implementierungen für rekursive neuronale Netzwerke und no
 In ihr werden alle Operationen ausgeführt und alle Tensoren evaluiert. 
 Dieser Session wird ein Graphen mitgegeben, in dem der Endpunkt des Graphen angeben wird. 
 Zur Ausführungszeit führt die Engine alle Operationen bis zum definierten Endpunkt des Graphen durch und evaluiert die Tensoren in diesem. 
-Die Engine führt dabei alles bis zu dem gegebenen Punkt aus, welcher als Ausgangspunkt übergeben wurde. 
+Die Engine führt dabei alles bis zum gegebenen Punkt aus, welcher als Endpunkt übergeben wurde. 
 Sollte der Graphen weiterführen, so wird dieser nicht mehr durchlaufen. 
-Dies bietet eingeschränkte Möglichkeit, um das aufgebaute System zu testen. 
+Dies bietet eine eingeschränkte Möglichkeit, um das aufgebaute System zu testen. 
 Eine Session wird mit \textit{tf.Session} erstellt und stellt die Funktionalität zum Ausführen, sowie die Möglichkeit, diese zu schließen zur Verfügung. 
 Mit \textit{tf.InteractiveSession} wird ebenfalls eine Session erstellt, diese wird aber zugleich als Basissession installiert. 
 Dies bietet die Möglichkeit, interaktiv in einer Kommandozeile Operationen auszuführen, ohne die Session expliziert zu übertragen und anzusprechen. 
@@ -472,7 +471,7 @@ Die Tensoren und Operatoren bieten in diesem Fall die Option sich und den Graphe
 \label{training}
 
 \paragraph{Optimizers} stellen einen weiteren Kernteil des Systems dar. 
-TensorFlow stellt einen Menge an implementierten Optimierungsalgorithmen zur Verfügung. 
+TensorFlow stellt eine Menge an implementierten Optimierungsalgorithmen zur Verfügung. 
 Diese Operationen trainieren den Graphen mit der gewählten Technik des gewählten Algorithmus. 
 Diese Implementierungen versuchen die gegebenen Kosten eines Graphen zu minimieren. 
 Bei der Verwendung von \textit{minimize} führt die Operation zwei Schritte in einem aus. 
@@ -481,7 +480,7 @@ Diese Schritte können in einzelne zerlegt werden, wenn mit den berechneten Grad
 Die Berechnung wird dabei mit \textit{opt.compute\_gradients} ausgelöst, was eine Liste mit Paaren liefert. 
 Diese Liste kann bearbeitet werden, aber auch zu Testzwecken mit protokolliert werden. 
 Die Gradienten werden im dritten Schritt mit \textit{opt.apply\_gradients} auf die Variablen angewendet. 
-Jeder Optimierungsalgorithmen verfügt über Eigenheiten und spezielle Verhalten, welche bei der Auswahl des Optimierers berücksichtigt werden sollten.
+Jeder Optimierungsalgorithmus verfügt über Eigenheiten und spezielle Verhalten, welche bei der Auswahl des Optimierers berücksichtigt werden sollten.
 
 \paragraph{Gradient Computation} umfasst Methoden, die das Verhalten des Graphen und der Optimierung beeinflussen. 
 Diese Methoden ermöglichen es, Einfluss auf die Gradientenberechnung sowie auf dessen Evaluierung zu nehmen. 
@@ -493,7 +492,7 @@ Dadurch besteht die Option, die Berechnungen auf mehrere Geräte zu verteilen un
 %Diesen werden dann Tasks auf Aufgaben zugewiesen, wobei zu den Knoten definiert werden muss was zu tun ist.
 
 \noindent
-Einige Komfortmethoden ermöglichen es einfacher eine Session zu erstellen und alle Variablen zu initialisieren, sowie im Anschluss zu trainieren, wobei eine Stoppbedingung mitdefiniert werden kann.
+Einige Komfortmethoden ermöglichen es, einfacher eine Session zu erstellen und alle Variablen zu initialisieren sowie im Anschluss zu trainieren, wobei eine Stoppbedingung mitdefiniert werden kann.
 In diesem Zuge können Hooks einfach in das System integriert werden, welche aufgerufen werden.
 
 \noindent
@@ -515,11 +514,11 @@ Dies hat zur Folge, dass ein verwendbarer Graphen schneller vorhanden ist, diese
 
 \subsection{TensorBoard}
 
-TensorBoard stellt eine Erweiterung des TensorFlow-System dar, im Sinne einer Toolerweiterung. 
+TensorBoard stellt eine Erweiterung des TensorFlow-Systems dar, im Sinne einer Toolerweiterung. 
 Jeder Graph kann in ein File serialisiert werden, welches als Event-File bezeichnet wird. 
 Dies hat zur Folge, dass dieser auch wieder geladen werden kann. 
 Bei dieser Serialisierung werden alle Informationen des Graphen inklusive der Gewichtungen in die definierte Datei gespeichert.
-TensorBoard bietet nun die Möglichkeit, diesen Graphen zu laden und diesen visualisiert darzustellen.
+TensorBoard bietet nun die Möglichkeit, diesen Graphen zu laden und zu visualisieren. 
 Zu den Graph-Informationen kann jeder Tensor mitgespeichert werden und als Diagramm visualisiert werden, mit einer zeitlichen Komponente. 
 Dies ermöglicht es, den Verlauf des Trainings zu analysieren. 
 Aus einem Graphen können mehrere dieser Event-Files erzeugt werden sowie Zustände festgehalten werden. 
@@ -555,36 +554,35 @@ Diese Technik der Namensbereiche ermöglicht es einem, den Graphen zu strukturie
 \paragraph{Graph} bildet den Punkt zum Visualisieren des Graphen selbst. 
 Hierbei werden aus dem Event-File alle Informationen zum Aufbau des Graphen geladen und visualisiert. 
 Durch die Verwendung der Namensbereiche werden Gruppen gebildet, was dazu führt, dass die Gruppierungen sich möglicherweise in Ebenen widerspiegeln. 
-Der dargestellte Graphen kann nach dem Einlesen und Generieren interaktiv analysiert werden. 
+Der dargestellte Graph kann nach dem Einlesen und Generieren interaktiv analysiert werden. 
 So können Bereiche vergrößert und geöffnet werden und die definierten Tensoren betrachtet werden. 
-Dieses Tool bietet zusätzliche Funktionalitäten, wie das Darstellen, wo am meisten Rechenzeit benötigt wurde, sowie auch welche Berechnungen auf welchem Gerät ausgeführt worden sind. 
-Alle diese zusätzlichen Funktionalitäten benötigen Daten, welchen beim Erstellen des Graphen mit definiert werden müssen und auch mit in das Event-File serialisiert werden müssen. 
+Dieses Tool bietet zusätzliche Funktionalitäten, wie das Darstellen, an welchem Punkt die meiste Rechenzeit benötigt wurde, sowie auch welche Berechnungen auf welchem Gerät ausgeführt worden sind. 
+Alle diese zusätzlichen Funktionalitäten benötigen Daten, welche beim Erstellen des Graphen mit definiert werden müssen und auch mit in das Event-File serialisiert werden müssen. 
 
 \paragraph{Scalars} repräsentiert den Bereich, in welchem die Lernergebnisse dargestellt werden können. 
 Dies umfasst die Präzision sowie die Verluste. 
-Das Ziel des Graphen ist im Grunde immer ,die Präzision zu erhöhen und die Verluste zu minimieren. 
+Das Ziel des Graphen ist im Grunde immer, die Präzision zu erhöhen und die Verluste zu minimieren. 
 Aus diesem Grund sollte sich die Genauigkeit an $1$ annähern, außer die Definition dieser Berechnung liefert andere Werte oder besitzt einen anderen Grenzwert. 
 Der Verlust sollte sich im Laufe des Trainings an $0$ annähern, denn dadurch spiegelt sich die Fehlerquote wider. 
-Dies hängt aber wieder von dem entwickelten Graphen ab und kann sich somit einem anderen Wert annähern.
+Dies hängt aber wieder vom entwickelten Graphen ab und kann sich somit einem anderen Wert annähern.
 \phantom \newline
 
 \noindent
 TensorBoard bietet die Möglichkeit, mehrere Graphen und ihre Eventdaten zu visualisieren. 
 In diesem Fall werden alle gelesenen Events in einer Liste aufgeführt, in der ausgewählt werden kann, welche Ausführungen in den Diagrammen dargestellt werden sollen. 
-In Zuge dessen können diese Diagramme zusammengeführt werden und so die Ergebnisse direkt verglichen werden. 
+Im Zuge dessen können diese Diagramme zusammengeführt werden und so die Ergebnisse direkt verglichen werden. 
 Dies hat den Vorteil, dass ein Netzwerk mit Hyperparametern automatisch getestet werden kann und jede Kombination ein eigenes Event-File erzeugt. 
-Solche Testdurchläufe benötigen mehr Zeit, abhängig von den definierten Kombinationen an Parametern, muss $x * y * ...$ durch getestet werden.
-\phantom \newline
+Solche Testdurchläufe benötigen mehr Zeit, abhängig von den definierten Kombinationen an Parametern, muss $x * y * ...$ durchgetestet werden. \phantom \newline
 
 \noindent
-Die Informationen für die Lernrate sowie des Verlustes werden in diesem Fall am Besten festgehalten. 
+Die Informationen für die Lernrate sowie des Verlustes werden in diesem Fall am besten festgehalten. 
 Dies wird ermöglicht, indem die Tensoren, welche die Lernrate sowie den Verlust beinhalten, in die Methode \textit{tf.summary.scalar} jeweils gefüttert werden. 
 Bei jedem Schreibzyklus in das Event-File werden diese Informationen dann mit übernommen und stehen daraufhin in TensorBoard zur Verfügung.
 
 \paragraph{Distributions} stellt eine weiter Funktionalität von TensorBoard dar.  %\url{https://duckduckgo.com/?q=tensorboard+histogram&ia=qa}
-Diese Funktionalität war in den Versionen von 'r1.0' noch unter dem Punkt Histogramm. 
+Diese Funktionalität war in den Versionen vor 'r1.0' noch unter dem Punkt Histogramm. 
 Im Allgemeinen werden Tensoren mit der Methode \textit{tf.summary.histogram} wieder in das Event-File serialisiert. 
-Das Ergebnis stellt eine Verteilung dar für die Werte dar, die im Tensor vorkommen. 
+Das Ergebnis stellt eine Verteilung für die Werte dar, die im Tensor vorkommen. 
 %Dabei werden alle Werte auf eine Gaussian Glockenkurve projiziert. 
 Das Diagramm repräsentiert auf der X-Achse die Anzahl der Schritte, die durchgeführt worden sind. 
 Die Y-Achse gibt die konkreten Werte wieder, welche sich im Tensor über die Zeit befinden. 
@@ -595,10 +593,10 @@ Die Y-Achse gibt die konkreten Werte wieder, welche sich im Tensor über die Zei
 	\label{fig:Verteilungsdiagram}
 \end{figure}
 Im Diagramm \ref{fig:Verteilungsdiagram} wird ein Tensor mit 100 Werten dargestellt. 
-Dieser Tensor wurde mit einer Normalverteilung initialisiert, wobei die Standardabweichung bei $0.5$ liegt und der Median zu Beginn bei $0.2$ liegt, mit einer geringen Abweichung. 
+Dieser Tensor wurde mit einer Normalverteilung initialisiert, wobei die Standardabweichung bei $0.5$ liegt und der Median zu Beginn bei $0.2$, mit einer geringen Abweichung. 
 Die Linien in diesem Diagramm und ihre Einfärbungen präsentieren die Verteilung der Werte im beobachteten Tensor. 
 Die Verteilung muss von unten nach oben gelesen werden, dabei ergibt die unterste Linie den Minimalwert, der vorgekommen ist. 
-Die nächste Linie besagt, dass sich 7\% der Werte im Bereich zwischen dem geringsten und der zweiten Linie sich befinden, was inklusiv des geringsten Wertes ist.  
+Die nächste Linie besagt, dass sich 7\% der Werte im Bereich zwischen dem geringsten und der zweiten Linie befinden, was inklusiv des geringsten Wertes ist.  
 Der nächste Bereich definiert, wie in einer gaußschen Normalverteilung, dass sich bis zum Ende dieses Bereiches 16\% darin befinden. 
 Im Gesamten sind dies $9$ Markierungen mit 8 Bereichen, welche zusammen alle Werte im Tensor widerspiegeln. 
 Diese Folge an prozentualen Anteilen lauten wie folgend: $min, 7\%, 16\%, 31\%, 50\%, 69\%, 84\%, 93\%, max$. 
@@ -646,31 +644,29 @@ Im Grunde präsentiert diese Ansicht die Daten nur auf eine andere Art und Weise
 	\caption{Verteilung der Werte in dem Tensor in einem Histogramm}
 	\label{fig:Histogram}
 \end{figure}
-Wie auch in der anderen Darstellung werden die Schritte, direkt auf einer Achse dargestellt. 
+Wie auch in der anderen Darstellung werden die Schritte direkt auf einer Achse dargestellt. 
 Im Falle des Histogramm \ref{fig:Histogram} ist dies die Achse, welche sich dreidimensional aus dem Hintergrund des Bildes in den Vordergrund zieht. 
 Die horizontalen Achsen, welche zu jedem Schritt gezeichnet werden, projizieren ihre Wertebereiche immer auf die vorderste Achse. 
 Auf dieser wird der Wertebereich abgebildet, in welchem sich die Werte im Tensor befinden. 
 Die Erhebungen und die sich darunter bildenden Flächen geben die Verteilung der Werte wieder. 
 So wird beim Überfahren eines Schrittes mit der Maus dieser aktiviert, wie im Histogramm \ref{fig:Histogram} ersichtlich ist. 
 Im Falle dieses Diagramms und dieser Stelle bedeutet das, dass sich in der Nähe des Wertes $3.00$ ungefähr $12.2$ Einträge im Tensor befinden. 
-Anders ausgedrückt haben $12.2$ konkrete Werte im Tensor den Wert $3.00$, oder einen naheliegenden. 
-Durch die Verteilung der Werte entsteht nun der Fall, dass ein Teil der Einträge auch zu einem Wertebereich vorher oder nachher auch gehören kann. 
+Anders ausgedrückt haben $12.2$ konkrete Werte im Tensor den Wert $3.00$ oder einen naheliegenden. 
+Durch die Verteilung der Werte entsteht nun der Fall, dass ein Teil der Einträge auch zu einem Wertebereich vorher oder nachher gehören kann. 
 Dieses Diagramm stellt die Verteilung in Wertebereiche dar, wobei alle vertikalen Werte in einem Schritt die Anzahl der Werte im Tensor ergeben müssen. 
 Im Falle dieses Beispiels ergeben sie aufsummiert einen Wert von $100.044$, was gerundet die $100$ Einträge im Tensor bestätigt. 
 Die Aufteilung der Werte in Wertebereiche mit Teilzuweisungen erklärt auch den Schrittverlauf im Histogramm \ref{fig:Histogram}. 
-Hier ist ersichtlich, dass sich die Verteilungen und Zugehörigkeiten immer ein wenig zum vorhergehenden abweichen, obwohl in diesem Beispiel in jedem Schritt konstant $0.2$ zu jedem Wert hinzu addiert worden ist. 
-Dies lässt sich bei einer geringen Anzahl an Werten, wie hier mit $100$ leichter beobachten, als bei einer sehr viel höheren. 
-\phantom \newline
+Hier ist ersichtlich, dass sich die Verteilungen und Zugehörigkeiten immer ein wenig vom vorhergehenden abweichen, obwohl in diesem Beispiel in jedem Schritt konstant $0.2$ zu jedem Wert hinzu addiert worden ist. 
+Dies lässt sich bei einer geringen Anzahl an Werten, wie hier mit $100$ leichter beobachten, als bei einer sehr viel höheren. \phantom \newline
 
 \noindent
 TensorBoard bietet noch weitere Möglichkeiten, wie Bilder- oder Soundinhalte mit in das Event-File zu geben, um diese dann in Tensorboard weiter zu verwenden. 
 So können diese Inhalte durch den Graphen gesendet werden und dabei beobachtet werden. 
-Die letzte Erweiterung in Tensorboard ist der Punkt mit 'Embedding' \footnote{Online Dokumentation: Emeddings \url{www.tensorflow.org/get_started/embedding_viz}}, wo gelernte Informationen, so wie sie vom Graphen gruppiert worden sind, dargestellt werden können. 
-\phantom \newline
+Die letzte Erweiterung in Tensorboard ist der Punkt mit 'Embedding' \footnote{Online Dokumentation: Emeddings \url{www.tensorflow.org/get_started/embedding_viz}}, wo gelernte Informationen, so wie sie vom Graphen gruppiert worden sind, dargestellt werden können.  \phantom \newline
 
 \noindent
 Dieses Kapitel repräsentiert die grundsätzliche Funktionalität des TensorFlow-Systems. 
-Dabei wurde auf die Grundlagen und die am Meisten benötigten Methoden eingegangen. 
+Dabei wurde auf die Grundlagen und die am meisten benötigten Methoden eingegangen. 
 Ihr Verständnis stellt die Grundlage für das nächste Kapitel dar. 
 In diesem wird ein praktisches Beispiel mit TensorFlow erläutert. 
 

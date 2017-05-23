@@ -3,10 +3,10 @@
 
 \section{Ausgangssituation}
 
-Gesichtserkennung spielt im 21sten Jahrhundert eine immer größer werdende Rolle. 
+Gesichtserkennung spielt im 21. Jahrhundert eine immer größer werdende Rolle. 
 So existieren Herausforderungen mit den Schlüsselpunkten im Gesicht eines Menschen, welche wieder für Gesichtserkennungen verwendet werden können. 
-Im Gesicht eines Menschen wird zum Beispiel die Iris in beiden Augen als Schlüsselpunkt definiert, aber auch dich Nasenspitzen und die Mundwinkel sowie viele weitere.
-Diese Schlüsselpunkte variieren sehr stark von einem Individuum zum Nächsten, aber auch jedes Individuum selbst hat eine Menge an Variationen. 
+Im Gesicht eines Menschen wird zum Beispiel die Iris in beiden Augen als Schlüsselpunkt definiert, aber auch die Nasenspitze und die Mundwinkel sowie weitere.
+Diese Schlüsselpunkte variieren sehr stark von einem Individuum zum Nächsten, jedes Individuum hat eine Menge an Variationen. 
 So spielt hier die Größe, die Position, die Neigung sowie die Beleuchtung eine Rolle und erzeugt eine fast unendliche Menge an Möglichkeiten. 
 Mit Computer Vision konnten sehr viele Verbesserungen in diesem Bereich erzielt werden, wobei noch sehr viel Raum für Forschung und Verbesserungen bleibt. \newline
 
@@ -37,8 +37,8 @@ mouth_center_top_lip, mouth_center_bottom_lip
 Jeder diese Schlüsselpunkte besteht aus einer X und einer Y Koordinate. 
 Diese Datei besitzt zusätzlich in der $31.$ Spalte das Bild mit dem dazugehörigen Gesicht.
 Das Bild ist encodiert abgelegt und besteht aus $96 * 96$ Werten. 
-In diesem Sinne stehen nur Bilder in Graustufen zur Verfügung mit einer Auflösung von $96 * 96$ Pixel und einer Farbtiefe von $[0, 255]$ zur Verfügung, wie in der Abbildung \ref{fig:ausgangsdaten} zu erkennen ist. 
-Für diese Aufgabe werden im Grunde auch nur die Konturen benötigt, was somit den einen Farbkanal erklärt, aber auch die Aufgabe schwieriger macht, denn mehrere Farbkanäle könnten mit Filter bearbeitet werden und so noch weiter Konturen hervorheben. 
+In diesem Sinne stehen nur Bilder in Graustufen zur Verfügung mit einer Auflösung von $96 * 96$ Pixel und einer Farbtiefe von $[0, 255]$, wie in der Abbildung \ref{fig:ausgangsdaten} zu erkennen ist. 
+Für diese Aufgabe werden im Grunde auch nur die Konturen benötigt, was somit den einen Farbkanal erklärt, aber auch die Aufgabe schwieriger macht, denn mehrere Farbkanäle könnten mit Filter bearbeitet werden und so noch weitere Konturen hervorheben. 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.75]{images/ausgangsDaten.png}
@@ -72,10 +72,10 @@ Zu Beginn diese Daten müssen vorbereitet und normalisiert werden.
 Um die Problemgröße zu verringern, empfiehlt es sich, die Aufgabe auf mehrere Netzwerke aufzuteilen. 
 Dies hat einen zusätzlichen Grund, da die Trainingsdaten nicht komplett sind und somit nicht zu allen Bildern alle 15 Schlüsselpunkte vorhanden sind. 
 Sollte dies ignoriert werden, würde sich die Anzahl der zur Verfügung stehenden Datensätze von $7049$ auf $2140$ reduzieren. 
-Ein weiterer Grund für die Auftrennung der Problemstellung ist, damit Aufgaben leichter verteilt werden können und die Netzwerke noch genauer angepasst werden könnten. \newline
+Ein weiterer Grund für die Auftrennung der Problemstellung ist, dass Aufgaben leichter verteilt werden können und die Netzwerke noch genauer angepasst werden könnten. \newline
 
 \noindent
-Unter der Zuname von Pandas \footnote{Pandas: Python Data Analysis Library \url{http://pandas.pydata.org/}} und NumPy \footnote{NumPy: Scientific Computing \url{http://www.numpy.org/}} besteht die Möglichkeit, sehr einfach und effizient auf die Datensätze zuzugreifen und diese zu verwenden. 
+Unter der Zuname von Pandas\footnote{Pandas: Python Data Analysis Library \url{http://pandas.pydata.org/}} und NumPy\footnote{NumPy: Scientific Computing \url{http://www.numpy.org/}} besteht die Möglichkeit, sehr einfach und effizient auf die Datensätze zuzugreifen und diese zu verwenden. 
 Wie im Codebeispiel \ref{fig:datenLesenEinschränken} ersichtlich ist, werden die Daten mit Hilfe von Pandas geladen und unter Zunahme von NumPy normalisiert und neu strukturiert. 
 \begin{lstlisting}[caption={Daten einlesen und einschränken},label=fig:datenLesenEinschränken,captionpos=b,language=Python]
 import pandas as pd
@@ -160,10 +160,10 @@ with tf.name_scope("accuracy"):
 Damit die Ebenen einfacher verwendet werden können, können diese als konfigurierbare Muster definiert werden. 
 Dadurch wird erzielt, dass gleiche Ebenen im visualisierten Graphen dieselbe Farbe besitzen und zum anderen alle Inhalte darin zusammengefasst werden. 
 Im Grunde existieren zwei verschiedene Haupttypen an Ebenen. 
-Zum einen die Convolutional-Ebenen und zum anderen die Vollvernetzen-Ebenen. 
+Zum einen die Convolutional-Ebenen und zum anderen die Vollvernetzten-Ebenen. 
 Wie im Code \ref{fig:ConvFc} ersichtlich ist, besitzen beide Hauptgruppen an Ebenen jeweils eine Datenquelle, beschrieben als \textit{x\_} und Gewichtungen und Biaseswerte. 
 Die Bias-Werte werden dabei erst nach der Kernfunktion an das Ergebnis angefügt und somit erst in der Aktivierungsfunktion berücksichtigt. 
-\begin{lstlisting}[caption={Definition der Convolutional- und Vollvernetzen-Ebenen},label=fig:ConvFc,captionpos=b,language=Python]
+\begin{lstlisting}[caption={Definition der Convolutional- und Vollvernetzten-Ebenen},label=fig:ConvFc,captionpos=b,language=Python]
 def conv_layer(x_, size_in, size_out, name="conv"):
     with tf.name_scope(name):
         weights = tf.Variable(tf.truncated_normal(
@@ -202,13 +202,13 @@ def fc_layer(x_, size_out, name="fc", act=None):
 \section{Neuronale Ebenen verknüpfen}
 
 Diese Definitionen der Ebenen aus dem Codefragment \ref{fig:ConvFc} müssen im nächsten Schritt zu einem Netzwerk zusammengesetzt werden. 
-Ein neuronales Netzwerk welches, relativ leichtgewichtig ist und diese Problematik relativ brauchbar lösen kann, ist im Grunde ein sehr vereinfachtes 'VGG16' Netzwerk. \footcite{VGG16: https://arxiv.org/pdf/1409.1556.pdf}
-Für diesen Fall besteht dieses aus $3$ Convolutional-Ebenen und $3$ Vollvernetzen-Ebenen, wie im Codefragment \ref{fig:buildGraph} zu sehen ist. 
+Ein neuronales Netzwerk, welches relativ leichtgewichtig ist und diese Problematik relativ brauchbar lösen kann, ist im Grunde ein sehr vereinfachtes 'VGG16' Netzwerk\footcite{VGG16: https://arxiv.org/pdf/1409.1556.pdf}. 
+Für diesen Fall besteht dieses aus $3$ Convolutional-Ebenen und $3$ Vollvernetzten-Ebenen, wie im Codefragment \ref{fig:buildGraph} zu sehen ist. 
 Das originale VGG16 Netzwerk besitzt im Gegensatz zum aktuell verwendeten, $5$ Convolutional-Ebenen mit je $2$ integrierten Convolutional-Ebenen mit denselben Dimensionen, die Hauptebenen $3$ bis $5$ zusätzlich eine $3$ Convolutional-Ebene. 
-Die letzte Ebene der Vollvernetzen-Ebenen wird dabei ohne Aktivierungsfunktion ausgeführt, um die Roh-Ergebnisse zu bekommen. 
+Die letzte Ebene der Vollvernetzten-Ebenen wird dabei ohne Aktivierungsfunktion ausgeführt, um die Roh-Ergebnisse zu bekommen. 
 Im aktuellen Fall werden für die $2$ Iris-Positionen im Gesicht $4$ Ergebnisse benötigt. 
 An diesem Beispiel lässt sich erkennen, dass hier Variablen wiederverwendet werden, dies ist durch Python möglich und durch die Beschreibung des Graphen, welcher im Hintergrund aufgebaut und verbunden wird. 
-\begin{lstlisting}[caption={Modeldefinition des Graphen},label=fig:buildGraph,captionpos=b,language=Python]
+\begin{lstlisting}[caption={Modelldefinition des Graphen},label=fig:buildGraph,captionpos=b,language=Python]
 def model(data):
     net = conv_layer(data, 1, 32, "conv1")
     net = conv_layer(net, 32, 64, "conv2")
@@ -246,7 +246,7 @@ In der Trainingsphase ist dies der Optimierungsendpunkt und in der Evaluierungsp
 \textit{accuracy}, damit ein vergleichbarer Wert zur Verfügung steht, an welchem der Lernfortschritt erkennbar ist und der Hauptendpunkt des Graphen selbst, damit die Ergebnisse direkt in Bilder gezeichnet werden können. 
 Dies ermöglicht eine visuelle Verifikation durch einen Supervisor. 
 Dieses Codefragment ergibt eine sogenannte Epoche, in der alle Datensätze einmal vom Netzwerk verarbeitet werden. 
-\begin{lstlisting}[caption={Initialisierung des Graphen und durchführen einer Epoche},label=fig:initRun,captionpos=b,language=Python]
+\begin{lstlisting}[caption={Initialisierung des Graphen und Durchführen einer Epoche},label=fig:initRun,captionpos=b,language=Python]
 # erstellen einer Session
 sess = tf.Session()
 
@@ -283,12 +283,12 @@ for i in range(runing):
 
 \section{Validierungsergebnisse}
 
-Durch längeres Trainieren kann sich das Netzwerk entwickeln und im Lauf der Epochen möglicherweise bessere Ergebnisse liefern. 
+Durch längeres Trainieren kann sich das Netzwerk entwickeln und im Lauf der Epochen bessere Ergebnisse liefern. 
 Dies führt natürlich auch zu der Möglichkeit, dass das Netzwerk beginnt, Muster zu speichern anstatt zu lernen, auch bekannt als Overfitting. 
-In der Abbildung \ref{fig:runns} sind die Ergebniszustände am Ende der 100sten Epoche sowie am Ende der 150sten Epoche zu sehen. 
-Im Gesamten kann nun festgestellt werden, dass das Netzwerk seine Arbeit relativ korrekt durchführt, wenn man die Größe und Dimension des Netzwerkes berücksichtigt. 
-\begin{lstlisting}[caption={Ergebnisse am Ende der 100sten Epoche und am Ende der 150sten Epoche},label=fig:runns,captionpos=b,language=Python]
-.... 100 Epochen ....
+In der Abbildung \ref{fig:runns} sind die Ergebniszustände am Ende der 100. Epoche sowie am Ende der 150. Epoche zu sehen. 
+Im Gesamten kann festgestellt werden, dass das Netzwerk seine Arbeit relativ korrekt erledigt, wenn man die Größe und Dimension des Netzwerkes berücksichtigt. 
+\begin{lstlisting}[caption={Ergebnisse am Ende der 100. Epoche und am Ende der 150. Epoche},label=fig:runns,captionpos=b,language=Python]
+.... Epochen 100 ....
 # Ist-Ergebnis 
 [[ 0.66568404  0.38626809  0.35157766  0.4218266 ]
  [ 0.68138432  0.40295351  0.27889865  0.40295351]
@@ -301,7 +301,7 @@ Im Gesamten kann nun festgestellt werden, dass das Netzwerk seine Arbeit relativ
  [ 0.71011567  0.39950868  0.3037816   0.3843804 ]]
 # Trainingsgenauigkeit
 0.0001787
-.... 150 Epochen ....
+.... Epochen 150 ....
 # Ist-Ergebnis
 [[ 0.6832875   0.381525    0.32855     0.40945625]
  [ 0.67460902  0.36388947  0.33187218  0.38741128]
@@ -315,12 +315,12 @@ Im Gesamten kann nun festgestellt werden, dass das Netzwerk seine Arbeit relativ
 # Trainingsgenauigkeit
 5.38928e-05
 \end{lstlisting}
-Zum besseren Vergleichen befindet sich in der Abbildung \ref{fig:resultPic} ein direkter Vergleich. 
+Zum besseren Feststellen des Ergebnisses befindet sich in der Abbildung \ref{fig:resultPic} ein direkter Vergleich. 
 Dabei wird der Istzustand durch blaue Punkte gekennzeichnet. 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.5]{images/normal.png}
-	\caption{Ist- und Soll- Visualisierung des Ergebnisses}
+	\caption{Ist-Visualisierung des Ergebnisses}
 	\label{fig:resultPic}
 \end{figure}
 
@@ -328,7 +328,7 @@ Dabei wird der Istzustand durch blaue Punkte gekennzeichnet.
 
 In der Abbildung \ref{fig:lossDiag} sind die gesamten Trainingsergebnisse in Form der Verluste aufgezeichnet. 
 Diese wiederum ergeben sich aus dem quadrierten Abstand zwischen Soll- und Ist-Punkt.
-In diesem Fall nähert sich der Verlustwert der $0$-Grenze, trotzdem scheint es ein Probleme zu geben mit diversen Bildern zugeben.
+In diesem Fall nähert sich der Verlustwert der $0$-Grenze, trotzdem scheint es ein Probleme mit einigen Daten zugeben. 
 Eine mögliche Interpretation wäre, dass die Lernrate mit '$1e-5$' noch zu hoch definiert wurde und sich das Netzwerk so zu schnell einem lokalen Minima genähert hat, obwohl es möglicherweise ein globales Minima gegeben hätte. 
 Eine andere Möglichkeit wäre, dass die Datensätze Bilder beinhalten, in welchem das Gesicht nicht vollständig zu erkennen ist oder dass diese stärker rotiert sind. 
 Sollte es nicht so viel Datensätze mit diesen Eigenheiten geben, so könnte dies ein weiterer Grund sein warum das Netzwerk springt. 
@@ -343,35 +343,36 @@ In der Abbildung \ref{fig:lossDiag} lässt sich erkennen, dass die Sprünge nich
 
 \noindent
 Durch einen Test aller Datensätze und herausfinden des Besten und des Schlechtesten Ergebnisses, lässt sich feststellen warum das Netzwerk diverse Probleme mit Bildern besitzt. 
-Im Konkreten beinhalten die Daten einige wenige relativ dubiose Bilder. 
+Im Konkreten beinhalten die Daten einige wenige dubiose Bilder. 
 Ein Beispiel dazu befindet sich in der Abbildung \ref{fig:dubio}. 
-Hier ist erkennbar, dass sich in den zwei oberen Bildern, mehrere Bilder auf einem Brett vorhanden sind. 
+Hier ist erkennbar, dass sich in den zwei oberen Bildern, mehrere Bilder auf einem WhiteBoard vorhanden sind. 
 Zum Einen ist hier das Problem, dass sich hier mehr als ein Gesichter im Bild befindet und das Netzwerk nicht für so einen Fall ausgelegt und trainiert worden ist. 
 Zum Anderen lässt sich erkennen, dass das Netzwerk hier ein anderes Bild bevorzugt, auf welchem ebenfalls Menschen abgebildet sind. 
-Dies führt zu der Annahme, dass das Netzwerk hier sich nicht die Positionen durch das Trainieren gemerkt hat und dies als Rauschen annimmt, sowie sich an die sonst zentralisierten Gesichter orientiert und trotzdem versucht hier zwei Augen zu finden, welche mehr oder weniger nebeneinander liegen sollten. 
-In den zwei unteren Bildern kann festgestellt werden, dass das Netzwerk ansonsten doch sehr akkuraten Ergebnisse liefert. 
+Dies führt zu der Annahme, dass das Netzwerk sich hier nicht die Positionen durch das Trainieren gemerkt hat und dies als Rauschen wahrnimmt. 
+Sowie sich an die sonst zentralisierten Gesichter orientiert und trotzdem versucht hier zwei Augen zu finden, welche mehr oder weniger nebeneinander liegen sollten. 
+In den zwei unteren Bildern kann festgestellt werden, dass das Netzwerk akkuraten Ergebnisse liefert. 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.6]{images/Bad_2.png}
-	\caption{Schlechtester Fall in der 150sten Epoche; blauer Punkt = Soll-, roter Punkt = Ist-Wert}
+	\caption{Schlechtester Fall in der 150. Epoche; blauer Punkt = Soll-, roter Punkt = Ist-Wert}
 	\label{fig:dubio}
 \end{figure} \phantom \newline
 
 \noindent
-Im besten Fall erzielt das Netzwerk eine Abweichung von $5.1624589e-05$ was in der 150sten Epoche doch sehr annehmbar ist. 
-Das beste Ergebnis der 150sten Epoche ist in der Abbildung \ref{fig:good} ersichtlich. 
+Im besten Fall erzielt das Netzwerk eine Abweichung von $5.1624589e-05$, was in der 150. Epoche als sehr positiv gewertet werden kann.
+Das beste Ergebnis der 150. Epoche ist in der Abbildung \ref{fig:good} ersichtlich. 
 An diesem Ergebnis lässt sich erkennen, dass das Netzwerk mehr oder weniger keine Probleme mit diversen Hautfarben und Kontrasten hat. 
 Des Weiteren werden Brillen ignoriert und auch leichte Neigungen nach links und rechts stellen keine Schwierigkeit dar. 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.6]{images/Good_2.png}
-	\caption{Bester Fall in der 150sten Epoche; blauer Punkt = Soll-, roter Punkt = Ist-Wert}
+	\caption{Bester Fall in der 150. Epoche; blauer Punkt = Soll-, roter Punkt = Ist-Wert}
 	\label{fig:good}
 \end{figure} \phantom \newline
 
 \noindent
-Im Langzeittest bis zu der 800sten Epoche lässt sich feststellen, dass das Netzwerk noch genauer wird, wobei hier der zeitliche Aufwand für das Trainieren sehr viel Zeit beansprucht und zusätzlich das Problem des Overfittung akut werden könnte. 
-In der Tabelle \ref{tab:time} sind zwei Systeme aufgeführt auf welchem das Netzwerk trainiert wurde, wo der Berechnungsvorteil der GPU ersichtlich ist. 
+Im Langzeittest bis zu der 800. Epoche lässt sich feststellen, dass das Netzwerk noch genauer wird, wobei hier der zeitliche Aufwand für das Trainieren sehr viel Zeit beansprucht und zusätzlich das Problem des Overfittung akut werden könnte. 
+In der Tabelle \ref{tab:time} sind zwei Systeme aufgeführt auf welchem das Netzwerk trainiert wurde, wo der Berechnungsvorteil der GPU deutlich ersichtlich ist. 
 \begin{table}[htb]%[ht!]
 \centering% NICHT \begin{center}
 \begin{tabular}{c c c}
@@ -383,14 +384,14 @@ Amazon EC2 Instanz, c3.8xlarge \\ Intel Xeon E5-2680 v2, 32 Kerne 60 GiB Ram \\ 
 Dell Optiplex 790 \\ Intel Core 2 Duo CPU E8400, 2 Kerne, 8 GiB Ram \\ Nvidia TitanX, 12 GiB & 87 & 8700 \\ 
 %\hline 
 \end{tabular} 
-\caption{Aufschlüsselung der benötigten Berechnungszeiten pro 1er und 100 Epochen in Sekunden}
+\caption{Aufschlüsselung der ungefähr benötigten Berechnungszeiten für eine und 100 Epochen in Sekunden}
 \label{tab:time}
 \end{table} \phantom \newline
 
 \noindent
 Zur genaueren Feststellung der Funktionalität des Netzwerkes befindet sich in der Abbildung \ref{fig:meTest} ein Test mit einem noch komplett unbekannten Gesicht. 
 Dieses wurde für diesen Test manuell aufgenommen und konvertiert sowie im Weiteren in das Netzwerk als Testdatensatz eingefügt. 
-Wie zu erkennen ist, befindet sich das Netzwerk bei Epoche 150 bereits in einem Zustand der als verwendbar  einstuft werden kann. 
+Wie zu erkennen ist, befindet sich das Netzwerk in der 150. Epoche bereits in einem Zustand, welcher als verwendbar einstuft werden kann. 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.8]{images/me-test.png}
