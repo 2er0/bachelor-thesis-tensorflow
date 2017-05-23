@@ -328,11 +328,11 @@ Dabei wird der Istzustand durch blaue Punkte gekennzeichnet.
 
 In der Abbildung \ref{fig:lossDiag} sind die gesamten Trainingsergebnisse in Form der Verluste aufgezeichnet. 
 Diese wiederum ergeben sich aus dem quadrierten Abstand zwischen Soll- und Ist-Punkt.
-In diesem Fall nähert sich der Verlustwert der $0$-Grenze, trotzdem scheint es ein Probleme mit einigen Daten zugeben. 
+In diesem Fall nähert sich der Verlustwert der $0$-Grenze, trotzdem scheint es ein Probleme mit einigen Daten zu geben. 
 Eine mögliche Interpretation wäre, dass die Lernrate mit '$1e-5$' noch zu hoch definiert wurde und sich das Netzwerk so zu schnell einem lokalen Minima genähert hat, obwohl es möglicherweise ein globales Minima gegeben hätte. 
 Eine andere Möglichkeit wäre, dass die Datensätze Bilder beinhalten, in welchem das Gesicht nicht vollständig zu erkennen ist oder dass diese stärker rotiert sind. 
 Sollte es nicht so viel Datensätze mit diesen Eigenheiten geben, so könnte dies ein weiterer Grund sein warum das Netzwerk springt. 
-Dies bedeutet, dass ein nicht stabiler Zustand vorhanden ist und möglicherweise ein Rauschen in den Daten nicht ignoriert wurde sondern darauf reagiert wird.
+Dies bedeutet, dass ein nicht stabiler Zustand vorhanden ist und möglicherweise ein Rauschen in den Daten nicht ignoriert wurde, sondern darauf reagiert wird.
 In der Abbildung \ref{fig:lossDiag} lässt sich erkennen, dass die Sprünge nicht regelmäßig sind, was auf ein Mischen der Datensätze am Ende jeder Epoche zurückgeführt werden kann. 
 \begin{figure}[ht!]
 	\centering
@@ -342,15 +342,14 @@ In der Abbildung \ref{fig:lossDiag} lässt sich erkennen, dass die Sprünge nich
 \end{figure} \phantom \newline
 
 \noindent
-Durch einen Test aller Datensätze und herausfinden des Besten und des Schlechtesten Ergebnisses, lässt sich feststellen warum das Netzwerk diverse Probleme mit Bildern besitzt. 
+Durch einen Test aller Datensätze und Herausfinden des besten und des schlechtesten Ergebnisses, lässt sich feststellen warum das Netzwerk diverse Probleme mit Bildern besitzt. 
 Im Konkreten beinhalten die Daten einige wenige dubiose Bilder. 
 Ein Beispiel dazu befindet sich in der Abbildung \ref{fig:dubio}. 
-Hier ist erkennbar, dass sich in den zwei oberen Bildern, mehrere Bilder auf einem WhiteBoard vorhanden sind. 
-Zum Einen ist hier das Problem, dass sich hier mehr als ein Gesichter im Bild befindet und das Netzwerk nicht für so einen Fall ausgelegt und trainiert worden ist. 
-Zum Anderen lässt sich erkennen, dass das Netzwerk hier ein anderes Bild bevorzugt, auf welchem ebenfalls Menschen abgebildet sind. 
-Dies führt zu der Annahme, dass das Netzwerk sich hier nicht die Positionen durch das Trainieren gemerkt hat und dies als Rauschen wahrnimmt. 
-Sowie sich an die sonst zentralisierten Gesichter orientiert und trotzdem versucht hier zwei Augen zu finden, welche mehr oder weniger nebeneinander liegen sollten. 
-In den zwei unteren Bildern kann festgestellt werden, dass das Netzwerk akkuraten Ergebnisse liefert. 
+Hier ist erkennbar, dass in den zwei oberen Bildern mehrere Bilder auf einem WhiteBoard vorhanden sind. 
+Zum einen ist hier das Problem, dass sich hier mehr als ein Gesicht im Bild befindet und das Netzwerk nicht für so einen Fall ausgelegt und trainiert worden ist. 
+Zum anderen lässt sich erkennen, dass das Netzwerk hier ein anderes Bild bevorzugt, auf welchem ebenfalls Menschen abgebildet sind. 
+Dies führt zu der Annahme, dass das Netzwerk sich hier nicht die Positionen durch das Trainieren gemerkt hat und dies als Rauschen wahrnimmt, sowie sich an die sonst zentralisierten Gesichter orientiert und trotzdem versucht hier zwei Augen zu finden, welche mehr oder weniger nebeneinander liegen sollten. 
+In den zwei unteren Bildern kann festgestellt werden, dass das Netzwerk akkurate Ergebnisse liefert. 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.6]{images/Bad_2.png}
@@ -362,7 +361,7 @@ In den zwei unteren Bildern kann festgestellt werden, dass das Netzwerk akkurate
 Im besten Fall erzielt das Netzwerk eine Abweichung von $5.1624589e-05$, was in der 150. Epoche als sehr positiv gewertet werden kann.
 Das beste Ergebnis der 150. Epoche ist in der Abbildung \ref{fig:good} ersichtlich. 
 An diesem Ergebnis lässt sich erkennen, dass das Netzwerk mehr oder weniger keine Probleme mit diversen Hautfarben und Kontrasten hat. 
-Des Weiteren werden Brillen ignoriert und auch leichte Neigungen nach links und rechts stellen keine Schwierigkeit dar. 
+Desweiteren werden Brillen ignoriert und auch leichte Neigungen nach links und rechts stellen keine Schwierigkeit dar. 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.6]{images/Good_2.png}
@@ -372,7 +371,7 @@ Des Weiteren werden Brillen ignoriert und auch leichte Neigungen nach links und 
 
 \noindent
 Im Langzeittest bis zu der 800. Epoche lässt sich feststellen, dass das Netzwerk noch genauer wird, wobei hier der zeitliche Aufwand für das Trainieren sehr viel Zeit beansprucht und zusätzlich das Problem des Overfittung akut werden könnte. 
-In der Tabelle \ref{tab:time} sind zwei Systeme aufgeführt auf welchem das Netzwerk trainiert wurde, wo der Berechnungsvorteil der GPU deutlich ersichtlich ist. 
+In der Tabelle \ref{tab:time} sind zwei Systeme aufgeführt auf welchen das Netzwerk trainiert wurde, wo der Berechnungsvorteil der GPU deutlich ersichtlich ist. 
 \begin{table}[htb]%[ht!]
 \centering% NICHT \begin{center}
 \begin{tabular}{c c c}
