@@ -1,0 +1,155 @@
+%% File encoding: UTF-8
+%% äöüÄÖÜß  <-- keine deutschen Umlaute hier? UTF-faehigen Editor verwenden!
+
+\documentclass[praktikum,german]{hgbthesis}
+% Zulässige Class Options: 
+%   Typ der Arbeit: diplom, master (default), bachelor, praktikum 
+%   Hauptsprache: german (default), english
+%%------------------------------------------------------------
+
+\RequirePackage[utf8]{inputenc}		% remove when using lualatex oder xelatex!
+
+\graphicspath{{images/}}    % name of directory containing the images
+\logofile{logo}							% name of logo-PDF in images/ (or use \logofile{} for no logo)
+\bibliography{literatur}  	% name of the BibTeX (.bib) file
+
+\usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{subfig}
+%\usepackage{titletoc}
+\usepackage{minitoc}
+\usetikzlibrary{
+  arrows.meta, % for Straight Barb arrow tip
+  fit, % to fit the group box around the central neurons
+  positioning, % for relative positioning of the neurons
+}
+
+\tikzset{
+  neuron/.style={ % style for each neuron
+    circle,draw,thick, % drawn as a thick circle
+    inner sep=5pt, % no built-in padding between the text and the circle shape
+    minimum size=1.5em, % make each neuron the same size regardless of the text inside
+    node distance=1ex and 3em, % spacing between neurons (y and x)
+  },
+  group/.style={ % style for the groups of neurons
+    rectangle,%,draw,thick, % drawn as a thick rectangle
+    inner sep=0pt, % no padding between the node contents and the rectangle shape
+  },
+  io/.style={ % style for the inputs/outputs
+    neuron, % inherit the neuron style
+    fill=gray!15, % add a fill color
+  },
+  conn/.style={ % style for the connections
+    -{Straight Barb[angle=60:2pt 3]}, % simple barbed arrow tip
+    thick, % draw in a thick weight to match other drawing elements
+  },
+}
+
+\usepackage{array,booktabs,ragged2e}
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+
+%\makeatletter
+%\@addtoreset{chapter}{part}
+%\makeatother  
+
+%%%----------------------------------------------------------
+\begin{document}
+%%%----------------------------------------------------------
+
+% Einträge für ALLE Arbeiten: --------------------------------
+\title{Routing in der Logistik}
+\author{David Baumgartner}
+\studiengang{Software Engineering}
+\studienort{Hagenberg}
+\abgabedatum{2017}{01}{14}	% {YYYY}{MM}{DD}
+
+%%% zusätzlich für eine Bachelorarbeit: ---------------------
+%\nummer{1410307050-A}   % XX...X = Stud-ID, z.B. 0310238045-A  
+                        % (A = 1. Bachelorarbeit)
+\semester{Sommersemester 2017} 
+\betreuer{Stephan Dreiseitl, FH-Prof. PD DI Dr.  \\ DI Dominik Angerer} % oder \betreuerin{..}
+
+%%% zusätzlich für einen Praktikumsbericht: -----------------
+\nummer{1410307050-B}   % XX...X = Stud-ID, z.B. 0310238045-B  
+                        % (B = 2. Bachelorarbeit)
+%\betreuer{Mag.~Pjotr I.~Czar\\Creative Director}  % \betreuerin{..}
+\firma{%
+   ITPRO - Consulting \& Software GmbH\\
+   4020 Linz, Buchnerplatz 1
+}
+\firmenTel{+43 732 61 51 41}
+\firmenUrl{www.itpro.at}
+
+%\strictlicense  % erzeugt restriktive Lizenzformel
+
+%%%----------------------------------------------------------
+\includepdf[pages={1}]{deckblaetter/Titelblattvorlage_2praktBA_neu0216.pdf}
+\frontmatter
+%\maketitle
+\setcounter{page}{5}
+\tableofcontents
+%\doparttoc
+
+
+%https://tex.stackexchange.com/questions/258566/how-to-split-the-toc-in-two
+%https://tex.stackexchange.com/questions/54383/how-to-reset-chapter-and-section-counter-with-part
+%http://www.ctan.org/pkg/titletoc
+
+%https://tex.stackexchange.com/questions/166416/continue-previous-roman-page-numbering-after-changing-to-arabic
+%\part{Machine Learning und tiefe neuronale Netze mit TensorFlow}
+%\tableofcontents
+%\renewcommand{\ptctitle}{\contentsname\ (MLTF)}
+%\parttoc
+%\addcontentsline{toc}{part}{MLTF}
+%\startcontents
+%\printcontents{}{-1}{%
+%       \chapter*{\contentsname\ (MLTF)}%
+%       \markboth{\MakeUppercase{\contentsname\ (MLTF)}}%
+%                {\MakeUppercase{\contentsname\ (MLTF)}}}
+%\startcontents[first]
+%\printcontents[first]{}{0}{}
+%%%----------------------------------------------------------
+
+%\include{vorwort}		% ggfs. weglassen
+%\include{kurzfassung}
+%\include{abstract}
+\include{kurzfassungP}
+\include{abstractP}
+
+%%%----------------------------------------------------------
+\mainmatter         % Hauptteil (ab hier arab. Seitenzahlen)
+%%%----------------------------------------------------------
+
+\setcounter{page}{55}
+%\include{einleitung}
+%\include{begriffe}
+%\include{tensorflow}
+%\include{keyPointDetection}
+%\include{zusammenfassungAusblick}
+
+\include{arbeitsEinleitung}
+\include{itproAllg}
+\include{grundalgo}
+\include{kosten}
+\include{beispiel}
+
+%%%----------------------------------------------------------
+%%%Anhang
+\appendix
+%\include{anhang_a}	% Technische Ergänzungen
+%\include{anhang_b}	% Inhalt der CD-ROM/DVD
+%\include{anhang_c}	% Chronologische Liste der Änderungen
+%\include{anhang_d}	% Quelltext dieses Dokuments
+
+
+%%%----------------------------------------------------------
+\MakeBibliography
+%%%----------------------------------------------------------
+
+%%%Messbox zur Druckkontrolle
+%\include{messbox}
+
+\end{document}
