@@ -444,25 +444,25 @@ acknowledged. I further declare that this or similar work has not been submitted
 \renewcommand{\@matitelseiten}{
 \@matitel
 \@copyrightseite
-\@erklaerungsseite
+%\@erklaerungsseite
 }
      
 \renewcommand{\@datitelseiten}{
 \@datitel
 \@copyrightseite
-\@erklaerungsseite
+%\@erklaerungsseite
 }
 
 \renewcommand{\@batitelseiten}{
 \@batitel
 \@babetreuerseite
-\@erklaerungsseite
+%\@erklaerungsseite
 }
 
 \renewcommand{\@prtitelseiten}{
 \@prtitel
 \@firmenseite
-\@erklaerungsseite
+%\@erklaerungsseite
 }
 
 %------------ Automatischer Eintrag der PDF Metadaten ------------

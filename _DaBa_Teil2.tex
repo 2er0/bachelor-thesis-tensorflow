@@ -19,7 +19,6 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{subfig}
-%\usepackage{titletoc}
 \usepackage{minitoc}
 \usetikzlibrary{
   arrows.meta, % for Straight Barb arrow tip
@@ -50,10 +49,6 @@
 
 \usepackage{array,booktabs,ragged2e}
 \newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
-
-%\makeatletter
-%\@addtoreset{chapter}{part}
-%\makeatother  
 
 %%%----------------------------------------------------------
 \begin{document}
@@ -88,34 +83,12 @@
 %%%----------------------------------------------------------
 \includepdf[pages={1}]{deckblaetter/Titelblattvorlage_2praktBA_neu0216.pdf}
 \frontmatter
-%\maketitle
+
 \setcounter{page}{5}
 \tableofcontents
-%\doparttoc
 
-
-%https://tex.stackexchange.com/questions/258566/how-to-split-the-toc-in-two
-%https://tex.stackexchange.com/questions/54383/how-to-reset-chapter-and-section-counter-with-part
-%http://www.ctan.org/pkg/titletoc
-
-%https://tex.stackexchange.com/questions/166416/continue-previous-roman-page-numbering-after-changing-to-arabic
-%\part{Machine Learning und tiefe neuronale Netze mit TensorFlow}
-%\tableofcontents
-%\renewcommand{\ptctitle}{\contentsname\ (MLTF)}
-%\parttoc
-%\addcontentsline{toc}{part}{MLTF}
-%\startcontents
-%\printcontents{}{-1}{%
-%       \chapter*{\contentsname\ (MLTF)}%
-%       \markboth{\MakeUppercase{\contentsname\ (MLTF)}}%
-%                {\MakeUppercase{\contentsname\ (MLTF)}}}
-%\startcontents[first]
-%\printcontents[first]{}{0}{}
 %%%----------------------------------------------------------
 
-%\include{vorwort}		% ggfs. weglassen
-%\include{kurzfassung}
-%\include{abstract}
 \include{kurzfassungP}
 \include{abstractP}
 
@@ -124,11 +97,6 @@
 %%%----------------------------------------------------------
 
 \setcounter{page}{55}
-%\include{einleitung}
-%\include{begriffe}
-%\include{tensorflow}
-%\include{keyPointDetection}
-%\include{zusammenfassungAusblick}
 
 \include{arbeitsEinleitung}
 \include{itproAllg}

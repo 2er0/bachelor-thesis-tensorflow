@@ -1,14 +1,14 @@
 \chapter{Begriffe im Maschinellen Lernen}
 \label{cha:Begriffe}
 
-Diese Erklärung der Begriffe und Elemente verfolgt zwei Ziele.
+Diese Erklärung der Begriffe und Elemente verfolgt zwei Ziele: 
 Zum einen stellt dies die Grundlage des gesamten Themas dar und soll für Interessierte, die nicht so vertraut sind, eine Einführung in die Thematik bieten. 
 Und zum anderen werden viele der Begriffe erläutert, die in dieser Arbeit noch häufig zum Einsatz kommen werden (u.A. Neuron, Aktivierungsfunktion, …).
 
 \section{Data Science}
 
 Data Science wird generell als die Extraktion von Wissen aus Daten bezeichnet. 
-Dabei werden die Fachbereiche Statistik und Mathematik, Informatik und Machine Learning sowie einige weitere zu diesem Begriff zusammengefasst. 
+Dabei werden die Fachbereiche Statistik und Mathematik, Informatik und Machine Learning, sowie einige weitere zu diesem Begriff zusammengefasst. 
 Das Gebiet für sich wird auch als Berufstätigkeit bezeichnet, wobei meist spezialisierte Formen für die Berufsbezeichnung verwendet werden. \newline
 
 \noindent 
@@ -17,7 +17,7 @@ Dieser beginnt mit dem Zusammentragen von Rohdaten aus der Realität, welche zu 
 Im zweiten Prozessschritt werden diese Daten meist umgebaut und neu sortiert, wobei dieser Schritt nicht immer erforderlich ist. 
 Auf diese zurecht gelegten Daten besteht nun die Möglichkeit, Modelle, Algorithmen sowie weitere Extraktionen durchzuführen. 
 Die erneut extrahierten Daten werden in weiterer Folge als Ausgangsdaten verwendet. 
-Auf diese Daten ausgeführte Modelle und Algorithmen liefern Ergebnisse, die visuell dargestellt für eine größere Gruppe von Personen geeignet sind. 
+Auf diese Daten ausgeführte Modelle und Algorithmen liefern Ergebnisse, die visuell dargestellt, für eine größere Gruppe von Personen geeignet sind. 
 Aus diesem gelernten Wissen besteht zusätzlich die Möglichkeit, dieses zum Generieren von neuen Daten zu verwenden und neue Modelle zu entwickeln, die zum Beispiel Vorgänge in der Natur noch akkurater widerspiegeln.
 
 \section{Machine Intelligence}
@@ -25,7 +25,6 @@ Aus diesem gelernten Wissen besteht zusätzlich die Möglichkeit, dieses zum Gen
 Machine Intelligence ist ein Begriff, der noch nicht eindeutig definiert worden ist, aber schon Verwendung findet. 
 Einige namhafte Unternehmen wie Google Inc. und Microsoft Corporation bieten jeweils unterschiedliche Definitionen oder Beschreibungen. 
 Die Definitionen dieser Firmen weichen nur unwesentlich voneinander ab.
-%Dieser wird aber von allen ähnlich beschrieben und definiert.
 Dieser Begriff wird als Überbegriff für das gesamte Gebiet von Machine Learning, Künstlicher Intelligenz, Konversationsintelligenz und allen Bereichen, die in näherer Beziehung dazu stehen, verwendet. 
 
 \section{Machine Learning}
@@ -39,25 +38,14 @@ Ein ganz anderer Zugang wurde in der Sowjetunion verfolgt, mit sogenannten 'Supp
 
 \section{Neuronale Netzwerke}
 
-%Neuronale Netzwerke sind seit einigen Jahren auch bekannt unter dem Begriff 'Deep Learning'. \newline
-
-%\noindent 
 Die Theorie und die ersten Grundlagen wurden im Jahre 1943 von Warren McCulloch und Walter Pitts geschaffen, die ein Modell entwickelten, jedoch nicht die technischen Möglichkeiten hatten dieses umzusetzen.
-Dieses %basierte auf Mathematik und Algorithmen und 
-führte zur 'Threshold Logik', welche bestimmt, ab wann und wie stark ausgeprägt etwas weitergegeben wird \cite{rojas2013neural}.
-%\textbf{TODO: beschreiben}
-Durch die Entwicklung des 'Backpropagation'-Algorithmus ist es möglich, Netzwerke mit mehr als drei Ebenen zu trainieren.
-%Durch den Grundstein des 'Backpropagation'-Algorithmus im Jahre 1975 ist es möglich, Netzwerke mit mehr als drei Ebenen zu trainieren. 
-Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben \cite{AI3}.  %, welches dem Gehirn gleicht. %nachempfunden ist. 
-%Die Verbindungen sind nicht fest vorgegeben, sondern können auch zum Beispiel Schleifen bilden.}
-
-%TODO: you can do anything with it, if it can be designed as a function
-
+Dieses führte zur 'Threshold Logik', welche bestimmt, ab wann und wie stark ausgeprägt etwas weitergegeben wird \cite{rojas2013neural}.
+Durch die Entwicklung des 'Backpropagation'-Algorithmus (siehe \ref{sec:Backpropagation}) ist es möglich, Netzwerke mit mehr als drei Ebenen zu trainieren.
+Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und gemeinsam ein Netzwerk ergeben \cite{AI3}.  
 
 \subsection{Neuron}
 \label{sec:Neuron}
 
-%Abbildung ( Aufbau eines Neurons ) - TikZ Grafik \\
 \begin{figure}
 \centering
 
@@ -83,15 +71,13 @@ Neuronale Netzwerke bestehen aus Neuronen, die miteinander verbunden sind und ge
 	\label{fig:Neuron}
 \end{figure}
 
-%\noindent 
 Ein Neuron wurde einer Nervenzelle in einem Gehirn mit den folgenden Bestandteilen nachempfunden:
 \paragraph{Informationseingangsstrom} ist der Dateneingang, wobei ein Neuron ein bis theoretisch beliebig viele solcher Eingänge haben kann. 
 Dies hängt von der jeweiligen Architektur des Netzwerks ab.
 
 \paragraph{Informationsgewichtung} bezeichnet die Gewichtung mit der der Eingangsstrom gewertet wird. 
-%Dies wird Gewichtung genannt. 
 So wird ein Informationseingangsstrom mehr oder weniger berücksichtigt. 
-Diese Gewichtung wird durch den Backpropagation-Algorithmus angepasst und nachjustiert.
+Diese Gewichtung wird durch den Backpropaga-tion-Algorithmus angepasst und nachjustiert.
 
 \paragraph{Kernfunktion} bewirkt das Verarbeiten der gewichteten Informationseingänge. 
 Im einfachsten Fall werden alle Werte aufsummiert. 
@@ -99,14 +85,10 @@ Es wäre aber möglich, jegliche Berechnung hier einfließen zu lassen, welche m
 
 \paragraph{Aktivierungsfunktion} berechnet den Ausgang eines Neurons. 
 Dabei wird eine weitere Funktion auf das im Kern berechnete Ergebnis ausgeführt, das dazu führt, dass ein Ergebnis noch stärker ausgeprägt weitergegeben wird oder minimiert wird, beziehungsweise in einen Wertebereich eingepasst wird. 
-Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funktion, welcher in der Abbildung \ref{fig:Aktivierungsfunktion} zu erkennen sind.
+Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funktion, welche in der Abbildung \ref{fig:Aktivierungsfunktion} zu erkennen sind.
 
-%\textit{Grafiken zu Sigmoid und lineare}
-%Wobei in den vergangen Jahren die Linearen-Funktionen häufiger zum Einsatz kommen.
-%\\
 \begin{figure}[ht!]
 \centering
-%\begin{minipage}{0.7\linewidth}
 \subfloat{
 \resizebox {0.5\linewidth} {5cm} {
 	\begin{tikzpicture}
@@ -117,10 +99,8 @@ Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funk
 	\end{axis}
 	\end{tikzpicture}
 }
-%\end{minipage}
 }
 \subfloat{
-%\begin{minipage}{0.7\linewidth}
 \resizebox {0.5\linewidth} {5cm} {
 	\begin{tikzpicture}
 	\begin{axis} [xmin=-1, xmax=1]
@@ -130,7 +110,6 @@ Diese Aktivierungsfunktion ist meist die Sigmoid-Funktion oder eine lineare Funk
 	\end{axis}
 	\end{tikzpicture}
 }
-%\end{minipage}
 }
 	\caption{Basisaktivierungsfunktionen: (l) eine Sigmoid-Funktion, (r) eine lineare Funktion}
 	\label{fig:Aktivierungsfunktion}
@@ -146,12 +125,9 @@ Der griechische Buchstabe $\phi$ (phi) steht für die Aktivierungsfunktion des N
 	\label{eq:Aktivierungsfunktion}
 \end{equation}
 
-%\section{Bias Neuron}
-%\label{sec:Bias Neuron}
-
 \paragraph{Bias Neuron} 
 \label{sec:Bias Neuron}
-definiert einen Spezialfall eines Neurons, welches keine Dateneingänge, somit auch keine Gewichtung hat und keine Berechnung im Kern durchführt. 
+definiert einen Spezialfall eines Neurons, welches keine Dateneingänge und somit auch keine Gewichtung hat und keine Berechnung im Kern durchführt. 
 Dieses liefert nur einen konstanten Wert, wie zum Beispiel eine $1$. 
 Durch die konstante Auslieferung wird auch die Aktivierungsfunktion überflüssig. 
 Das Bias Neuron stellt somit einen stetigen Wert für das Netzwerk dar, beziehungsweise für die darauffolgende Ebene.
@@ -165,21 +141,16 @@ Dieser Typ wird \textbf{Hiddenlayer} bezeichnet.
 Jedes Netzwerk benötigt zusätzlich zwei weitere Ausprägungen an Ebenen. 
 Diese sind:
 
-%\textit{\textbf{TODO}}
 \paragraph{Inputlayer} stellt den Übergang zwischen der Welt außerhalb des Neuronalen Netzwerks und dem Netzwerk dar.
 Diese Ebene nimmt die Daten ohne Gewichtung auf und gibt sie an die darauffolgende Ebene weiter. 
-%In gewisser Weise stellt sie einen Übergang zwischen der Außenwelt und des Neuronalen Netzwerkes dar.
 
-%\textit{\textbf{TODO}}
 \paragraph{Outputlayer} befindet sich am Ende eines Netzwerkes. 
 Dieser Layer hat die Aufgabe, die Daten nach außen, oder an das darauffolgende Netzwerk weiterzugeben. 
 Hierbei werden die Informationen meist nur mehr für die Ausgabe aufbereitet. 
 In manchen Netzwerken existieren keine Outputlayer in diesem Sinne, sondern ein Layer, der als Hiddenlayer und Outputlayer fungiert. 
 Dies ist der Fall, wenn nur zwei Layer sich im Netzwerk befinden und einer davon vom Inputlayer eingenommen wird.
-%So wird zum Beispiel die Wahrscheinlichkeit für jeden Ausgang berechnet.
 \\
 
-%Abbildung ( Aufbau eines Einfachen FeedForward NN) - TikZ Grafik
 \begin{figure}
 \centering
 
@@ -244,12 +215,16 @@ Dies ist der Fall, wenn nur zwei Layer sich im Netzwerk befinden und einer davon
 	\caption{Einfaches Neuronales FeedFordward Netzwerk}
 	\label{fig:SimpleFeedForwardNetwork}
 \end{figure}
+\phantom \newline
+
+\noindent 
+In der Abbildung \ref{fig:SimpleFeedForwardNetwork} ist ein einfachen FeedFordward Netzwerk abgebildet.
+Dieses beinhaltet alle Typen mit Input-, Outputlayer und voll vernetzte Layer mit Neuronen und Bias Neuron. 
 
 \section{Informationen Merken und Wiedererkennung}
 
 Durch das Anpassen der Gewichtungen bei jedem Dateneingangsstrom mit Hilfe des Backpropagation-Algorithmus ist es möglich, Zustände zu speichern und diese auch zu merken. 
 Sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon einer vorhanden war, dann sollte dieser ähnlich behandelt werden.
-%Dies führt dazu, sollte ein ähnlicher Dateneingang stattfinden, wo zuvor schon ein ähnlicher in einem Trainingszyklus vorhanden war, dies erkannt wird. %\textit{dieser ähnliche erkannt wird. \textbf{TODO}} 
 Dieser kann möglicherweise zu derselben Kategorie gehören, wie der zuvor schon bekannt gemachte und gelernte Dateneingang.
 
 \section{Konvergieren im Maschinellen Lernen}
@@ -263,14 +238,13 @@ Für die Feststellung des Fehlers gibt es diverse Funktionen, wie zum Beispiel d
 \section{Backpropagation}
 \label{sec:Backpropagation}
 
-%TODO: relative genauer Algorithmus mit Aufgabe
 Bis zum Jahre 1986 gab es keine automatisierte Möglichkeit, die Gewichtungen in einem Netzwerk automatisch anzupassen.
 In diesem Jahre entwickelten Rumelhart, Hinton \& Williams eine mögliche Lösung, welche sehr ähnlich zu anderen Ansätzen von früher war \cite{hecht1988theory}.
 Die zentrale Idee in ihrer Lösung liegt darin, die Abweichung des produzierten Ergebnisses zum wirklich erwarteten Ergebnis zu bestimmen. 
 Aufgrund dieses Fehlers lassen sich im Anschluss die Gewichtungen im Netzwerk vom Ende zum Anfang nachjustieren. 
 Diese Technik ermöglichte damit Netzwerke mit verschachtelten Schichten zu konstruieren und auch zu trainieren.
 
-\paragraph{Lernrate} skaliert den Lernprozesses, mit der Auswirkung, ob schneller oder langsamer gelernt wird.
+\paragraph{Lernrate} skaliert den Lernprozess, mit der Auswirkung, ob schneller oder langsamer gelernt wird.
 Eine Lernrate unter $0$ würde die Lerngeschwindigkeit stark verlangsamen und ist somit nicht sinnvoll. 
 Ein Wert über $1$ würde eine hohe Lerngeschwindigkeit zur Folge haben. 
 Eine zu hohe Rate würde nicht zum Konvergieren führen, sondern zum Springen.
@@ -293,10 +267,9 @@ Der erwartete Ausgang ist unbekannt.
 Diese Strategie wird in Fällen von Clustering (\ref{subsec:Clustering}) verwendet.
 Dabei sollen nicht bekannte Gruppen von zusammengehörenden Daten identifiziert werden. 
 Self-Organizing Maps (\ref{subsec:SelfOrganizingMap}) entdecken zusammengehörende Muster und geben diese in einer Grafik zur weiteren Interpretation weiter. 
-Diese Technik ist insbesondere interessant, da einem Netzwerk nie erklärt worden ist, warum etwas so ist und steht damit in Relation zu einem natürlichen Lernprozess, wie bei einem Menschen.
-%nur die Eingangsdaten werden zur Verfügung gestellt - der erwartete Ausgang wird nicht zur Verfügung gestellt
+Diese Technik ist insbesonders interessant, da einem Netzwerk nie erklärt worden ist, warum etwas so ist. 
+Es steht damit in Relation zu einem natürlichen Lernprozess, wie bei einem Menschen.
 
-%\textit{\textbf{TODO}}
 \section{Allgemeine Probleme}
 \label{sec:AllgeProb}
 
@@ -304,34 +277,18 @@ Ein Grundsatz von neuronalen Netzwerken ist, dass sie nicht jede Frage dieser We
 Das Entwickeln eines neuen Netzwerks ist eine sehr schwierige und eine lang andauernde Aufgabe. 
 Dabei können Fehler auftreten, wie Overfitting, aber auch vom Entwickler verursacht sein können. \\
 
-%Neuronale Netzwerke sind nicht Fehler- und Problemlos und können nicht jegliche Fragen in dem Themengebiet lösen. 
-%Es existieren bekannte Probleme für die es Lösungen oder Lösungsansätze gibt. 
-%Es gibt aber auch noch genügend andere Probleme, welche noch nicht festgestellt wurden oder als solche noch nicht erkannt worden sind. 
-
 \noindent
 Diese Arbeit wird auf die bekanntesten Probleme eingehen und auch Lösungen oder mögliche Lösungsansätze beinhalten. 
 
-%\subsection{Overfitting}
-
 \paragraph{Overfitting} bezeichnet ein Problem, welches nicht nur maschinelles Lernen betrifft, sondern auch Menschen und andere Lebewesen. 
 Ein Student lernt zum Beispiel für eine Prüfung und ist im Besitz einer Klausur aus einem Vorjahr. 
-Nach öfterem Durchspielen der Fragen und sich selbst testen, befindet er sich in der Lage diese Klausur mit einer sehr hohen Wahrscheinlichkeit zu bestehen. 
+Nach öfterem Durchspielen der Fragen und laufenden Selbsttests, befindet er sich in der Lage diese Klausur mit einer sehr hohen Wahrscheinlichkeit zu bestehen. 
 Dabei hat sich die Klausur in seinem Gehirn eingeprägt, aber nicht das Stoffgebiet zu welchem er eine Klausur schreiben muss. 
 Das Problem wird als Overfitting bezeichnet und beschreibt, dass etwas gemerkt wurde, aber nicht gelernt worden ist und somit eine Abwandlung von Informationen nicht wiedererkannt wird.
 
-%\subsection{Daten & Datensätze}
-
-%TODO: jeder Datensatz ist unterschiedlich -> neue Daten = neues Netzwerk
-\paragraph{Daten}, die zum Trainieren von Netzwerken verwendet werden, können selbst ein Probleme darstellen.
-% Ein weiteres Problem stellen die Daten und Datensätze dar, welche zum Trainieren des Netzwerkes verwendet werden.
+\paragraph{Daten} die zum Trainieren von Netzwerken verwendet werden, können selbst ein Problem darstellen.
 Eine zu geringe Menge an Daten stellt den Entwickler vor das Problem, dass er für diese Daten ein akkurates Netzwerk entwickeln kann, dieses aber im weiteren Verlauf nicht die gewünschten Resultate liefern wird.
-%Ein solches Netzwerk wird sehr wahrscheinlich nicht die gewünschten Resultate liefern, da die zur Verfügung gestellten Daten nur einen kleinen Teil des Gesamten repräsentieren.
-%Dieses Netzwerk würde aber möglicherweise nicht die gewünschten Resultate liefern, da die zur Verfügung gestellten Daten nur einen kleinen Teil des Gesamten repräsentieren.
 Zusätzlich kann es sein, dass die zur Verfügung gestellten Daten selbst nicht vollständig sind und somit wieder nur ein Subset verwendet werden kann. \\
-
-%\paragraph{Datensätze} können ähnlich sein zu anderen, sind aber trotzdem wieder einzigartig. 
-%Dies bedeutet, dass ein Netzwerk, welches für eine Problemstellung entwickelt und trainiert wurde, nicht eins zu eins übernommen werden kann.
-%Für diese Daten muss wieder ein Netzwerk entwickelt, beziehungsweise trainiert werden.
 
 \section{Domänenklassen}
 \label{sec:Domänenklassen}
@@ -340,36 +297,28 @@ Neuronale Netzwerke können sehr vielseitig eingesetzt werden.
 Grundsätzlich lässt sich jedes Problem, welches als Funktion repräsentiert werden kann, durch ein Neuronales Netzwerk approximieren. \\
 
 \noindent
-In dieser Arbeit werden sieben Hauptdomänen erklärt und beschrieben, welche von Heaton \cite{AI3} definiert wurden. %, in welchen Neuronale Netzwerke öfters zum Einsatz kommen und eingesetzt werden.
-%Im Speziellen wird auf die Neuronalen Netzwerke eingegangen, welche öfter zum Einsatz kommen und eingesetzt werden.
+In dieser Arbeit werden sieben Hauptdomänen erklärt und beschrieben, welche von Heaton \cite{AI3} definiert wurden. 
 
 \subsection{Clustering}
 \label{subsec:Clustering}
 
 Das Clustering Problem bezeichnet das Einordnen von Daten in Klassen oder Gruppierungen. 
 Diese Gruppierungen können von einem Netzwerk selbst definiert werden oder manuell festgelegt werden. 
-% in wie viele Gruppen die Daten eingeordnet werden sollen.  
-Im Falle einer Self-Organizing-Map werden die Gruppierungen selbst durch das System festgelegt.
-%Die Anzahl in welche die Daten eingeordnet werden sollen können festgelegt werden aber auch im Falle einer Self-Oranizing-Map auch selbst definieren werden.
-%Diese Netzwerke agieren unüberwacht und besitzen teilweise die Möglichkeit sich nach dem Trainieren, sich weiter auf sich ändernde Daten anzupassen noch selbst weiter anzupassen. \textbf{TODO}
-%Dies erlaubt dem Netzwerk auf sich ändernde Daten anzupassen und das Clustern und Gruppieren weiterzuführen ohne ein neues Netzwerk erstellen zu müssen.
+Im Falle einer Self-Organiz-ing-Map werden die Gruppierungen selbst durch das System festgelegt.
 
 \subsection{Regression}
 \label{subsec:Regression}
 
 Regression beschreibt den Fall, in welchem Rohdaten generiert werden und diese so verwendet werden. 
-Dies kann im Sinne einer Klassifikation verstanden werden mit dem Unterschied, dass die Anzahl der Klassen unendlich ist, wie die der Reelle Zahlen von $[0 - 1]$. 
-%Regression beschreibt den Fall, in welchem Daten generiert werden und das kontinuierlich.
+Dies kann im Sinne einer Klassifikation verstanden werden mit dem Unterschied, dass die Anzahl der Klassen unendlich ist, wie die der Reellen Zahlen von $[0 - 1]$. 
 Ein Anwendungsfall ist das Finden einer zugrundeliegenden Funktion, bei der nur Resultate dieser Funktion vorliegen. 
-%So gibt es Abläufe in der Natur, welche approximiert werden, um sie für weitere Systeme möglicherweise zu verwenden \cite{bishop2006pattern}. 
-So gibt es Abläufe in der Natur, welche schwer in einer Funktion festgehalten werden kann. 
+So gibt es Abläufe in der Natur, welche schwer in einer Funktion festgehalten werden können. 
 In diesem Fall lässt sich ein Netzwerk mit den Aktionen und Reaktionen trainieren und erhält eine Approximation der Vorgänge \cite{bishop2006pattern}.
 
 \subsection{Klassifikation}
 \label{subsec:Classification}
 
 Bei der Klassifikation werden die Ergebnisse einer Regression, welche meist als Gleitkommazahl vorliegen, auf eine bestimmte Anzahl an Klassen übertragen. 
-%Das Klassifikation-Problem ist in gewisser Weise ähnlich den Regression-Problemen. 
 Der Unterschied liegt im Ergebnis, welches produziert wird.  
 Hier werden Daten dem Netzwerk übergeben und dieses muss vorhersagen, zu welcher Klasse sie gehören. Dies wird in einer überwachten Umgebung durchgeführt. 
 Die Klassen für die Vorhersage sind vorab schon bekannt und können mit den Daten aus dem Outputlayer des Netzwerks verglichen werden und infolge Justierungen durchgeführt werden \cite{AI3}. \\
@@ -387,7 +336,6 @@ Hier muss anhand von meist zeitgesteuerten Ereignissen eine Vorhersage getroffen
 Zum Beispiel an der Börse ändern sich täglich die Kurse relativ rasch, sodass es für Menschen praktisch nicht mehr möglich ist, diese zu verfolgen. 
 Im Falle der Börse sind Aktienkurse mit zeitlichem Verlauf aus der Vergangenheit verfügbar. 
 Diese können als Trainingsdaten für ein Netzwerk verwendet werden, um den nächsten Tag möglicherweise vorherzusagen. 
-%Es kann somit als eine Spezialisierung von Regression und Klassifikation angesehen werden, da Daten generiert werden, diese aber mit einer Wahrscheinlichkeit.
 
 \subsection{Robotics}
 \label{subsec:Robotics}
@@ -395,11 +343,6 @@ Diese können als Trainingsdaten für ein Netzwerk verwendet werden, um den näc
 Auch bekannt unter dem Namen Robot-Learning. 
 Dabei lernen Roboter eigenständig neue Techniken oder passen sich automatisch ihrer Umgebung an. 
 Eines der Kernprobleme dabei ist, dass in Echtzeit etwas zur selben Zeit gelernt werden muss, aber auch Aktionen eingeleitet werden müssen, wie das Steuern von Motoren, um zum Beispiel nicht umzufallen.
-%Im Bereich von Robotics entstehen häufig zu große Datenmengen. 
-%Diese Datenmengen müssten von einem Menschen analysiert werden. 
-%Daraus würde ein Algorithmus entstehen, wobei die Analyse sowie Entwicklungsphase zu viel Zeit in Anspruch nimmt. 
-%Netzwerke verwenden im Grunde die Sensorinformationen und steuern damit Motoren. 
-%Diese kann von Anfang an durchgeführt werden, sowie automatisiert.
 
 \subsection{Computer Vision}
 \label{subsec:Cumputer Vision}
@@ -411,26 +354,10 @@ Solche Dienste werden auch kommerziell eingesetzt und angeboten.
 In autonom gesteuerten Fahrzeugen findet diese Technologie bereits Verwendung, um Objekte zu erkennen und zu verstehen. 
 So muss zum Beispiel ein Verkehrszeichen von einem Passanten unterschieden werden können.
 
-%\subsection{Optimierung}
-%\label{subsec:Optimization}
-
-%Optimierung bezieht sich auf eines der Grundprobleme der Informationstechnologie. 
-%So werden immer bessere schnellere Algorithmen entwickelt, welche konkrete Probleme noch effizienter lösen können. 
-%Durch das Thema BigData entstand ein Performanzproblem, sodass selbst sehr effiziente Algorithmen einige Problemstellungen nicht mehr in konstanter oder adäquater Zeit lösen können. 
-%Das 'Salesman' Problem gehört zu diesen Problemen. 
-%Durch Optimierung wird in konstanter Zeit eine Lösung ermittelt, welche nicht die beste Lösung repräsentiert. 
-%Diese Lösung liegt aber im Rahmen einer bestimmten definierten Toleranz und kann als Lösung verwendet werden. \cite{AI3}
-
-%Top bis hier gelesen am 23.02.
-
 \section{Neuronale Netzwerktypen}
 
-In den letzten Jahren haben sich diverse gut funktionierende Neuronale Netzwerktypen gebildet, beziehungsweise sind entwickelt und erforscht worden. 
+In den letzten Jahren haben sich diverse gut funktionierende neuronale Netzwerktypen gebildet, beziehungsweise sind entwickelt und erforscht worden. 
 Diese Netzwerktypen definieren Richtlinien oder Ansätze zu möglichen Netzwerken, welche aber nicht komplett übernommen werden müssen, sondern einen kreativen Spielraum ermöglichen. \\
-
-%\noindent
-%In dieser Arbeit werde die wichtigsten Typen und ihre Eigenschaften erklärt. 
-%Für die folgenden Punkte ist es erforderlich ein Grundverständnis für Neuronale Netzwerk sowie über ihre Funktionsweise zu besitzen, sollte dies nicht der Fall sein - Punkt \ref{sec:Machine Learning} bis \ref{sec:Domänenklassen}.
 
 \subsection{FeedForward}
 \label{subsec:FeedForward}
@@ -456,7 +383,7 @@ Kohonen entwarf die SOM mit zwei Ebenen, einem Inputlayer und einem Outputlayer 
 Der Inputlayer propagiert Muster an den Outputlayer, wo der Dateneingang gewichtet wird. 
 Im Outputlayer gewinnt das Neuron, welches den geringsten Abstand zu den Eingangsdaten hat.
 Dies geschieht durch das Berechnen der euklidischen Distanz. 
-Diese Art von Netzwerk kommt ohne Bias Neuron aus und es kommen ausschließlich Lineare Aktivierungsfunktionen zur Verwendung.
+Diese Art von Netzwerk kommt ohne Bias Neuron aus und es kommen ausschließlich lineare Aktivierungsfunktionen zur Verwendung.
 
 
 \subsection{Hopfield Neuronal Network}
@@ -465,7 +392,6 @@ Ein Hopfield Neuronal Network (HNN) \cite{demuth2014neural} ist ein einfaches Ne
 In diesem Layer sind alle Neuronen mit jedem anderen Neuron verbunden. 
 Dieses Muster wurde von Hopfield (1982) erfunden. 
 Im Gegensatz zu anderen Netzwerken können Hopfield Netzwerke in einer Matrix abgebildet werden, in welcher die Gewichtung zu den einzelnen Neuronen abgebildet werden. 
-%Die Neuronen selbst nehmen dabei den Zustand $1$ für wahr und $-1$ für falsch an.
 Das Problem bei diesem Typ ist, dass jedes Neuron auf dem Status des anderen aufbaut.
 Dies stellt ein Problem für die Reihenfolge der Berechnung dar, was zu einem nicht stabilen Zustand führt.
 Durch das Hinzugeben einer Energiefunktion kann festgestellt werden, in welchem Zustand sich das Netzwerk befindet. 
@@ -479,8 +405,6 @@ Das voll vernetzte System unterscheidet eine Boltzmann Maschine von einer einges
 In einer RBM sind alle sichtbaren Neuronen mit allen Neuronen im Outputlayer verbunden. 
 Die Verbindungen zwischen den Neuronen im selben Layer entfallen.
 Der alte uneingeschränkte Typ der Boltzmann Maschinen eignet sich gut für Optimierungsprobleme sowie für Mustererkennungen.
-
-%\subsection{Deep Belief Network}
 
 \subsection{Deep FeedForward}
 \label{subsec:DeepFeedForward}
@@ -496,19 +420,6 @@ Die Input- und Outputlayer sind identisch mit einem FeedForward Netzwerk.
 Dafür fehlt diesem Typ eine innere Struktur. 
 Die Verbindungen sind lose, nicht klar definiert und können während dem Trainieren entfernt werden, aber auch wieder hinzugefügt werden.
 
-%\subsection{CPPN}
-
-%\paragraph{Compositional pattern-producing network (CPPN)} ist ein Netzwerk das andere Strukturen entwickelt und basiert dabei auf der Theorie von NEAT. 
-%Dies können Bilder aber auch andere Netzwerke sein, wobei meist Bilder generiert und weiter entwickelt werden.
-%Dieser Type entstand durch Stanley (2007). %und zählt zu den Künstlichen Neuronalen Netzwerken.
-%CPPN können im Gegensatz zu NEAT Netzwerken mit verschieden Aktivierungsfunktionen verwendet werden.
-%Ein erzeugtes finalisiertes Netzwerk resultiert aber immer in einem regulären NEAT Netzwerk.
-
-%\subsection{HyperNEAT}
-
-%\paragraph{HyperNEAT} (\textit{VL weglassen}) ist eines der bekanntesten CPPN Netzwerke, welches keine Bilder produziert, sondern neue Netzwerke erstellt.
-%Mit der Fähigkeit andere Netzwerke zu kreieren, welche für ihre Aufgabe gute Ergebnisse liefern, ermöglicht es schneller Netzwerke zu kreieren und sich auf ändernde Probleme %schneller anzupassen.
-
 \subsection{Convolutional Neural Network}
 
 Convolutional Neural Network werden selbst nicht als komplettes eigenes Netzwerk verwendet, sondern in FeedForward Netzwerken.
@@ -517,30 +428,27 @@ Dabei werden zwei Ebenen nicht voll vernetzt sondern nur teilweise und somit Gew
 Außerdem können die Gewichtungen geteilt werden, sodass immer in dieselbe Richtung verlaufende Verbindungen dieselbe Gewichtung aufweisen.
 Dies ermöglicht es, komplexe Strukturen zu speichern und trotzdem die Speicherauslastung niedrig zu halten und die Effektivität aufrecht zu halten.
 
-%\subsection{Deep Belief Neural Network}
-
 \subsection{Recurrent Network}
 
 Recurrent Network sind Netzwerke, die nicht nur einen Kontrollfluss haben, sondern auch Rekursionen beinhalten. 
 Diese Rekursionen können jedes andere Neuron ansprechen, ausgenommen der Neuronen im Inputlayer.
 Ein Problem durch Rekursionen sind Endlosschleifen, welche behandelt werden müssen.
-So können Kontext Neuronen verwendet werden, aber auch eine definierte Anzahl an Iterationen durchlaufen werden, damit die Rekursion nicht mehr fortgeführt wird. 
+So können Kontext-Neuronen verwendet werden, aber auch eine definierte Anzahl an Iterationen durchlaufen werden, damit die Rekursion nicht mehr fortgeführt wird. 
 Eine weitere Option ist so lange zu warten, bis sich die Ausgabe des Neurons stabilisiert hat und sich nicht mehr ändert.
-Das Kontext Neuron nimmt dabei die Stelle eines kurzen Speichers ein, wo ein Zustand für die nächste Iteration zwischengespeichert wird.
+Das Kontext-Neuron nimmt dabei die Stelle eines kurzen Speichers ein, wo ein Zustand für die nächste Iteration zwischengespeichert wird.
 Die Informationen, die in einem solchen Neuron gespeichert werden, werden bei diesem Speichervorgang nicht gewichtet, sondern erst, wenn diese Informationen an das Netzwerk zurückgegeben werden.
-Diese Rekursionen werden vor allem in Fällen verwendet, wenn es um zeitliche Abläufe und Änderungen geht, wie zum Beispiel bei der Temperatur für den nächsten Tag, wo man Daten etlicher vorangegangener Jahre zur Verfügung hat.
+Diese Rekursionen werden vor allem in Fällen verwendet, wenn es um zeitliche Abläufe und Änderungen geht, wie zum Beispiel bei der Temperatur für den nächsten Tag, hierfür stehen etliche Daten vorangegangener Jahre zur Verfügung.
 
-%\subsection{Elman Network}
-\paragraph{Elman Network} wurde im Jahre 1990 vorgestellt, sie verwenden Rekursionen mit Kontext Neuronen. 
-Dabei existieren zwei Hiddenlayer mit einem Layer für normale Neuronen und einem mit Kontext Neuronen. 
-Die Kontext Neuronen sind dabei voll mit dem Hiddenlayer verbunden und dieser gibt die Informationen ungewichtet an die Kontext Neuronen weiter.
-In diesem System existieren so viele Kontext Neuronen wie Neuronen im Hiddenlayer, sodass jedes Neuron dort ein Kontext Neuron mit dem neuen Status befüllt.
+\paragraph{Elman Network} wurde im Jahre 1990 vorgestellt, sie verwenden Rekursionen mit Kontext-Neuronen. 
+Dabei existieren zwei Hiddenlayer mit einem Layer für normale Neuronen und einem mit Kontext-Neuronen. 
+Die Kontext-Neuronen sind dabei voll mit dem Hiddenlayer verbunden und dieser gibt die Informationen ungewichtet an die Kontext-Neuronen weiter.
+In diesem System existieren so viele Kontext-Neuronen wie Neuronen im Hiddenlayer, sodass jedes Neuron dort ein Kontext-Neuron mit dem neuen Status befüllt.
 
-%\subsection{Jordan Network}
-\paragraph{Jordan Network} wurde 1993 der Öffentlichkeit präsentiert, sie sind den Elman Netzwerken sehr ähnlich. 
-Es werden wieder Kontext Neuronen für das Zwischenspeichern verwendet, nur wird dieser Zustand durch den Outputlayer definiert.
+\paragraph{Jordan Network} wurde 1993 der Öffentlichkeit präsentiert.
+Sie sind den Elman Netzwerken sehr ähnlich. 
+Es werden wieder Kontext-Neuronen für das Zwischenspeichern verwendet, nur wird dieser Zustand durch den Outputlayer definiert.
 So wird der Ausgang gespeichert und in der nächsten Iteration wieder verwendet.
-Das Kontext Neuron ist dabei nur mit dem Outputlayer wieder verbunden und nicht mit einem Hiddenlayer.
+Das Kontext-Neuron ist dabei nur mit dem Outputlayer wieder verbunden und nicht mit einem Hiddenlayer.
 
 \section{Domänen und Typen Matrix}
 
@@ -550,14 +458,13 @@ Das Kontext Neuron ist dabei nur mit dem Outputlayer wieder verbunden und nicht 
 	\label{fig:DomainMatrix}
 \end{figure}
 
-Wie in der Abbildung \ref{fig:DomainMatrix} erkennbar ist, existiert kein Netzwerkgrundtyp, der für alle Problemdomänen geeignet ist.
+Wie in Abbildung \ref{fig:DomainMatrix} erkennbar ist, existiert kein Netzwerkgrundtyp, der für alle Problemdomänen geeignet ist.
 Dies führt zu der Schlussfolgerung, dass je nach Aufgabe und Ziel ein entsprechendes Grundgerüst gewählt werden muss. 
 Auf Basis dieses Grundgerüsts können uneingeschränkt weitere Eigenheiten aus anderen Netzwerken eingebaut werden.
-In der Praxis findet man selten ein Netzwerk von nur einem Typ für eine größer Problemstellung. 
-Das Problem wird herabgebrochen, auf mehrere kleinere Problemstellungen, welche hintereinander und teilweise parallel gelöst werden.
-%Meistens sind es einige mehrere Netzwerke unterschiedlicher Typen, die hintereinander und parallel geschalten sind und so ein ganzen System darstellen.
+In der Praxis findet man selten ein Netzwerk von nur einem Typ für eine größere Problemstellung. 
+Das Problem wird auf mehrere kleinere Problemstellungen herabgebrochen, welche hintereinander und teilweise parallel gelöst werden.
 Dabei übernimmt jedes Teilnetzwerk eine kleine Aufgabe des Gesamten und zwar die eine, für die es entwickelt wurde. 
-Aktuelle Netzwerke wie das Inception v3 Netzwerk von Google Research benötigt zwei Wochen mit acht Grafikkarten zum Trainieren. 
+Aktuelle Netzwerke wie das 'Inception v3' Netzwerk von Google Research benötigen zwei Wochen mit acht Grafikkarten zum Trainieren. 
 Ab diesem Zeitpunkt ist es im Stande, akkurate Resultate zu liefern. 
 Dieses Netzwerk ist sehr komplex und besteht nicht nur aus 3 Ebenen, was zur Schlussfolgerung führt, dass je tiefer das Netzwerk ist, desto aufwändiger ist es zu trainieren.
 
@@ -565,10 +472,9 @@ Dieses Netzwerk ist sehr komplex und besteht nicht nur aus 3 Ebenen, was zur Sch
 
 Optimierungen beeinflussen das Lernverhalten und das Speicherverhalten eines Netzwerkes.
 
-%Gegenmaßnahme -> dropout, Regulatoren 1/2, learnrate, momentum
 \paragraph{Lernrate} skaliert die Lerngeschwindigkeit, wie im Punkt Backpropagation beschrieben.
 
-\paragraph{Momentum} gehört auch zur Optimierung im Algorithmus zur Backpropagation.
+\paragraph{Momentum} gehört auch zur Optimierung im Algorithmus zur Backpropa-gation.
 Dieser bestimmt wie stark frühere Gewichtsaktualisierungen berücksichtigt werden sollen. 
 
 \paragraph{DropOut} gehört zur Kategorie der Regulatoren. 
@@ -576,23 +482,22 @@ Hinton \cite{krizhevsky2012imagenet} beschreibt DropOuts als eine effektive Art,
 DropOut kann als System integriert werden, aber auch als eigener Layer in einem Netzwerk.
 In einem DropOutlayer werden immer Neuronen deaktiviert, inklusive ihrer Verbindungen zum nächsten Layer.
 Dies hat zur Folge, dass nur ein geringerer Teil an Informationen aus dem vorhergehenden Layer in den nächsten übergeht. 
-Durch diesen Prozess des künstlichen Geringhaltens von Informationen während des Trainings führt dazu, dass das Netzwerk trotz dieser Einschränkung versucht, ein gutes Ergebnis zu erzielen. 
+Der Prozess des künstlichen Geringhaltens von Informationen während des Trainings führt dazu, dass das Netzwerk trotz dieser Einschränkung versucht, ein gutes Ergebnis zu erzielen. 
 Während der Test- und Produktivphase werden diese DropOutlayer aber meist deaktiviert, da das volle Potenzial des Netzwerks verwendet werden soll.
 
 \paragraph{L1 und L2 Regularisierung} sind ebenfalls Techniken, die zur Verhinderung von Overfitting beitragen.
 Im Gegensatz zu der DropOut Strategie sind diese zwei Regularisierungstechniken Teil der Backpropagation oder werden als Funktion eingesetzt.
 Beide Techniken arbeiten mit Strafen, welche verteilt werden und so die Gewichtungen vor dem Ausarten hindern. 
-%TODO objective functions -> simulated annealing
-%Im Falle von L1 ähnelt dieses Muster einer Gaussian Glockenkurve und bei L2 einer Laplace Kurve.
-Durch das Bestrafen der Gewichtungen im Netzwerk werden diese Werte gering gehalten. %, sodass sie nicht ausarten. 
-Wenn ein Gewicht Richtung $0$ geht, führt dies unweigerlich zu einem indirekten Ausschluss aus dem Netzwerk.
-Das Netzwerk wird spärlicher und leichtgewichtiger, was aber wiederum das Resultat hat, dass ein Rauschen in den Daten ignoriert wird.
+Durch das Bestrafen der Gewichtungen im Netzwerk werden diese Werte gering gehalten. 
+Wenn ein Gewicht Richtung $0$ geht, führt dies unweigerlich zu einem indirekten Ausschluss aus dem Netzwerk. 
+Das Netzwerk wird spärlicher und leichtgewichtiger, sodass ein Rauschen in den Daten ignoriert wird. 
 
 \begin{equation}
 	E := \frac{\lambda}{n} \sum |w|
 	\label{eq:L1ErrorTerm}
 \end{equation}
 
+\noindent
 Die Funktion \ref{eq:L1ErrorTerm} bildet die Berechnung der Strafe in der Backpropagation ab.
 Das $\lambda$ definiert wie stark die Regularisierung den Error-Wert des Netzwerkes beeinflussen soll.
 Ein Wert von $0$ führt dazu, dass die Regularisierung keinen Einfluss besitzt. 
@@ -607,20 +512,11 @@ Dies ist erforderlich, da diese Funktion bei jeder Evaluierung der Trainingsdate
 In der aktuellen Zeit ist es nicht mehr möglich, eine Geschwindigkeitssteigerung zu erreichen, indem die Taktrate des Prozessors erhöht wird. 
 Deshalb wird mehr parallelisiert, da die Recheneinheiten kleiner werden und so mehrere auf derselben Fläche Platz finden. 
 Eine Grafikkarte besitzt die Eigenschaft, gleichförmige Operationen in einem Schritt auf sehr viele Objekte gleichzeitig auszuführen. 
-So werden viele Pixel auf einmal eingefärbt oder eine Multiplikation großer Matrizen. 
+So werden viele Pixel auf einmal eingefärbt oder eine Multiplikation großer Matrizen durchgeführt. 
 Der Geschwindigkeitsvorteil kommt dabei durch den hohen Grad an Parallelität, da die Grafikkarte hauptsächlich für solche Operationen ausgelegt worden ist.
 
-\paragraph{Batch Learning} %gehört nicht direkt in die Kategorie der Optimierung, bietet trotzdem einen Performanzvorteil. 
-%Durch Batch Learning wird immer ein Paket in das System eingeführt. 
+\paragraph{Batch Learning} 
 führt dazu, dass immer ein Paket an Daten in das System eingeführt wird. 
 Dieses Paket wird je nach Implementierung parallel verarbeitet oder sequenziell. 
 Der Unterschied zu 'Online Learning' ist nun, dass nicht nach jedem Datensatz die Gewichtungen und das System nachjustiert wird, sondern dass zuerst das Paket verarbeitet und das System einmal angepasst wird. 
-Dabei werden die Gradienten zusammengerechnet und einmal auf den Graphen adaptiert \cite{AI3}.
-%Wenn also ein Paket mit einer Größe von $64$ in das System eingeführt wird, führt dies einmal zu einer Anpassung des Graphen, in dem die Gradienten zusammen gerechnet werden und einmal auf den Graphen adaptiert werden \cite{AI3}. 
-
-%\section{Tensorflow Typen Unterstützung}
-
-
-
-
-
+Dabei werden die Gradienten zusammengerechnet und einmal auf den Graphen adaptiert \cite{AI3}. 

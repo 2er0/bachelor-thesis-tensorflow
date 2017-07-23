@@ -8,7 +8,6 @@ Das gesamte Netzwerk wurde nicht voll vernetzt, wie in Abbildung \ref{fig:exampl
 \begin{figure}
 \centering
 \begin{tikzpicture}[auto, node distance=3.8cm]
-	%\tikzstyle{every node}=[draw,shape=circle];
 	
 	\node (a) {A};
 	
@@ -44,7 +43,7 @@ So beinhalten sie auch die kombinierte Strecke von \textit{A $\rightarrow$ E $\r
 In Tabelle \ref{tab:edgeValues} sind alle benötigten Werte des Graphen \ref{fig:exampleNetzwerk} aufgeschlüsselt. 
 Hierbei muss beachtet werden, dass die Zeit in Minuten und Sekunden angegeben ist. 
 \begin{table}[htb]%[ht!]
-\centering% NICHT \begin{center}
+\centering
 \begin{tabular}{c|c|c|c}
 %\hline 
 Kante & km/h & km & Zeit (mm:ss) \\ 
@@ -117,7 +116,7 @@ Dies kommt mit der großen Entfernung zwischen den Punkten zustande und der geri
 In einem direkten Vergleich der generierten Tour und einer manuell zusammengestellten Tour lässt sich feststellen, dass es eine bessere Route gibt. 
 In der Tabelle \ref{tab:genTour} befinden sich die Zeit- und Distanzkosten der generierten Tour. 
 \begin{table}[htb]%[ht!]
-\centering% NICHT \begin{center}
+\centering
 \begin{tabular}{c|c|c|c|c|c|c|c}
 %\hline 
  & E & D & A & B & C & DE & Summe\\ 
@@ -132,7 +131,7 @@ Distanz & 10 & 10 & 10 + 14,14 & 10 & 10 & 10 & 74,14 km \\
 \end{table}
 Die Tabelle \ref{tab:manTour} beinhaltet die Zeit- und Distanzkosten der manuellen erstellten Tour.
 \begin{table}[htb]%[ht!]
-\centering% NICHT \begin{center}
+\centering
 \begin{tabular}{c|c|c|c|c|c|c|c}
 %\hline 
  & C & D & E & A & B & DE & Summe\\ 
@@ -152,13 +151,10 @@ In Bezug auf den realen Straßenverkehr, kann dieser Wert vernachlässigt werden
 Die berechnete Kostenmatrix führt in diesem Fall dazu, dass die Strecke und die Zeit optimiert werden. 
 Sollte aber die Distanz minimiert werden, so müsste eine Distanzmatrix als Kostenmatrix verwendet werden. 
 Eine andere Möglichkeit wäre die Berechnung der Kosten abzuändern, sodass sich die Distanzen stärker widerspiegeln. 
-%\lstinputlisting[language=Python,caption={Grundklassen mit Knoten/Kunden, Routen sowie Saving-Repräsentierung},label=list:domOject]{routing/route.py}
-
 
 \chapter{Zusammenfassung}
 \label{Zusammenfassung}
 
-%Routing allgegenwärtig (navis, Google maps), aber einfache point-to-point mit Zwischenstopp in fixer Reihenfolge. Es gibt aber mehr Fragestellungen @routing und entsprechend Algorithmen. Im Rahmen der Arbeit mehr routing-Algorithmen genauer kennengelernt, speziell mit Einsatz in Logistik, die heute unser leben prägt. Kurz welche algos und technische limits
 Routing in der Logistik bietet die Möglichkeit effizienter Auslieferungen zu erledigen. 
 Dabei existieren allgegenwärtig Navigationssysteme wie Google Maps. 
 Diese Lösungen liefern meist nur die Möglichkeit einfache \textit{point-to-point} Optimierungen durchzuführen. 

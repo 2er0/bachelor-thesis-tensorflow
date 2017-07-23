@@ -11,8 +11,6 @@ Im Jahr 2006 war das tägliche Zustellvolumen von Paketen und Dokumenten bei $14
 Dies entspricht einer Steigerung von $\sim27\,\%$, bei einer gleichzeitigen Erweiterung der Fahrzeugflotte um $\sim13\,\%$. 
 Dies betrifft nicht nur Logistikunternehmen wie UPS, sondern auch zum Beispiel Brauereien, welche die Auslieferung ihrer Produkte nicht komplett ausgelagert haben. 
 
-%Paketdienste im Großen mit Abholung und Auslieferung über mehrere Tage aber auch lokale Produzenten mit direkt Zustellung ab Hof wie bei Brauereien und noch viele mehr
-%Planung, Organisation, Steuerung, Abwicklung und Kontrolle
 \noindent
 Logistik beinhaltet mehr als nur Auslieferungen: 
 \begin{itemize}
@@ -26,7 +24,7 @@ Logistik beinhaltet mehr als nur Auslieferungen:
 \noindent
 Ein weiteres Problem betrifft die Anzahl der Stopps.
 \begin{table}[htb]%[ht!]
-\centering% NICHT \begin{center}
+\centering
 \begin{tabular}{R{3cm}|R{3cm}|R{4cm}}
 %\hline 
 Anzahl der Haltepunkte & Anzahl der möglichen Routen & Berechnungszeit in Sekunden bei 30 Routen/Sekunde \\ 
@@ -70,7 +68,6 @@ Angenommen ein Rechner berechnet 30 Möglichkeiten pro Sekunde, so würde man be
 
 \subsection{Graph}
 
-%Graph in der Logistik anders als zu TensorFlow - sind Abstrahierte Geographische Repräsentationen der Wirklichkeit
 Graphen im Sinne der Logistik sind anders definiert als im Bereich der neuronalen Netzwerke. 
 In der Graphentheorie ist ein Graph ein System an Knoten und Kanten. 
 Dabei kann dieser als Paar $G := (V, E)$ interpretiert werden, welches aus zwei Mengen besteht. 
@@ -94,18 +91,8 @@ Die Spezialisierungen der einzelnen Graphen-Typen können kombiniert werden, sow
 Um durch einen Graphen zu navigieren existieren Algorithmen, welche zum Beispiel die kürzeste Route von einem Punkt zu allen anderen im Graphen finden. 
 Hierzu zählt zum Beispiel der Dijkstra-Algorithmus, der als Standardalgorithmus im Gebiet der kürzesten Routenfindung eingesetzt wird. 
 
-%\subsection{Stochastisch \& Deterministisch}
-
-%Stochastik im Gebiet der Mathematik umfasst die Gebiete der Wahrscheinlichkeitstheorie und Statistik. 
-%So werden Zufallsexperimente wie zum Beispiel ein Münzwurf analysiert und Dokumentiert. 
-%Für das Analysieren stellt die Statistik die benötigten Mittel bereit. 
-%
-%\noindent
-%Determinismus bedeutet 
-
 \subsection{Traveling Salesman Problem (TSP)}
 
-%TSP - Grundproblemstellung im Logistik
 Das TSP oder auch unter dem Begriff \textit{Vehicel Routing Problem (VRP)} bekannt, stellt ein Grundproblem der Logistik dar. 
 Bei dieser Problemstellung sollen geografische Positionen einmal angefahren werden und dies mit dem geringsten Aufwand. 
 Dies lässt sich in der Abbildung \ref{fig:tsp} erkennen.
@@ -192,7 +179,6 @@ Des Weiteren existieren Meta-Heuristische Algorithmen, welche eine geringe Laufz
 
 \subsection{Exakte Verfahren}
 
-%Ineffizient - nicht groß vertiefen
 Exakte Verfahren liefern die beste Lösung, aber nicht ohne Nachteile.  
 Einer dieser Nachteile ist, dass die benötigte Zeit mit jedem weiteren Knoten im System stark ansteigt, da die zu überprüfenden Möglichkeiten  steigen. 
 
@@ -209,7 +195,6 @@ Die genauere Beschreibung dieses Algorithmus befindet sich in der Sektion \ref{H
 \subsection{Heuristik}
 \label{Heuristik}
 
-%kurz erwähnen was Heuristik bedeutet
 Heuristik bedeutet, mit wenig Wissen sowie mit begrenzter Zeit eine wahrscheinliche Lösung zu liefern. 
 Heuristiken werden oft im Gebiet der Optimierungen eingesetzt. 
 Zum exakten Lösen eines Logistik-Problems wird sehr viel Zeit und Speicher benötigt. 
@@ -274,10 +259,6 @@ Der grundsätzliche Ablauf sieht wie folgt aus:
 	\item Infolgedessen wird bei Punkt 2 fortgesetzt, wenn sich noch Kombinationen an Routen in der Savingsliste befinden. 
 	Sollte dies nicht der Fall sein, so wurde eine optimierte Route gefunden oder mehrere Teilrouten, welche nicht mehr kombiniert werden können. 
 \end{enumerate}
-%Zu Beginn des Algorithmus wird für jeden Kunden eine eigene Route erstellt. 
-%Im Anschluss werden alle Kombinationen Routen erstellt und das Saving davon berechnet. 
-%Durch eine absteigende Sortierung anhand des Savings lässt sich erkennen welchen Verbindung den größten Vorteil bietet. 
-%Im nächsten Schritt werden diese 
 
 \paragraph{Sweep-Algorithmus:}
 
@@ -295,7 +276,6 @@ Somit gehört auch dieser Algorithmus zur Kategorie der Eröffnungsverfahren \ci
 
 \subsection{Meta-Heuristiken}
 
-%kurz was ist Metaheuristiken
 Meta-Heuristik wird in der Informatik als Bezeichnung verwendet, wenn eine Lösung näherungsweise erzeugt wird. 
 Diese sind nicht stark problemspezifisch orientiert, im Gegensatz zu Heuristiken. 
 Diese Art von Algorithmen wird im Bereich der Logistik deshalb eingesetzt, weil sie lokalen Optima in schwereren und größeren Problemen entwischen können und eher zu einem globalen Optima tendieren oder konvergieren. 
@@ -332,7 +312,6 @@ Die Idee und die Bezeichnung stammen hierbei aus der Härtung von Stahl.
 In der Stahlproduktion wird dieser \textit{erwärmt} und wieder \textit{abgekühlt}, was als \textit{härten} bezeichnet wird. 
 Dieser Prozess des Abkühlens führt dazu, dass sich die Teilchen wie in einer Gitterstruktur anordnen. 
 Zu Beginn kann von einer stochastischen Suche gesprochen werden und zum Ende hin von einer deterministischen Suche. 
-%beginnt mit großen Schritten in Richtung des Ziels, aber mit Abweichungen. 
 Zum Ende des Prozesses werden die Schritte immer kleiner, wie bei der Härtung kühlen dabei die letzten Temperaturen sehr langsam ab. 
 Im Gesamten wird eine global optimale Konfiguration gefunden, in dem dieser Prozess simuliert wird. 
 Am Anfang wird deshalb von einer stochastischen Suche gesprochen, da das System Möglichkeiten annimmt, welche zu einer Verschlechterung des Ergebnisses führen. 
@@ -368,7 +347,6 @@ Der grobe Ablauf des Grundalgorithmus:
 	\item Nachdem alle Ameisen einmal im Netzwerk waren, werden alle Pheromone an den Kanten aktualisiert; 
 	\item Diese entstandene Lösung wird nun mit der letzten verglichen und ein weiterer Durchlauf wird unter Berücksichtigung eines Abbruchkriteriums mit den neuen Pheromonen eingeleitet; 
 \end{itemize}
-%\cite{neagoe2010ant}
 
 \paragraph{Evolutionäre Algorithmen (EA):}
 

@@ -37,7 +37,6 @@ In diesem Fall würden zuerst die Routen \textit{A - B} oder \textit{D - E} zusa
 \begin{figure}
 \centering
 \begin{tikzpicture}[auto, node distance=3cm]
-	%\tikzstyle{every node}=[draw,shape=circle];
 	
 	\node (a) {A};
 	
@@ -66,7 +65,7 @@ In diesem Fall würden zuerst die Routen \textit{A - B} oder \textit{D - E} zusa
 	\label{fig:simpleNetwork}
 \end{figure}
 \begin{table}[htb]%[ht!]
-\centering% NICHT \begin{center}
+\centering
 \begin{tabular}{p{3cm}|p{4cm}}
 %\hline 
 Route & Ersparnis \\ 
@@ -112,7 +111,6 @@ Dieses Verhalten führt unweigerlich dazu, dass der Feldweg als erste Kombinatio
 \begin{figure}
 \centering
 \begin{tikzpicture}[auto, node distance=3cm]
-	%\tikzstyle{every node}=[draw,shape=circle];
 	
 	\node (a) {A};
 	
@@ -125,16 +123,6 @@ Dieses Verhalten führt unweigerlich dazu, dass der Feldweg als erste Kombinatio
 	\node (e) [right of=d] {E};
 	
 	\node (de) [below of=c] {Depot};
-	
-%	\path 	(de) 	edge node {AB, 16min 9s} (a)
-%					edge [bend left] node {LS, 15min} (b)
-%			 		edge node {FW, 30min} (c)
-%			 		edge [bend right] node {LS, 15min} (d)
-%			 		edge node {FW, 3h 30min} (e)
-%			(a)		edge [bend right] node {LS, 9min} (b)
-%			(c) 	edge [bend right] node {LS, 9min} (b)
-%			(d)		edge [bend right] node {LS, 9min} (c)
-%			(d)		edge [bend right] node {FW, 9min} (e);
 			
 	\path 	(de) 	edge [bend left] node {AB, 16min 9s} (a)
 					edge node {LS, 15min} (b)
@@ -151,7 +139,7 @@ Dieses Verhalten führt unweigerlich dazu, dass der Feldweg als erste Kombinatio
 	\label{fig:simpleNetworkTime}
 \end{figure}
 \begin{table}[htb]%[ht!]
-\centering% NICHT \begin{center}
+\centering
 \begin{tabular}{p{3cm}|p{4cm}}
 %\hline 
 Route & Ersparnis \\ 
@@ -184,7 +172,7 @@ In Tabelle \ref{tab:disTimeValues} sind hierzu die Wertigkeiten der Kanten aus d
 An diesem Beispiel lässt sich erkennen, dass die Kante vom \textit{Depot} zum Knoten \textit{A} mit $2786,37$ besser bewertet wird, im Gegensatz zu der Kante vom \textit{Depot} zum Knoten \textit{E}. 
 Im Grunde ist so ein Verhalten das Gewünschte, denn eine Strecke mit einer schlechten Streckenbeschaffenheit wird schwächer bewertet. 
 \begin{table}[htb]%[ht!]
-\centering% NICHT \begin{center}
+\centering
 \begin{tabular}{p{5cm}|p{5cm}}
 %\hline 
 Kante & Wertigkeit \\ 
@@ -213,7 +201,7 @@ Basierend auf den in der Tabelle \ref{tab:disTimeValues} berechneten Kantenwerti
 Dafür wird derselbe Graph aus \ref{fig:simpleNetwork} mit den neuen Kantenwertigkeiten verwendet. 
 An diesem Beispiel lässt sich erkennen, dass die Autobahn vom \textit{Depot} zum Knoten \textit{A} bevorzugt wird. 
 \begin{table}[htb]%[ht!]
-\centering% NICHT \begin{center}
+\centering
 \begin{tabular}{p{3cm}|p{7cm}}
 %\hline 
 Route & Ersparnis \\ 
@@ -237,15 +225,6 @@ So sollten mehrere Überlegungen festgehalten und getestet werden.
 So kann das Verhalten festgestellt werden und auch in welche Richtung optimiert wird. 
 Das Überprüfen und Testen kann einfach in einem Script mit einem Graph aus der Praxis erfolgen, bei welchem die optimale Route bekannt ist. 
 Auf diese Art kann sichtbar gemacht werden, wie gut der Algorithmus und dessen Kostenfunktion optimieren und Lösungen finden. 
-
-%\section{Justierung \& Anpassung}
-
-%\paragraph{Hyperparameter}
-
-%\paragraph{Algorithmische Anpassung}
-
-%\paragraph{Auswirkung}
-
 
 \chapter{Problemgebiete}
 

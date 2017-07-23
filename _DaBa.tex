@@ -13,11 +13,13 @@
 \logofile{logo}							% name of logo-PDF in images/ (or use \logofile{} for no logo)
 \bibliography{literatur}  	% name of the BibTeX (.bib) file
 
+\usepackage{pdfpages}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{subfig}
+\usepackage{minitoc}
 \usetikzlibrary{
   arrows.meta, % for Straight Barb arrow tip
   fit, % to fit the group box around the central neurons
@@ -45,6 +47,8 @@
   },
 }
 
+\hyphenation{Backpropagation}
+
 %%%----------------------------------------------------------
 \begin{document}
 %%%----------------------------------------------------------
@@ -54,36 +58,21 @@
 \author{David Baumgartner}
 \studiengang{Software Engineering}
 \studienort{Hagenberg}
-\abgabedatum{2017}{01}{14}	% {YYYY}{MM}{DD}
+\abgabedatum{2017}{05}{23}	% {YYYY}{MM}{DD}
 
 %%% zusätzlich für eine Bachelorarbeit: ---------------------
-\nummer{XXXXXXXXXX-A}   % XX...X = Stud-ID, z.B. 0310238045-A  
+\nummer{1410307050-A}   % XX...X = Stud-ID, z.B. 0310238045-A  
                         % (A = 1. Bachelorarbeit)
 \semester{Wintersemester 2016/17} 
-\gegenstand{………………}%Einführung in die Tiefere Problematik 1} 
 \betreuer{Stephan Dreiseitl, FH-Prof. PD DI Dr.} % oder \betreuerin{..}
 
-%%% zusätzlich für einen Praktikumsbericht: -----------------
-%\nummer{XXXXXXXXXX-B}   % XX...X = Stud-ID, z.B. 0310238045-B  
-                        % (B = 2. Bachelorarbeit)
-%\betreuer{Mag.~Pjotr I.~Czar\\Creative Director}  % \betreuerin{..}
-%\firma{%
-%   Oligarchic Media International GmbH\\
-%   Online Division\\
-%   1020 Wien, Hubertusgasse 3a
-%}
-%\firmenTel{1-234-5678-100}
-%\firmenUrl{www.mogul.at}
-
-%\strictlicense  % erzeugt restriktive Lizenzformel
 
 %%%----------------------------------------------------------
+\includepdf[pages={1}]{deckblaetter/Titelblattvorlage_1theorBA_neu0216.pdf}
 \frontmatter
-\maketitle
-\tableofcontents
-%%%----------------------------------------------------------
 
-%\include{vorwort}		% ggfs. weglassen
+\tableofcontents
+
 \include{kurzfassung}
 \include{abstract}
 
@@ -95,14 +84,7 @@
 \include{begriffe}
 \include{tensorflow}
 \include{keyPointDetection}
-\include{zusammenfassungAusblick} % Stephan TODO
-%\include{diplomschrift}
-%\include{latex}
-%\include{abbildungen}
-%\include{mathematik}
-%\include{literatur}
-%\include{drucken}
-%\include{schluss}
+\include{zusammenfassungAusblick}
 
 %%%----------------------------------------------------------
 %%%Anhang
@@ -118,6 +100,6 @@
 %%%----------------------------------------------------------
 
 %%%Messbox zur Druckkontrolle
-\include{messbox}
+%\include{messbox}
 
 \end{document}
