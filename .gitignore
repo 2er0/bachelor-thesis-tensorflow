@@ -179,5 +179,10 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
+# DOC
+*.doc
+
 tmp
 marks
+notused
+routing/__pycache__
