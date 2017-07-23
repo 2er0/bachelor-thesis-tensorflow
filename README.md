@@ -44,3 +44,9 @@ For people who are technically not experienced, frameworks like **Keras** exist.
 ## License
 
 **Thesis, Code & Slides:** [GPL v3](LICENSE)
+
+## File Index
+
+* [PDF-Version](Bachelorarbeit_DavidBaumgartner_2017.pdf) 
+* [Thesis](thesis)
+* [Slides](slides)
