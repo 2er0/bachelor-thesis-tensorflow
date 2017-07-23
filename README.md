@@ -28,7 +28,7 @@ Technisch nicht so versierte Personen sollten nach dem Erlernen der Grundlagen d
 ## Abstract
 
 Neuronal networks have been reasearched for decades and are growing in commercial usage. 
-They make it possibility to create systems that can solve very complex problems, e.g. the translation of pictures to text. \footnote{Google Translate app: [https://research.googleblog.com/2015/07/how-google-translate-squeezes-deep.html](https://research.googleblog.com/2015/07/how-google-translate-squeezes-deep.html) 
+They make it possibility to create systems that can solve very complex problems, e.g. the translation of pictures to text. [Google Translate app](https://research.googleblog.com/2015/07/how-google-translate-squeezes-deep.html) 
 Such systems need computational power which was not available in former times. 
 So at the start there were only models and today we can do that nearly on our smartphones. 
 The development of integrated circuits enabled more research and a more efficient development in that research area. 
